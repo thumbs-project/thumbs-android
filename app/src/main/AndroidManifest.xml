@@ -17,8 +17,7 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name="com.thumbs.android.thumbsAndroid.views.SettingActivity"
-    />
+
     <service
       android:enabled="true"
       android:exported="false"
