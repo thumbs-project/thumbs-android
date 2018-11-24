@@ -29,8 +29,8 @@ class FloatingViewService : Service() {
   }
 
   fun init() {
-    MainWidget(this, windowManager);
-    ItemWidget(this, windowManager);
+    MainWidget(this, windowManager)
+    ItemWidget(this, windowManager)
   }
 
   override fun onDestroy() {
