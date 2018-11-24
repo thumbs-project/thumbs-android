@@ -19,24 +19,27 @@ class MainWidget {
   constructor(service: Service, windowManager: WindowManager) {
     singleTabConfirm = GestureDetector(service, SingleTapConfirm());
 
-    var view = LayoutInflater.from(service)
+    val view = LayoutInflater.from(service)
       .inflate(R.layout.layout_floating_widget, null)
 
-    var layoutParams = createLayoutParams(-100, -100)
+    val layoutParams = createLayoutParams(-100, -100)
 
     windowManager.addView(view, layoutParams);
-
 
     btnClose = view.findViewById(R.id.buttonClose)
     btnClose?.setOnClickListener {
       userRepository.getUser().subscribe({
         Log.d("TAG_NETWORK","success")
-        Toast.makeText(service,it.url,Toast.LENGTH_SHORT).show()
-      },{
+        Toast.makeText(service, it.url, Toast.LENGTH_SHORT)
+          .show()
+      }, {
         Log.d("TAG_NETWORK","error")
       })
     }
 
-    setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager)
+    setOnTouch(
+      view,
+      layoutParams, singleTabConfirm!!,
+      windowManager)
   }
 }
