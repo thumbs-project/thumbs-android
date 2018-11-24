@@ -1,4 +1,4 @@
-package com.tamagotchi.android.tamagotchi_android
+package com.tamagotchi.android.tamagotchiAndroid
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

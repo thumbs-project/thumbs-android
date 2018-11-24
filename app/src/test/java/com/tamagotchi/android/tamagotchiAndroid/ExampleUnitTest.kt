@@ -1,4 +1,4 @@
-package com.tamagotchi.android.tamagotchi_android
+package com.tamagotchi.android.tamagotchiAndroid
 
 import org.junit.Test
 
