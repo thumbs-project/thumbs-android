@@ -1,13 +1,12 @@
-package com.tamagotchi.android.tamagotchiAndroid.views
+package com.thumbs.android.thumbsAndroid.views
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Service
 import android.view.*
-import com.tamagotchi.android.tamagotchiAndroid.R
+import com.thumbs.android.thumbsAndroid.R
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
-import android.widget.RelativeLayout
 
 val VIEWPORT_WIDTH_MAX: Int = 1000
 

@@ -1,15 +1,13 @@
-package com.tamagotchi.android.tamagotchiAndroid.views
+package com.thumbs.android.thumbsAndroid.views
 
 import android.app.Service
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
-import android.widget.Toast
-import com.tamagotchi.android.tamagotchiAndroid.R
-import com.tamagotchi.android.tamagotchiAndroid.modules.domain.repositories.UserRepositoryImpl
-import com.tamagotchi.android.tamagotchiAndroid.modules.domain.repositories.UserRepository
-import com.tamagotchi.android.tamagotchiAndroid.modules.network.NetworkConnector
-import com.tamagotchi.android.tamagotchiAndroid.modules.network.api.UserApi
+import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.modules.domain.repositories.UserRepositoryImpl
+import com.thumbs.android.thumbsAndroid.modules.domain.repositories.UserRepository
+import com.thumbs.android.thumbsAndroid.modules.network.NetworkConnector
+import com.thumbs.android.thumbsAndroid.modules.network.api.UserApi
 
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null

@@ -1,8 +1,6 @@
-package com.tamagotchi.android.tamagotchiAndroid.modules.network
+package com.thumbs.android.thumbsAndroid.modules.network
 
 import com.google.gson.GsonBuilder
-import com.tamagotchi.android.tamagotchiAndroid.modules.network.api.UserApi
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
