@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-  android:background="#00ffff"
+<android.support.constraint.ConstraintLayout
+  android:background="#66000000"
   android:layout_height="wrap_content"
   android:layout_width="wrap_content"
-  android:paddingBottom="200dp"
+  android:paddingBottom="20dp"
+  android:paddingLeft="20dp"
+  android:paddingRight="20dp"
+  android:paddingTop="20dp"
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
 >
-  <RelativeLayout
-    android:background="#000"
+  <android.support.constraint.ConstraintLayout
+    android:background="#b39c5a"
     android:id="@+id/relativeLayoutParent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="200dp"
-    tools:ignore="UselessParent">
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_centerVertical="true"
+  >
     <!-- collapsed layout -->
     <RelativeLayout
       android:id="@+id/layoutCollapsed"
@@ -83,5 +89,5 @@
         />
       </LinearLayout>
     </LinearLayout>
-  </RelativeLayout>
-</FrameLayout>
+  </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
