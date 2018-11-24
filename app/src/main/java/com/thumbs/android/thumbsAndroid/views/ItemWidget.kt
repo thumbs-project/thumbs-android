@@ -1,13 +1,12 @@
-package com.tamagotchi.android.tamagotchiAndroid.views
+package com.thumbs.android.thumbsAndroid.views
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Service
-import android.util.Log
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
-import com.tamagotchi.android.tamagotchiAndroid.R
+import com.thumbs.android.thumbsAndroid.R
 
 class ItemWidget {
   var singleTabConfirm: GestureDetector? = null

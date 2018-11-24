@@ -1,10 +1,10 @@
-package com.tamagotchi.android.tamagotchiAndroid.views
+package com.thumbs.android.thumbsAndroid.views
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceActivity
-import com.tamagotchi.android.tamagotchiAndroid.R
+import com.thumbs.android.thumbsAndroid.R
 
 fun Context.settingActivityIntent(): Intent {
   return Intent(this, SettingActivity::class.java)

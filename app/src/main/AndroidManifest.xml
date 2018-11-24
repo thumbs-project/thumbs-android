@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.tamagotchi.android.tamagotchiAndroid">
+          package="com.thumbs.android.thumbsAndroid">
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
   <application
@@ -11,18 +11,18 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
   >
-    <activity android:name="com.tamagotchi.android.tamagotchiAndroid.views.MainActivity">
+    <activity android:name="com.thumbs.android.thumbsAndroid.views.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".views.SettingActivity"
+    <activity android:name="com.thumbs.android.thumbsAndroid.views.SettingActivity"
     />
     <service
       android:enabled="true"
       android:exported="false"
-      android:name="com.tamagotchi.android.tamagotchiAndroid.services.FloatingViewService"
+      android:name="com.thumbs.android.thumbsAndroid.services.FloatingViewService"
     />
   </application>
 </manifest>
