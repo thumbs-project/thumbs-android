@@ -12,6 +12,7 @@ import com.tamagotchi.android.tamagotchiAndroid.R
 import android.view.GestureDetector.SimpleOnGestureListener
 import com.tamagotchi.android.tamagotchiAndroid.views.ItemWidget
 import com.tamagotchi.android.tamagotchiAndroid.views.MainWidget
+import com.tamagotchi.android.tamagotchiAndroid.views.UpdownWidget
 
 class FloatingViewService : Service() {
   val windowManager by lazy {
@@ -31,6 +32,7 @@ class FloatingViewService : Service() {
   fun init() {
     MainWidget(this, windowManager)
     ItemWidget(this, windowManager)
+    UpdownWidget(this, windowManager)
   }
 
   override fun onDestroy() {
