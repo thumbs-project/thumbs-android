@@ -3,14 +3,15 @@ package com.tamagotchi.android.tamagotchiAndroid.services
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
 import android.graphics.PixelFormat
 import android.os.Build
-import android.view.MotionEvent
+import android.util.Log
+import android.view.*
 import android.view.animation.Animation
 import com.tamagotchi.android.tamagotchiAndroid.R
+import android.view.GestureDetector.SimpleOnGestureListener
+
+
 
 
 class FloatingViewService : Service() {
@@ -19,6 +20,9 @@ class FloatingViewService : Service() {
     getSystemService(WINDOW_SERVICE) as WindowManager
   }
 
+  val singleTabConfirm by lazy {
+    GestureDetector(this,SingleTapConfirm())
+  }
   var collapsedView: View? = null
   var expandedView: View? = null
   var movingAnim: Animation? = null
@@ -61,12 +65,13 @@ class FloatingViewService : Service() {
     buttonClose = floatingView?.findViewById(R.id.buttonClose)
 
     expandedView?.setOnClickListener {
-      showLayout()
+      //showLayout()
     }
 
     buttonClose?.setOnClickListener {
       stopSelf()
     }
+
 
     floatingView?.setOnTouchListener(object : View.OnTouchListener {
       private var initialX: Int = 0
@@ -75,27 +80,36 @@ class FloatingViewService : Service() {
       private var initialTouchY: Float = 0.toFloat()
 
       override fun onTouch(v: View, event: MotionEvent): Boolean {
-        when (event.action) {
-          MotionEvent.ACTION_DOWN -> {
-            initialX = mParams.x
-            initialY = mParams.y
-            initialTouchX = event.rawX
-            initialTouchY = event.rawY
-            return true
-          }
 
-          MotionEvent.ACTION_UP -> {
-            //when the drag is ended switching the state of the widget
-            hideLayout()
-            return true
-          }
 
-          MotionEvent.ACTION_MOVE -> {
-            //this code is helping the widget to move around the screen with fingers
-            mParams.x = initialX + (event.rawX - initialTouchX).toInt()
-            mParams.y = initialY + (event.rawY - initialTouchY).toInt()
-            windowManager.updateViewLayout(floatingView, mParams)
-            return true
+        if(singleTabConfirm.onTouchEvent(event)){
+          // single tab
+          Log.d("floatingView","widget clicked")
+
+          return true
+        }else{
+          when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+              initialX = mParams.x
+              initialY = mParams.y
+              initialTouchX = event.rawX
+              initialTouchY = event.rawY
+              return true
+            }
+
+            MotionEvent.ACTION_UP -> {
+              //when the drag is ended switching the state of the widget
+              //hideLayout()
+              //return true
+            }
+
+            MotionEvent.ACTION_MOVE -> {
+              //this code is helping the widget to move around the screen with fingers
+              mParams.x = initialX + (event.rawX - initialTouchX).toInt()
+              mParams.y = initialY + (event.rawY - initialTouchY).toInt()
+              windowManager.updateViewLayout(floatingView, mParams)
+              return true
+            }
           }
         }
         return false
@@ -137,3 +151,10 @@ class FloatingViewService : Service() {
 
       }
     })*/
+
+class SingleTapConfirm : SimpleOnGestureListener() {
+
+  override fun onSingleTapUp(event: MotionEvent): Boolean {
+    return true
+  }
+}
