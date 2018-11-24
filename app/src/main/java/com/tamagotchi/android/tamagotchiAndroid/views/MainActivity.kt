@@ -1,12 +1,12 @@
 package com.tamagotchi.android.tamagotchiAndroid.views
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
 import android.net.Uri
-import android.provider.Settings
-import android.widget.Toast
 import android.os.Build
+import android.os.Bundle
+import android.provider.Settings
+import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.tamagotchi.android.tamagotchiAndroid.R
 import com.tamagotchi.android.tamagotchiAndroid.services.FloatingViewService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,11 +19,12 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-
     init()
+
+    buttonSetting.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
   }
 
-  fun init(){
+  fun init() {
     buttonCreateWidget.setOnClickListener {
       when {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
@@ -41,12 +42,11 @@ class MainActivity : AppCompatActivity() {
       }
 
 
-
     }
 
   }
 
-  private fun checkPermission(){
+  private fun checkPermission() {
     Intent(
       Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
       Uri.parse("package:$packageName")

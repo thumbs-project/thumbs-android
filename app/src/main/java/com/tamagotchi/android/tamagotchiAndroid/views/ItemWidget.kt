@@ -6,6 +6,7 @@ import android.app.Service
 import android.util.Log
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.ImageView
 import com.tamagotchi.android.tamagotchiAndroid.R
 
 class ItemWidget {
@@ -16,6 +17,10 @@ class ItemWidget {
 
     var view = LayoutInflater.from(service)
       .inflate(R.layout.layout_floating_widget, null)
+
+    val image = view.findViewById<ImageView>(R.id.icon_thu)
+    image.setBackgroundResource(R.drawable.thu_music)
+
 
     var layoutParams = createLayoutParams(0, 250);
 
