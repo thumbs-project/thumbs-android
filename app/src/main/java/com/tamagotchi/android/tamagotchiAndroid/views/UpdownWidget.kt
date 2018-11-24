@@ -6,6 +6,8 @@ import android.app.Service
 import android.view.*
 import com.tamagotchi.android.tamagotchiAndroid.R
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.ImageView
+import android.widget.RelativeLayout
 
 val VIEWPORT_WIDTH_MAX: Int = 1000
 
@@ -18,19 +20,23 @@ class UpdownWidget {
     val view = LayoutInflater.from(service)
       .inflate(R.layout.layout_floating_widget, null)
 
+
+    val image = view.findViewById<ImageView>(R.id.icon_thu)
+    image.setBackgroundResource(R.drawable.thu_un)
+
     val layoutParams = createLayoutParams(VIEWPORT_WIDTH_MAX, 0)
 
     windowManager.addView(view, layoutParams);
 
     setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager)
 
-    animateUpdown(view, layoutParams, windowManager)
+    animateUpdown(view , layoutParams, windowManager)
   }
 }
 
 fun animateUpdown(view: View, layoutParams: WindowManager.LayoutParams, windowManager: WindowManager) {
   val initialY = layoutParams.y
-  val animator = ValueAnimator.ofInt(-100, 100).apply {
+  val animator = ValueAnimator.ofInt(-50, 50).apply {
     this.duration = 2000
     this.interpolator = AccelerateDecelerateInterpolator()
     this.repeatCount = ObjectAnimator.INFINITE
