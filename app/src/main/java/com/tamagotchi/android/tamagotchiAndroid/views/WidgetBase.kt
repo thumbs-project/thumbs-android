@@ -1,12 +1,18 @@
 package com.tamagotchi.android.tamagotchiAndroid.views
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.Service
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
 import android.view.*
 import android.view.GestureDetector.SimpleOnGestureListener
+
 import kotlinx.android.synthetic.main.layout_floating_widget.view.*
+
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.Animation
 
 fun createLayoutParams(
   posX: Int,
@@ -81,6 +87,7 @@ fun setOnTouch(
     }
   })
 }
+
 
 class SingleTapConfirm : SimpleOnGestureListener() {
   override fun onSingleTapUp(event: MotionEvent): Boolean {
