@@ -1,4 +1,4 @@
-package com.tamagotchi.android.tamagotchiAndroid.views
+package com.thumbs.android.thumbsAndroid.views
 
 import android.content.Intent
 import android.net.Uri
@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.provider.Settings
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import com.tamagotchi.android.tamagotchiAndroid.R
-import com.tamagotchi.android.tamagotchiAndroid.services.FloatingViewService
+import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.services.FloatingViewService
 import kotlinx.android.synthetic.main.activity_main.*
 
 

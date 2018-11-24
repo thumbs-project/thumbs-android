@@ -1,4 +1,4 @@
-package com.tamagotchi.android.tamagotchiAndroid
+package com.thumbs.android.thumbsAndroid
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.tamagotchi.android.tamagotchi_android", appContext.packageName)
+        assertEquals("com.thumbs.android.thumbs_android", appContext.packageName)
     }
 }

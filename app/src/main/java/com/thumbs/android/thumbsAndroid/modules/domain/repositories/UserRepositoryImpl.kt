@@ -1,7 +1,7 @@
-package com.tamagotchi.android.tamagotchiAndroid.modules.domain.repositories
+package com.thumbs.android.thumbsAndroid.modules.domain.repositories
 
-import com.tamagotchi.android.tamagotchiAndroid.modules.domain.model.User
-import com.tamagotchi.android.tamagotchiAndroid.modules.network.api.UserApi
+import com.thumbs.android.thumbsAndroid.modules.domain.model.User
+import com.thumbs.android.thumbsAndroid.modules.network.api.UserApi
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

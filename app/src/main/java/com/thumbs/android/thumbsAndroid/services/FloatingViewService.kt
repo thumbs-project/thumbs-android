@@ -1,18 +1,12 @@
-package com.tamagotchi.android.tamagotchiAndroid.services
+package com.thumbs.android.thumbsAndroid.services
 
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import android.graphics.PixelFormat
-import android.os.Build
-import android.util.Log
 import android.view.*
-import android.view.animation.Animation
-import com.tamagotchi.android.tamagotchiAndroid.R
-import android.view.GestureDetector.SimpleOnGestureListener
-import com.tamagotchi.android.tamagotchiAndroid.views.ItemWidget
-import com.tamagotchi.android.tamagotchiAndroid.views.MainWidget
-import com.tamagotchi.android.tamagotchiAndroid.views.UpdownWidget
+import com.thumbs.android.thumbsAndroid.views.ItemWidget
+import com.thumbs.android.thumbsAndroid.views.MainWidget
+import com.thumbs.android.thumbsAndroid.views.UpdownWidget
 
 class FloatingViewService : Service() {
   val windowManager by lazy {
