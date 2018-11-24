@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import com.tamagotchi.android.tamagotchiAndroid.views.settingActivityIntent
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.constants.Label
 import com.thumbs.android.thumbsAndroid.presenter.setting.SettingContract
@@ -43,13 +44,12 @@ class SettingsActivity : BaseActivity() {
         else -> {
           checkPermission()
           Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show()
-        }
       }
     }
 
     buttonSetting.text = Label.OPEN_SETTINGS
     buttonSetting.setOnClickListener {
-      //startActivity(Intent(settingActivityIntent()))
+    //startActivity(Intent(settingActivityIntent()))
     }
   }
 
