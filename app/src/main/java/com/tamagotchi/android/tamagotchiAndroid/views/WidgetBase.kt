@@ -6,6 +6,7 @@ import android.os.Build
 import android.util.Log
 import android.view.*
 import android.view.GestureDetector.SimpleOnGestureListener
+import kotlinx.android.synthetic.main.layout_floating_widget.view.*
 
 fun createLayoutParams(
   posX: Int,
