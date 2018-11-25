@@ -7,36 +7,27 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
+object NetworkConnector {
+  val authToken = "1"
+  val baseUrl = "http://api.thumbs.noverish.me"
 
-object NetworkConnector{
-
-  val BASE_URL = "https://httpbin.org"
-
-  var okHttpClient = OkHttpClient.Builder()
+  val okHttpClient = OkHttpClient.Builder()
     .addInterceptor(HttpLoggingInterceptor().apply {
       level = HttpLoggingInterceptor.Level.BODY
     })
     .addInterceptor { chain ->
-      chain.request().let {
-        it.newBuilder()
-          .addHeader("Authentication", "token vale")
-          .build()
-        chain.proceed(it)
-      }
+      val request = chain.request().newBuilder().addHeader("Authorization", "1").build()
+      chain.proceed(request)
     }
     .build()
-
-
 
   fun <T> createRetrofit(api: Class<T>): T {
     return Retrofit.Builder()
       .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
       .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-      .baseUrl(BASE_URL)
+      .baseUrl(baseUrl)
       .client(okHttpClient)
       .build()
       .create(api)
   }
-
 }
-

@@ -3,7 +3,9 @@ package com.thumbs.android.thumbsAndroid.views
 import android.app.Service
 import android.view.*
 import android.widget.ImageView
+import android.widget.Toast
 import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.modules.domain.model.StatusRequestParam
 import com.thumbs.android.thumbsAndroid.modules.domain.repositories.UserRepositoryImpl
 import com.thumbs.android.thumbsAndroid.modules.domain.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.modules.network.NetworkConnector
@@ -12,7 +14,9 @@ import com.thumbs.android.thumbsAndroid.modules.network.api.UserApi
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null
   var btnClose : ImageView? = null
-  val userRepository : UserRepository by lazy { UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java)) }
+  val userRepository : UserRepository by lazy {
+    UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
+  }
 
   constructor(service: Service, windowManager: WindowManager) {
     singleTabConfirm = GestureDetector(service, SingleTapConfirm());
@@ -26,6 +30,7 @@ class MainWidget {
 
     windowManager.addView(view, layoutParams);
 
+    // todo: event handle on click `close`
    /* btnClose?.setOnClickListener {
       userRepository.getUser().subscribe({
         Log.d("TAG_NETWORK","success")
@@ -38,7 +43,28 @@ class MainWidget {
 
     setOnTouch(
       view,
-      layoutParams, singleTabConfirm!!,
-      windowManager)
+      layoutParams,
+      singleTabConfirm!!,
+      windowManager,
+      this::handleSingleClick
+    )
+  }
+
+  fun handleSingleClick(view: View) {
+    userRepository.getStatus(StatusRequestParam(
+      123412341234,
+      "wash"
+    ))
+      .subscribe({ result ->
+        Toast.makeText(
+          view.context,
+          result.property + " " + result.request_id,
+          Toast.LENGTH_SHORT
+        )
+          .show()
+      }, { throwable ->
+        throwable.printStackTrace()
+      })
+
   }
 }
