@@ -9,7 +9,6 @@
   android:paddingTop="20dp"
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
 >
   <android.support.constraint.ConstraintLayout
     android:background="#00000000"
@@ -22,35 +21,32 @@
   >
     <RelativeLayout
       android:id="@+id/top_layout"
-      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
       android:orientation="vertical"
       android:visibility="visible"
     >
       <ImageView
-        android:layout_centerHorizontal="true"
         android:id="@+id/icon_thu"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:layout_marginTop="8dp"
-      />
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-      android:id="@+id/bottom_layout"
-      app:layout_constraintTop_toBottomOf="@+id/top_layout"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content">
-      <ImageView
         android:layout_centerHorizontal="true"
+        android:layout_height="120dp"
         android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:src="@drawable/item_shadow"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitCenter"
       />
-
-    </RelativeLayout>
+  </RelativeLayout>
+  <RelativeLayout
+    android:id="@+id/bottom_layout"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:layout_constraintTop_toBottomOf="@+id/top_layout"
+  >
+    <ImageView
+      android:layout_centerHorizontal="true"
+      android:layout_height="30dp"
+      android:layout_width="100dp"
+      android:src="@drawable/item_shadow"
+    />
+  </RelativeLayout>
   </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

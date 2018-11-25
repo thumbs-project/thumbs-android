@@ -37,7 +37,8 @@ fun setOnTouch(
   view: View,
   layoutParams: WindowManager.LayoutParams,
   singleTabConfirm: GestureDetector,
-  windowManager: WindowManager
+  windowManager: WindowManager,
+  handleClickSingle: ((view: View) -> Unit)?
 ) {
   view.setOnTouchListener(object: View.OnTouchListener {
     private var initialX: Int = 0
@@ -47,8 +48,12 @@ fun setOnTouch(
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
       if (singleTabConfirm?.onTouchEvent(event)?: false) {
-        // single tab
         Log.d("floatingView", "widget clicked")
+
+        if (handleClickSingle != null) {
+          handleClickSingle(view)
+        }
+
         return true
       } else {
         when (event.action) {
