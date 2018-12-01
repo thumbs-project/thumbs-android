@@ -22,7 +22,7 @@
     <service
       android:enabled="true"
       android:exported="false"
-      android:name="com.thumbs.android.thumbsAndroid.services.FloatingViewService"
+      android:name="com.thumbs.android.thumbsAndroid.services.ControllerService"
     />
   </application>
 </manifest>
