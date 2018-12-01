@@ -13,7 +13,6 @@ import com.thumbs.android.thumbsAndroid.modules.network.api.UserApi
 
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null
-  var btnClose : ImageView? = null
   val userRepository : UserRepository by lazy {
     UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
   }
@@ -29,17 +28,6 @@ class MainWidget {
     image.setBackgroundResource(R.drawable.thu_cat)
 
     windowManager.addView(view, layoutParams);
-
-    // todo: event handle on click `close`
-   /* btnClose?.setOnClickListener {
-      userRepository.getUser().subscribe({
-        Log.d("TAG_NETWORK","success")
-        Toast.makeText(service, it.url, Toast.LENGTH_SHORT)
-          .show()
-      }, {
-        Log.d("TAG_NETWORK","error")
-      })
-    }*/
 
     setOnTouch(
       view,
