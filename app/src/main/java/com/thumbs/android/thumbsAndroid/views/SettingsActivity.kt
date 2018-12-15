@@ -8,29 +8,29 @@ import android.provider.Settings
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.constants.Label
 import com.thumbs.android.thumbsAndroid.services.ControllerService
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_settings.*
 
-
-class MainActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
   val PERMISSION_CODE = 2002
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    setContentView(R.layout.activity_settings)
     init()
-    buttonSetting.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
   }
 
   fun init() {
-    buttonCreateWidget.setOnClickListener {
+
+    this.CreateWidgetButton.setOnClickListener {
       when {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
-          startService(Intent(this@MainActivity, ControllerService::class.java))
+          startService(Intent(this@SettingsActivity, ControllerService::class.java))
           finish()
         }
-        Settings.canDrawOverlays(this@MainActivity) -> {
-          startService(Intent(this@MainActivity, ControllerService::class.java))
+        Settings.canDrawOverlays(this@SettingsActivity) -> {
+          startService(Intent(this@SettingsActivity, ControllerService::class.java))
           finish()
         }
         else -> {
@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
           Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show()
         }
       }
+    }
+
+    this.SettingButton.text = Label.OPEN_SETTINGS
+    this.SettingButton.setOnClickListener {
+      startActivity(Intent(settingActivityIntent()))
     }
   }
 

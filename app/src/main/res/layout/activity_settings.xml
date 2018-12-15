@@ -5,15 +5,14 @@
   android:layout_width="match_parent"
 >
   <Button
-    android:id="@+id/buttonCreateWidget"
+    android:id="@+id/CreateWidgetButton"
     android:layout_centerInParent="true"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:text="Create Floating Widget"
+    android:text="@string/APP_NAME"
   />
   <Button
-    android:id="@+id/buttonSetting"
-    android:text="Setting"
+    android:id="@+id/SettingButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
