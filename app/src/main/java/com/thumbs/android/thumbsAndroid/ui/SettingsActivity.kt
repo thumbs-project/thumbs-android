@@ -28,7 +28,6 @@ class SettingsActivity : BaseActivity() {
   }
 
   fun init() {
-
     presenter.load()
 
     buttonSetting.setOnClickListener {

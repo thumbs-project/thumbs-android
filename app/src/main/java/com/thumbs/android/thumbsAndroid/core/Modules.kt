@@ -1,6 +1,6 @@
 package com.thumbs.android.thumbsAndroid.core
 
-import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
+import com.thumbs.android.thumbsAndroid.api.UserApi
 import com.thumbs.android.thumbsAndroid.presenter.setting.SettingContract
 import com.thumbs.android.thumbsAndroid.presenter.setting.SettingPresenter
 import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository

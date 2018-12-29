@@ -1,6 +1,6 @@
 package com.thumbs.android.thumbsAndroid.core.repositories
 
-import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
+import com.thumbs.android.thumbsAndroid.api.UserApi
 import com.thumbs.android.thumbsAndroid.model.Status
 import com.thumbs.android.thumbsAndroid.model.StatusRequestParam
 import com.thumbs.android.thumbsAndroid.model.User

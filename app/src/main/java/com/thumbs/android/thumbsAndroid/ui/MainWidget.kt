@@ -6,7 +6,7 @@ import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
 
 import com.thumbs.android.thumbsAndroid.core.network.NetworkConnector
-import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
+import com.thumbs.android.thumbsAndroid.api.UserApi
 import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.core.repositories.UserRepositoryImpl
 
