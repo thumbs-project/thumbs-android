@@ -7,8 +7,8 @@ import com.thumbs.android.thumbsAndroid.R
 
 import com.thumbs.android.thumbsAndroid.core.network.NetworkConnector
 import com.thumbs.android.thumbsAndroid.api.UserApi
-import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.core.repositories.UserRepositoryImpl
+import com.thumbs.android.thumbsAndroid.repositories.UserRepository
+import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
 
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null

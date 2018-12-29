@@ -1,7 +1,7 @@
 package com.thumbs.android.thumbsAndroid.presenter.setting
 
 import android.util.Log
-import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
+import com.thumbs.android.thumbsAndroid.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.presenter.BasePresenter
 
 

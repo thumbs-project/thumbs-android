@@ -1,10 +1,10 @@
-package com.thumbs.android.thumbsAndroid.core
+package com.thumbs.android.thumbsAndroid.core.modules
 
 import com.thumbs.android.thumbsAndroid.api.UserApi
 import com.thumbs.android.thumbsAndroid.presenter.setting.SettingContract
 import com.thumbs.android.thumbsAndroid.presenter.setting.SettingPresenter
-import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.core.repositories.UserRepositoryImpl
+import com.thumbs.android.thumbsAndroid.repositories.UserRepository
+import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.module
@@ -45,4 +45,7 @@ val userModule = module {
     factory { SettingPresenter(get()) as SettingContract.SettingUserActionListener }
 }
 
-val thumbsAppModule = listOf(networkModule, userModule)
+val thumbsAppModule = listOf(
+    networkModule,
+    userModule
+)

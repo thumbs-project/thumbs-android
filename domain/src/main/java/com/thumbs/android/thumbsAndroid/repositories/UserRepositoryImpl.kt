@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.core.repositories
+package com.thumbs.android.thumbsAndroid.repositories
 
 import com.thumbs.android.thumbsAndroid.api.UserApi
 import com.thumbs.android.thumbsAndroid.model.Status
