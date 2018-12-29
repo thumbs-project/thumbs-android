@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.ui.view
+package com.thumbs.android.thumbsAndroid.ui.base
 
 
 interface BaseView{

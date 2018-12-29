@@ -1,32 +1,35 @@
-package com.thumbs.android.thumbsAndroid.views
+package com.thumbs.android.thumbsAndroid.ui
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import com.tamagotchi.android.tamagotchiAndroid.views.settingActivityIntent
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.constants.Label
+import com.thumbs.android.thumbsAndroid.presenter.setting.SettingContract
 import com.thumbs.android.thumbsAndroid.services.ControllerService
+import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_settings.*
+import org.koin.android.ext.android.inject
 
 
-
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity() {
   val PERMISSION_CODE = 2002
+  val presenter  by inject<SettingContract.SettingUserActionListener>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_settings)
     init()
 
-    buttonSetting.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
+    //buttonSetting.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
   }
 
   fun init() {
+
+    presenter.load()
 
     buttonSetting.setOnClickListener {
       when {
@@ -47,7 +50,7 @@ class SettingsActivity : AppCompatActivity() {
 
     buttonSetting.text = Label.OPEN_SETTINGS
     buttonSetting.setOnClickListener {
-      startActivity(Intent(settingActivityIntent()))
+      //startActivity(Intent(settingActivityIntent()))
     }
   }
 

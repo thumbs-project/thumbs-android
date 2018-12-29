@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.modules.network
+package com.thumbs.android.thumbsAndroid.core.network
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

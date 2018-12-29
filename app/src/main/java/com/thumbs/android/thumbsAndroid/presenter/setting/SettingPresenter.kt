@@ -1,9 +1,8 @@
-package com.thumbs.android.thumbsAndroid.presenter
+package com.thumbs.android.thumbsAndroid.presenter.setting
 
 import android.util.Log
-import com.thumbs.android.thumbsAndroid.modules.domain.repositories.UserRepository
+import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.presenter.BasePresenter
-import com.thumbs.android.thumbsAndroid.presenter.contract.SettingContract
 
 
 class SettingPresenter(

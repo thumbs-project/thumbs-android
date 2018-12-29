@@ -1,9 +1,11 @@
-package com.thumbs.android.thumbsAndroid.repositories
+package com.thumbs.android.thumbsAndroid.core.repositories
 
+import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
 import com.thumbs.android.thumbsAndroid.model.Status
 import com.thumbs.android.thumbsAndroid.model.StatusRequestParam
 import com.thumbs.android.thumbsAndroid.model.User
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class UserRepositoryImpl(val userApi: UserApi) : UserRepository {

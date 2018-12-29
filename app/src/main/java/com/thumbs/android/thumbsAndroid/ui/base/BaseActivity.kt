@@ -1,8 +1,9 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.base
 
 import android.support.v7.app.AppCompatActivity
 
 
-class BaseActivity : AppCompatActivity(){
+open class BaseActivity : AppCompatActivity(){
+
 
 }

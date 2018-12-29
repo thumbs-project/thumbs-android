@@ -1,15 +1,14 @@
-package com.thumbs.android.thumbsAndroid.views
+package com.thumbs.android.thumbsAndroid.ui
 
 import android.app.Service
 import android.view.*
 import android.widget.ImageView
-import android.widget.Toast
 import com.thumbs.android.thumbsAndroid.R
-import com.thumbs.android.thumbsAndroid.modules.domain.model.StatusRequestParam
-import com.thumbs.android.thumbsAndroid.modules.domain.repositories.UserRepositoryImpl
-import com.thumbs.android.thumbsAndroid.modules.domain.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.modules.network.NetworkConnector
-import com.thumbs.android.thumbsAndroid.modules.network.api.UserApi
+
+import com.thumbs.android.thumbsAndroid.core.network.NetworkConnector
+import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
+import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
+import com.thumbs.android.thumbsAndroid.core.repositories.UserRepositoryImpl
 
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null
@@ -39,11 +38,10 @@ class MainWidget {
   }
 
   fun handleSingleClick(view: View) {
-    userRepository.getStatus(StatusRequestParam(
+   /* userRepository.getStatus(StatusRequestParam(
       123412341234,
       "wash"
-    ))
-      .subscribe({ result ->
+    )).subscribe({ result ->
         Toast.makeText(
           view.context,
           result.property + " " + result.request_id,
@@ -52,7 +50,7 @@ class MainWidget {
           .show()
       }, { throwable ->
         throwable.printStackTrace()
-      })
+      })*/
 
   }
 }

@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.repositories
+package com.thumbs.android.thumbsAndroid.core.repositories
 
 import com.thumbs.android.thumbsAndroid.model.Status
 import com.thumbs.android.thumbsAndroid.model.StatusRequestParam

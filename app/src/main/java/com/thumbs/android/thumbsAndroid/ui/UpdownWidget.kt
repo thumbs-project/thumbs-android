@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.views
+package com.thumbs.android.thumbsAndroid.ui
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -27,7 +27,7 @@ class UpdownWidget {
 
     windowManager.addView(view, layoutParams);
 
-    qsetOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
+    setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
 
     animateUpdown(view , layoutParams, windowManager)
   }

@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.presenter.contract
+package com.thumbs.android.thumbsAndroid.presenter.setting
 
 import com.thumbs.android.thumbsAndroid.ui.base.BaseView
 
