@@ -5,7 +5,6 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.widget.Toast
 
-
 fun Context?.showToastMessage(strId : Int){
     Toast.makeText(this, strId, Toast.LENGTH_SHORT).show()
 }

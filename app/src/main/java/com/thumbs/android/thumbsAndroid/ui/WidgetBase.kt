@@ -33,7 +33,7 @@ fun createLayoutParams(
   }
 }
 
-fun qsetOnTouch(
+fun setOnTouch(
   view: View,
   layoutParams: WindowManager.LayoutParams,
   singleTabConfirm: GestureDetector,

@@ -6,8 +6,8 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
-import com.tamagotchi.android.tamagotchiAndroid.views.settingActivityIntent
 import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.R.id.buttonSetting
 import com.thumbs.android.thumbsAndroid.constants.Label
 import com.thumbs.android.thumbsAndroid.presenter.setting.SettingContract
 import com.thumbs.android.thumbsAndroid.services.ControllerService
@@ -25,13 +25,14 @@ class SettingsActivity : BaseActivity() {
     setContentView(R.layout.activity_settings)
     init()
 
-    //buttonSetting.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
+    //CreateWidgetButton.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
   }
 
   fun init() {
+
     presenter.load()
 
-    buttonSetting.setOnClickListener {
+    CreateWidgetButton.setOnClickListener {
       when {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
           startService(Intent(this@SettingsActivity, ControllerService::class.java))
@@ -44,12 +45,12 @@ class SettingsActivity : BaseActivity() {
         else -> {
           checkPermission()
           Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show()
+        }
       }
     }
 
     buttonSetting.text = Label.OPEN_SETTINGS
     buttonSetting.setOnClickListener {
-    //startActivity(Intent(settingActivityIntent()))
     }
   }
 

@@ -4,7 +4,6 @@ import android.util.Log
 import com.thumbs.android.thumbsAndroid.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.presenter.BasePresenter
 
-
 class SettingPresenter(
     val userRepository: UserRepository
 ) : BasePresenter<SettingContract.SettingView>(), SettingContract.SettingUserActionListener{
