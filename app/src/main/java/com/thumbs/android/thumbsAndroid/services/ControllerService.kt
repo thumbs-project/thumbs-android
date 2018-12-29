@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.view.*
-import com.thumbs.android.thumbsAndroid.views.ItemWidget
-import com.thumbs.android.thumbsAndroid.views.MainWidget
-import com.thumbs.android.thumbsAndroid.views.UpdownWidget
+import com.thumbs.android.thumbsAndroid.ui.ItemWidget
+import com.thumbs.android.thumbsAndroid.ui.MainWidget
+import com.thumbs.android.thumbsAndroid.ui.UpdownWidget
 
 class ControllerService : Service() {
   var floatingView: View? = null

@@ -12,7 +12,8 @@
     android:text="@string/APP_NAME"
   />
   <Button
-    android:id="@+id/SettingButton"
+    android:id="@+id/buttonSetting"
+    android:text="Setting"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
