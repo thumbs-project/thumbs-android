@@ -15,6 +15,7 @@ class MainWidget {
   val userRepository : UserRepository by lazy {
     UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
   }
+  var layoutParams = createLayoutParams(-100, -100)
 
   constructor(service: Service, windowManager: WindowManager) {
     singleTabConfirm = GestureDetector(service, SingleTapConfirm());
@@ -22,19 +23,24 @@ class MainWidget {
     val view = LayoutInflater.from(service)
       .inflate(R.layout.layout_floating_widget, null)
 
-    val layoutParams = createLayoutParams(-100, -100)
     val image = view.findViewById<ImageView>(R.id.icon_thu)
     image.setBackgroundResource(R.drawable.thu_cat)
 
     windowManager.addView(view, layoutParams);
 
+    val action = Action(service, windowManager, layoutParams)
+
     setOnTouch(
+      action,
       view,
       layoutParams,
       singleTabConfirm!!,
       windowManager,
       this::handleSingleClick
     )
+
+
+
   }
 
   fun handleSingleClick(view: View) {

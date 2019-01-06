@@ -25,7 +25,7 @@ class ItemWidget {
 
     windowManager.addView(view, layoutParams);
 
-    setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
+  //  setOnTouch(service, view, layoutParams, singleTabConfirm!!, windowManager, null)
 
     animateShowHide(view, layoutParams, windowManager)
   }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.view.*
+import com.thumbs.android.thumbsAndroid.ui.Action
 import com.thumbs.android.thumbsAndroid.ui.ItemWidget
 import com.thumbs.android.thumbsAndroid.ui.MainWidget
 import com.thumbs.android.thumbsAndroid.ui.UpdownWidget
@@ -26,8 +27,8 @@ class ControllerService : Service() {
 
   fun init() {
     MainWidget(this, windowManager)
-    ItemWidget(this, windowManager)
-    UpdownWidget(this, windowManager)
+   // ItemWidget(this, windowManager)
+   // UpdownWidget(this, windowManager)
   }
 
   override fun onDestroy() {
