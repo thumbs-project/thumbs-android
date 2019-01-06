@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.widget
 
 import android.graphics.PixelFormat
 import android.os.Build
