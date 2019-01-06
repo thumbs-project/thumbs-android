@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.widget
 
 import android.app.Service
 import android.view.*
@@ -28,13 +28,13 @@ class MainWidget {
 
     windowManager.addView(view, layoutParams);
 
-    setOnTouch(
-      view,
-      layoutParams,
-      singleTabConfirm!!,
-      windowManager,
-      this::handleSingleClick
-    )
+      setOnTouch(
+          view,
+          layoutParams,
+          singleTabConfirm!!,
+          windowManager,
+          this::handleSingleClick
+      )
   }
 
   fun handleSingleClick(view: View) {
