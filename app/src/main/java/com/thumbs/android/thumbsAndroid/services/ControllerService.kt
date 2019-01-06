@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.view.*
-import com.thumbs.android.thumbsAndroid.ui.ItemWidget
-import com.thumbs.android.thumbsAndroid.ui.MainWidget
-import com.thumbs.android.thumbsAndroid.ui.UpdownWidget
+import com.thumbs.android.thumbsAndroid.ui.widget.ItemWidget
+import com.thumbs.android.thumbsAndroid.ui.widget.MainWidget
+import com.thumbs.android.thumbsAndroid.ui.widget.UpdownWidget
 
 class ControllerService : Service() {
   var floatingView: View? = null
@@ -25,9 +25,9 @@ class ControllerService : Service() {
   }
 
   fun init() {
-    MainWidget(this, windowManager)
-    ItemWidget(this, windowManager)
-    UpdownWidget(this, windowManager)
+      MainWidget(this, windowManager)
+      ItemWidget(this, windowManager)
+      UpdownWidget(this, windowManager)
   }
 
   override fun onDestroy() {

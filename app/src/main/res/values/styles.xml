@@ -6,4 +6,16 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>
+
+  <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_screen</item>
+  </style>
+
+  <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+    <item name="colorControlNormal">@color/colorMainTest</item>
+    <item name="colorControlActivated">@color/colorMainTest</item>
+   <!-- <item name="android:textColor">@color/orange500</item>
+    <item name="android:textColorHint">@color/teal500</item>
+    <item name="android:textColorHighlight">@color/purple500</item>-->
+  </style>
 </resources>

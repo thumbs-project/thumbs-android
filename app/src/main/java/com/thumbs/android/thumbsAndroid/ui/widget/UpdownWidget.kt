@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.widget
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -23,13 +23,16 @@ class UpdownWidget {
     val image = view.findViewById<ImageView>(R.id.icon_thu)
     image.setBackgroundResource(R.drawable.thu_un)
 
-    val layoutParams = createLayoutParams(VIEWPORT_WIDTH_MAX, 0)
+    val layoutParams = createLayoutParams(
+        VIEWPORT_WIDTH_MAX,
+        0
+    )
 
     windowManager.addView(view, layoutParams);
 
-    setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
+      setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
 
-    animateUpdown(view , layoutParams, windowManager)
+      animateUpdown(view, layoutParams, windowManager)
   }
 }
 
