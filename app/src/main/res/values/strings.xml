@@ -1,3 +1,4 @@
 <resources>
     <string name="APP_NAME">Thumbs</string>
+    <string name="status_toolbar_title">THUMBS</string>
 </resources>
