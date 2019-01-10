@@ -1,10 +1,12 @@
 package com.thumbs.android.thumbsAndroid.ui
 
 import android.app.Service
-import android.view.*
+import android.view.GestureDetector
+import android.view.LayoutInflater
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
-
 import com.thumbs.android.thumbsAndroid.core.network.NetworkConnector
 import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
 import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
@@ -38,7 +40,6 @@ class MainWidget {
       windowManager,
       this::handleSingleClick
     )
-
 
 
   }
