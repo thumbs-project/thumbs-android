@@ -12,8 +12,8 @@
   </style>
 
   <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
-    <item name="colorControlNormal">@color/colorMainTest</item>
-    <item name="colorControlActivated">@color/colorMainTest</item>
+    <item name="colorControlNormal">@color/colorPrimary</item>
+    <item name="colorControlActivated">@color/colorPrimary</item>
    <!-- <item name="android:textColor">@color/orange500</item>
     <item name="android:textColorHint">@color/teal500</item>
     <item name="android:textColorHighlight">@color/purple500</item>-->

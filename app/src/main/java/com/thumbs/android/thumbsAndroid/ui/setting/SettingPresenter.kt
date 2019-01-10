@@ -1,12 +1,12 @@
-package com.thumbs.android.thumbsAndroid.presenter.setting
+package com.thumbs.android.thumbsAndroid.ui.setting
 
 import android.util.Log
 import com.thumbs.android.thumbsAndroid.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.presenter.BasePresenter
+import com.thumbs.android.thumbsAndroid.ui.base.BasePresenter
 
 class SettingPresenter(
     val userRepository: UserRepository
-) : BasePresenter<SettingContract.SettingView>(), SettingContract.SettingUserActionListener{
+) : SettingContract.SettingUserActionListener {
 
 
     var settingView : SettingContract.SettingView?= null
