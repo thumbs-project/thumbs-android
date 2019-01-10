@@ -5,16 +5,11 @@ import android.view.*
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
 
-import com.thumbs.android.thumbsAndroid.core.network.NetworkConnector
-import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
-import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.core.repositories.UserRepositoryImpl
-
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null
-  val userRepository : UserRepository by lazy {
+ /* val userRepository : UserRepository by lazy {
     UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
-  }
+  }*/
 
   constructor(service: Service, windowManager: WindowManager) {
     singleTabConfirm = GestureDetector(service, SingleTapConfirm());

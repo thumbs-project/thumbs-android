@@ -1,9 +1,8 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.intro
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.thumbs.android.thumbsAndroid.R
 import android.content.Intent
+import com.thumbs.android.thumbsAndroid.ui.register.RegisterActivity
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
 
 
@@ -17,4 +16,9 @@ class SplashActivity : BaseActivity() {
 
         finish()
     }
+
+    override fun startInject() {
+
+    }
+
 }

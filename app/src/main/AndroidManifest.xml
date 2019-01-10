@@ -8,12 +8,12 @@
     <application
             android:name=".CoreApp"
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/image_splash_thumbs"
             android:label="@string/APP_NAME"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@drawable/image_splash_thumbs"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ui.SettingsActivity">
+        <activity android:name=".ui.setting.SettingActivity">
         </activity>
 
         <service
@@ -22,7 +22,7 @@
                 android:exported="false"/>
 
         <activity
-                android:name=".ui.SplashActivity"
+                android:name=".ui.intro.SplashActivity"
                 android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,7 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.RegisterActivity">
+        <activity android:name=".ui.register.RegisterActivity">
+        </activity>
+        <activity android:name=".ui.status.StatusActivity">
         </activity>
     </application>
 
