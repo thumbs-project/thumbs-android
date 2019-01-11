@@ -26,8 +26,8 @@ class ControllerService : Service() {
 
   fun init() {
       MainWidget(this, windowManager)
-      ItemWidget(this, windowManager)
-      UpdownWidget(this, windowManager)
+      //ItemWidget(this, windowManager)
+      //UpdownWidget(this, windowManager)
   }
 
   override fun onDestroy() {

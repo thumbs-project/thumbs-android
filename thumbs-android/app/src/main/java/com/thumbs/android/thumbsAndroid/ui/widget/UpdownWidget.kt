@@ -30,7 +30,7 @@ class UpdownWidget {
 
     windowManager.addView(view, layoutParams);
 
-      setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
+     // setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
 
       animateUpdown(view, layoutParams, windowManager)
   }

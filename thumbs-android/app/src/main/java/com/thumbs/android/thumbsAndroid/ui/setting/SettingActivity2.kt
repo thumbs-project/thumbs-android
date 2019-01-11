@@ -61,10 +61,11 @@ class SettingActivity2 : AppCompatActivity() {
 
     val switchBtn = switchBtn
 
+    /*
     val service = ControllerService::class.java
     if(isServiceRunning(service)){
       switchBtn
-    }
+    } */
 
 
     switchBtn.setOnClickListener {
