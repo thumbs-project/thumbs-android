@@ -3,7 +3,10 @@ package com.thumbs.android.thumbsAndroid.ui
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Service
-import android.view.*
+import android.view.GestureDetector
+import android.view.LayoutInflater
+import android.view.View
+import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R

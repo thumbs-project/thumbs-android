@@ -12,15 +12,15 @@ import com.thumbs.android.thumbsAndroid.core.network.api.UserApi
 import com.thumbs.android.thumbsAndroid.core.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.core.repositories.UserRepositoryImpl
 
-class MainWidget {
+class MainWidget() {
   var singleTabConfirm: GestureDetector? = null
   val userRepository : UserRepository by lazy {
     UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
   }
   var layoutParams = createLayoutParams(-100, -100)
 
-  constructor(service: Service, windowManager: WindowManager) {
-    singleTabConfirm = GestureDetector(service, SingleTapConfirm());
+  constructor(service: Service, windowManager: WindowManager) : this() {
+    singleTabConfirm = GestureDetector(service, SingleTapConfirm())
 
     val view = LayoutInflater.from(service)
       .inflate(R.layout.layout_floating_widget, null)
@@ -40,7 +40,6 @@ class MainWidget {
       windowManager,
       this::handleSingleClick
     )
-
 
   }
 

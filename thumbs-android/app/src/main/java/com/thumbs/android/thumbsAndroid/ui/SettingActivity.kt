@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.SeekBar
 import com.thumbs.android.thumbsAndroid.R
 import kotlinx.android.synthetic.main.activity_setting.*
 
 
 
+
+
 class SettingActivity : AppCompatActivity() {
+
+ // lateinit var receiver: BroadcastReceiver
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -29,9 +32,14 @@ class SettingActivity : AppCompatActivity() {
       name.setText(edit_name.text)
     }
 
-
     val thumbs = thumbs
     val sizeBar = sizeBar
+
+
+//    var main: Parcelable = intent.getParcelableExtra("main")
+
+   // val intent = Intent(this, MainWidget::class.java)
+
     sizeBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
       override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
@@ -51,19 +59,29 @@ class SettingActivity : AppCompatActivity() {
 
     val switchBtn = switchBtn
     switchBtn.setOnClickListener {
+        if(switchBtn.isChecked){
 
+        } else{
+
+        }
     }
   }
+
 
   fun scaleImage(img: ImageView, progress: Int) {
 
-    if(progress<=40){
-      sizeBar.setProgress(40)
-    }
+//    var width = getResources().getDimension(img.width).toDouble()
+  //  var height = getResources().getDimension(img.height).toDouble()
 
-    var layoutParams = LinearLayout.LayoutParams(progress*3.5.toInt(), progress*3.5.toInt())
-    img.setLayoutParams(layoutParams)
+
+/*
+    val layoutParams: Constraints.LayoutParams(0,0)
+    layoutParams.width = width.toInt()
+    layoutParams.height = height.toInt()
+    view.layoutParams = layoutParams */
   }
+
+
 }
 
 

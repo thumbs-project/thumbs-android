@@ -6,7 +6,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
-
     <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
@@ -19,7 +18,7 @@
 
     <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
@@ -27,7 +26,7 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="168dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
         >
@@ -97,7 +96,7 @@
 
             <ImageView
                     android:id="@+id/editBtn"
-                    android:src="@android:drawable/ic_menu_edit"
+                    android:src="@drawable/edit"
                     android:layout_width="8.1dp"
                     android:layout_height="8.1dp"
                     android:layout_toRightOf="@+id/edit_name"
@@ -161,6 +160,7 @@
         </RelativeLayout>
 
         <View
+                android:id="@+id/gray"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#e0e0e0"
@@ -186,13 +186,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:checked="true"
+                    android:theme="@style/SwitchTheme"
             />
 
         </RelativeLayout>
-
     </LinearLayout>
-
-
-
-
 </LinearLayout>

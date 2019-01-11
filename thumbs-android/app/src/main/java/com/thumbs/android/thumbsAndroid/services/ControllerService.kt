@@ -44,6 +44,12 @@ class ControllerService : Service() {
    // ItemWidget(this, windowManager)
    // UpdownWidget(this, windowManager)
 
+    /*
+    val intent = Intent(this, SettingActivity::class.java)
+    intent.putExtra("main", main)
+    sendBroadcast(intent)
+
+    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent) */
   }
 
   override fun onDestroy() {
