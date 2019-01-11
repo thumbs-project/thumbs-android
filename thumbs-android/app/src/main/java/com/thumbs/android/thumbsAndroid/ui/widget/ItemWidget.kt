@@ -1,12 +1,9 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.widget
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Service
-import android.view.GestureDetector
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
@@ -28,9 +25,9 @@ class ItemWidget {
 
     windowManager.addView(view, layoutParams);
 
-  //  setOnTouch(service, view, layoutParams, singleTabConfirm!!, windowManager, null)
+      setOnTouch(view, layoutParams, singleTabConfirm!!, windowManager, null)
 
-    animateShowHide(view, layoutParams, windowManager)
+      animateShowHide(view, layoutParams, windowManager)
   }
 }
 

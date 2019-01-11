@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.setting
 
 import android.content.Intent
 import android.net.Uri
@@ -8,19 +8,17 @@ import android.provider.Settings
 import android.widget.Toast
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.constants.Label
-import com.thumbs.android.thumbsAndroid.presenter.setting.SettingContract
 import com.thumbs.android.thumbsAndroid.services.ControllerService
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.koin.android.ext.android.inject
 
 
+class SettingActivity : BaseActivity() {
 
 
-class SettingsActivity : BaseActivity() {
   val PERMISSION_CODE = 2002
   val presenter  by inject<SettingContract.SettingUserActionListener>()
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -30,6 +28,10 @@ class SettingsActivity : BaseActivity() {
     //CreateWidgetButton.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
   }
 
+  override fun startInject() {
+      //presenter.attachView(this)
+  }
+
   fun init() {
 
     presenter.load()
@@ -37,10 +39,11 @@ class SettingsActivity : BaseActivity() {
     CreateWidgetButton.setOnClickListener {
       when {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
-          startService(Intent(this@SettingsActivity, ControllerService::class.java))
+          startService(Intent(this@SettingActivity, ControllerService::class.java))
+          finish()
         }
-        Settings.canDrawOverlays(this@SettingsActivity) -> {
-          startService(Intent(this@SettingsActivity, ControllerService::class.java))
+        Settings.canDrawOverlays(this@SettingActivity) -> {
+          startService(Intent(this@SettingActivity, ControllerService::class.java))
           finish()
         }
         else -> {
@@ -50,11 +53,8 @@ class SettingsActivity : BaseActivity() {
       }
     }
 
-    //val size = myService?.
-
     buttonSetting.text = Label.OPEN_SETTINGS
     buttonSetting.setOnClickListener {
-      startActivity(Intent(this@SettingsActivity, SettingActivity::class.java))
     }
   }
 

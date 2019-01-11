@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.thumbs.android.thumbsAndroid">
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
             android:name=".CoreApp"
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/image_splash_thumbs"
             android:label="@string/APP_NAME"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@drawable/image_splash_thumbs"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ui.SettingsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.SettingActivity"
-            android:parentActivityName=".ui.SettingsActivity">
+        <activity android:name=".ui.setting.SettingActivity">
         </activity>
 
         <service
@@ -28,6 +21,22 @@
                 android:enabled="true"
                 android:exported="false"/>
 
+        <activity
+                android:name=".ui.intro.SplashActivity"
+                android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.register.RegisterActivity">
+        </activity>
+        <activity android:name=".ui.status.StatusActivity">
+        </activity>
+        <activity android:name=".ui.setting.SettingActivity2"
+                  android:parentActivityName=".ui.status.StatusActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,10 +1,17 @@
 package com.thumbs.android.thumbsAndroid.core.modules
 
+import com.thumbs.android.thumbsAndroid.api.ThumbsApi
 import com.thumbs.android.thumbsAndroid.api.UserApi
-import com.thumbs.android.thumbsAndroid.presenter.setting.SettingContract
-import com.thumbs.android.thumbsAndroid.presenter.setting.SettingPresenter
+import com.thumbs.android.thumbsAndroid.ui.setting.SettingContract
+import com.thumbs.android.thumbsAndroid.ui.setting.SettingPresenter
+import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
+import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepositoryImpl
 import com.thumbs.android.thumbsAndroid.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
+import com.thumbs.android.thumbsAndroid.ui.register.RegisterContract
+import com.thumbs.android.thumbsAndroid.ui.register.RegisterPresenter
+import com.thumbs.android.thumbsAndroid.ui.status.StatusContract
+import com.thumbs.android.thumbsAndroid.ui.status.StatusPresenter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.module
@@ -12,40 +19,67 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
 val networkModule = module {
-    val authToken = "1"
-    val baseUrl = "http://api.thumbs.noverish.me"
+    factory {
+        OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
+    }
 
-    val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        })
+
+    val baseUrl = "http://server.hyunsub.kim:3456/"
+
+/*
         .addInterceptor { chain ->
             val request = chain.request().newBuilder().addHeader("Authorization", "1").build()
             chain.proceed(request)
-        }
-        .build()
-
+        }*/
 
     single {
         Retrofit.Builder()
-            .client(okHttpClient)
+            .client(get())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseUrl)
             .build()
             .create(UserApi::class.java)
     }
+
+    single {
+        Retrofit.Builder()
+            .client(get())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(baseUrl)
+            .build()
+            .create(ThumbsApi::class.java)
+    }
 }
 
+
+
+
+
+//test 모듈
 val userModule = module {
     factory { UserRepositoryImpl(get()) as UserRepository }
     factory { SettingPresenter(get()) as SettingContract.SettingUserActionListener }
 }
 
-val thumbsAppModule = listOf(
+
+val registerModule = module {
+    factory { ThumbsRepositoryImpl(get()) as ThumbsRepository }
+    factory { RegisterPresenter(get()) as RegisterContract.RegisterUserActionListener }
+}
+
+val statusModule = module {
+    factory { StatusPresenter(get()) as StatusContract.StatusUserActionListener }
+}
+val appModules = listOf(
     networkModule,
-    userModule
+    userModule,
+    registerModule,
+    statusModule
 )

@@ -1,15 +1,10 @@
-package com.thumbs.android.thumbsAndroid.ui
+package com.thumbs.android.thumbsAndroid.ui.widget
 
-import android.app.Service
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
 import android.view.*
 import android.view.GestureDetector.SimpleOnGestureListener
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import com.thumbs.android.thumbsAndroid.R
-import kotlinx.android.synthetic.main.layout_floating_widget.view.*
 
 fun createLayoutParams(
   posX: Int,
@@ -39,7 +34,6 @@ fun createLayoutParams(
 }
 
 fun setOnTouch(
-  action: Action,
   view: View,
   layoutParams: WindowManager.LayoutParams,
   singleTabConfirm: GestureDetector,
@@ -58,9 +52,6 @@ fun setOnTouch(
 
         if (handleClickSingle != null) {
           handleClickSingle(view)
-
-          if(action.moveview!!.visibility==View.VISIBLE) action.moveview!!.visibility=View.GONE
-          else action.moveview!!.visibility=View.VISIBLE
         }
 
         return true
@@ -85,8 +76,6 @@ fun setOnTouch(
             layoutParams.x = initialX + (event.rawX - initialTouchX).toInt()
             layoutParams.y = initialY + (event.rawY - initialTouchY).toInt()
             windowManager.updateViewLayout(view, layoutParams)
-            windowManager.updateViewLayout(action.moveview, createLayoutParams(layoutParams.x-200, layoutParams.y))
-
             return true
           }
         }
@@ -95,6 +84,7 @@ fun setOnTouch(
     }
   })
 }
+
 
 class SingleTapConfirm : SimpleOnGestureListener() {
   override fun onSingleTapUp(event: MotionEvent): Boolean {
