@@ -18,6 +18,7 @@
     <item name="android:textColorHint">@color/teal500</item>
     <item name="android:textColorHighlight">@color/purple500</item>-->
   </style>
+
   <style name="SwitchTheme" parent="Theme.AppCompat.Light">
     <item name="android:colorControlActivated">#7fd3c8</item>
   </style>
