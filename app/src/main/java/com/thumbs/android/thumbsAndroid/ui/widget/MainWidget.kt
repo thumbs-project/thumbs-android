@@ -4,6 +4,7 @@ import android.app.Service
 import android.view.*
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.ui.menu.Action
 
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null
@@ -19,11 +20,14 @@ class MainWidget {
 
     val layoutParams = createLayoutParams(-100, -100)
     val image = view.findViewById<ImageView>(R.id.icon_thu)
-    image.setBackgroundResource(R.drawable.thu_cat)
+    image.setBackgroundResource(R.drawable.thu_basic)
 
     windowManager.addView(view, layoutParams);
 
+      val action = Action(service, windowManager, layoutParams)
+
       setOnTouch(
+          action,
           view,
           layoutParams,
           singleTabConfirm!!,
