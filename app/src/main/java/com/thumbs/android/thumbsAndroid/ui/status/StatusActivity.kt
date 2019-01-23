@@ -6,7 +6,7 @@ import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.model.Thumb
 import com.thumbs.android.thumbsAndroid.showToastMessageString
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
-import com.thumbs.android.thumbsAndroid.ui.setting.SettingActivity2
+import com.thumbs.android.thumbsAndroid.ui.setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_status.*
 import org.koin.android.ext.android.inject
 
@@ -41,7 +41,7 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
 
         val settingBtn = settingBtn
         settingBtn.setOnClickListener() {
-            startActivity(Intent(this, SettingActivity2::class.java))
+            startActivity(Intent(this, SettingActivity::class.java))
         }
     }
 

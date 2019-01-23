@@ -1,69 +1,121 @@
 package com.thumbs.android.thumbsAndroid.ui.setting
 
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
-import android.widget.Toast
+import android.util.Log
+import android.widget.ImageView
+import android.widget.SeekBar
 import com.thumbs.android.thumbsAndroid.R
-import com.thumbs.android.thumbsAndroid.constants.Label
+import com.thumbs.android.thumbsAndroid.model.Thumb
 import com.thumbs.android.thumbsAndroid.services.ControllerService
+import com.thumbs.android.thumbsAndroid.showToastMessageString
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.activity_setting.*
 import org.koin.android.ext.android.inject
 
 
-class SettingActivity : BaseActivity() {
+class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
-
-  val PERMISSION_CODE = 2002
   val presenter  by inject<SettingContract.SettingUserActionListener>()
+
+  override fun startInject() {
+    presenter.attachView(this)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_settings)
-    init()
-
-    //CreateWidgetButton.setOnClickListener { startActivity(Intent (settingActivityIntent())) }
-  }
-
-  override fun startInject() {
-      //presenter.attachView(this)
-  }
-
-  fun init() {
+    setContentView(R.layout.activity_setting)
 
     presenter.load()
+  }
 
-    CreateWidgetButton.setOnClickListener {
-      when {
-        Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
-          startService(Intent(this@SettingActivity, ControllerService::class.java))
-          finish()
-        }
-        Settings.canDrawOverlays(this@SettingActivity) -> {
-          startService(Intent(this@SettingActivity, ControllerService::class.java))
-          finish()
-        }
-        else -> {
-          checkPermission()
-          Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show()
-        }
+  override fun setUi(thumb: Thumb) {
+    val myToolbar = my_toolbar
+    setSupportActionBar(myToolbar)
+    supportActionBar!!.setTitle("환경설정")
+    supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+    name.text=thumb.name
+
+    editBtn.setOnClickListener {
+      thumb.name=edit_name.text.toString()
+    }
+
+    val thumbs = thumbs
+    val sizeBar = sizeBar
+
+
+    sizeBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+      override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
+        scaleImage(thumbs, progress)
+        Log.d("progress:", progress.toString())
+      }
+
+      override fun onStartTrackingTouch(seekBar: SeekBar) {
+
+      }
+
+      override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+      }
+    })
+
+
+    val switchBtn = switchBtn
+    switchBtn.setOnClickListener {
+      /*
+        if(switchBtn.isChecked){
+          startService(Intent(this, ControllerService::class.java))
+        } else {
+          stopService(Intent(this, ControllerService::class.java))
+        } */
+    }
+  }
+
+  override fun showToast(message: String) {
+    this.showToastMessageString(message)
+  }
+
+  //mvp end.
+
+  fun scaleImage(img: ImageView, progress: Int) {
+
+    /*
+    var width = getResources().getDimension(img.width).toDouble()
+    var height = getResources().getDimension(img.height).toDouble() */
+
+    var width = progress*0.02.toInt()
+    var height = progress*0.02.toInt()
+
+
+    intent.putExtra("width", width)
+    intent.putExtra("height", height)
+
+    //startService(intent)
+
+/*
+    val layoutParams: Constraints.LayoutParams(0,0)
+    layoutParams.width = width.toInt()
+    layoutParams.height = height.toInt()
+    view.layoutParams = layoutParams */
+  }
+
+  private fun isServiceRunning(serviceClass: Class<*>): Boolean {
+    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+
+    for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
+      if (serviceClass.name == service.service.className) {
+        Log.d("TAG", "serviceOn")
+        return true
       }
     }
-
-    buttonSetting.text = Label.OPEN_SETTINGS
-    buttonSetting.setOnClickListener {
-    }
+    return false
   }
 
-  private fun checkPermission() {
-    Intent(
-      Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-      Uri.parse("package:$packageName")
-    ).let {
-      startActivityForResult(it, PERMISSION_CODE)
-    }
-  }
+
 }
+
+
