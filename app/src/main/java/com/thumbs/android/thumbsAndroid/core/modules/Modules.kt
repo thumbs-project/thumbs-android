@@ -29,7 +29,7 @@ val networkModule = module {
     }
 
 
-    val baseUrl = "http://server.hyunsub.kim:3456/"
+    val baseUrl = "http://ec2-13-125-225-241.ap-northeast-2.compute.amazonaws.com:3456/"
 
 /*
         .addInterceptor { chain ->
