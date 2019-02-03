@@ -12,7 +12,6 @@ class RegisterPresenter(
 
     override fun createThumb(thumbName: String) {
         if (registerView?.isNotEmptyName() == true){
-            registerView?.showToast("완료.")
             thumbsRepository.createThumbs(1,  hashMapOf("name" to thumbName)).subscribe({
                 registerView?.showToast("등록이 완료되었습니다.")
                 registerView?.nextPage()

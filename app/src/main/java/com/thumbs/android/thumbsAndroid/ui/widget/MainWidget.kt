@@ -18,11 +18,11 @@ class MainWidget {
     val view = LayoutInflater.from(service)
       .inflate(R.layout.layout_floating_widget, null)
 
-    val layoutParams = createLayoutParams(-100, -100)
+    val layoutParams = createLayoutParams(0, -310)
     val image = view.findViewById<ImageView>(R.id.icon_thu)
     image.setBackgroundResource(R.drawable.thu_basic)
 
-    windowManager.addView(view, layoutParams);
+    windowManager.addView(view, layoutParams)
 
       val action = Action(service, windowManager, layoutParams)
 
