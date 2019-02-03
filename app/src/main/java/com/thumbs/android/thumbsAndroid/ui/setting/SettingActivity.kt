@@ -41,6 +41,7 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
     editBtn.setOnClickListener {
       thumb.name=edit_name.text.toString()
+      name.text=thumb.name
     }
 
     val thumbs = thumbs
