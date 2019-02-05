@@ -57,7 +57,6 @@ val userModule = module {
 //    factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
 }
 
-
 val registerModule = module {
     factory { ThumbsRepositoryImpl(get()) as ThumbsRepository }
     factory { RegisterPresenter(get()) as RegisterContract.RegisterUserActionListener }
