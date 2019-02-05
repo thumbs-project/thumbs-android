@@ -65,6 +65,7 @@ val registerModule = module {
 val statusModule = module {
     factory { StatusPresenter(get()) as StatusContract.StatusUserActionListener }
 }
+
 val appModules = listOf(
     networkModule,
     userModule,
