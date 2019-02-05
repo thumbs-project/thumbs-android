@@ -15,6 +15,9 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView {
 
     val presenter by inject<RegisterContract.RegisterUserActionListener>()
 
+    override fun startInject() {
+        presenter.attachView(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,15 +29,11 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView {
         }
     }
 
-    override fun startInject() {
-        presenter.attachView(this)
-    }
 
 
     override fun nextPage() {
         val intent = Intent(this, StatusActivity::class.java)
         startActivity(intent)
-
         finish()
     }
 

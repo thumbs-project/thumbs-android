@@ -7,6 +7,8 @@ import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepositoryImpl
 import com.thumbs.android.thumbsAndroid.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
+import com.thumbs.android.thumbsAndroid.ui.intro.SplashContract
+import com.thumbs.android.thumbsAndroid.ui.intro.SplashPresenter
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterContract
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterPresenter
 import com.thumbs.android.thumbsAndroid.ui.setting.SettingContract
@@ -54,7 +56,7 @@ val networkModule = module {
 val userModule = module {
     factory { UserRepositoryImpl(get()) as UserRepository }
     factory { SettingPresenter(get()) as SettingContract.SettingUserActionListener }
-//    factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
+    factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
 }
 
 val registerModule = module {
