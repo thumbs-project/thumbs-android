@@ -12,7 +12,6 @@ import org.koin.android.ext.android.inject
 
 class StatusActivity : BaseActivity(), StatusContract.StatusView {
 
-
     val presenter  by inject<StatusContract.StatusUserActionListener>()
 
     override fun startInject() {
@@ -22,10 +21,8 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_status)
-
         presenter.loadThumb()
     }
-
 
     override fun setUi(thumb: Thumb) {
         tv_nickname.text = thumb.name
@@ -46,6 +43,4 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
     }
 
     override fun showToast(message: String) = this.showToastMessageString(message)
-
-
 }
