@@ -1,15 +1,16 @@
 package com.thumbs.android.thumbsAndroid.core.modules
 
+import com.thumbs.android.thumbsAndroid.BuildConfig
 import com.thumbs.android.thumbsAndroid.api.ThumbsApi
 import com.thumbs.android.thumbsAndroid.api.UserApi
-import com.thumbs.android.thumbsAndroid.ui.setting.SettingContract
-import com.thumbs.android.thumbsAndroid.ui.setting.SettingPresenter
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepositoryImpl
 import com.thumbs.android.thumbsAndroid.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterContract
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterPresenter
+import com.thumbs.android.thumbsAndroid.ui.setting.SettingContract
+import com.thumbs.android.thumbsAndroid.ui.setting.SettingPresenter
 import com.thumbs.android.thumbsAndroid.ui.status.StatusContract
 import com.thumbs.android.thumbsAndroid.ui.status.StatusPresenter
 import okhttp3.OkHttpClient
@@ -28,21 +29,12 @@ val networkModule = module {
             .build()
     }
 
-
-    val baseUrl = "http://ec2-13-125-225-241.ap-northeast-2.compute.amazonaws.com:3456/"
-
-/*
-        .addInterceptor { chain ->
-            val request = chain.request().newBuilder().addHeader("Authorization", "1").build()
-            chain.proceed(request)
-        }*/
-
     single {
         Retrofit.Builder()
             .client(get())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.BASE_URL)
             .build()
             .create(UserApi::class.java)
     }
@@ -52,20 +44,17 @@ val networkModule = module {
             .client(get())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.BASE_URL)
             .build()
             .create(ThumbsApi::class.java)
     }
 }
 
-
-
-
-
 //test 모듈
 val userModule = module {
     factory { UserRepositoryImpl(get()) as UserRepository }
     factory { SettingPresenter(get()) as SettingContract.SettingUserActionListener }
+//    factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
 }
 
 
