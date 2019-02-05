@@ -6,10 +6,12 @@ import com.thumbs.android.thumbsAndroid.ui.base.BaseView
 interface RegisterContract {
     interface RegisterView : BaseView {
         fun nextPage()
-        fun isNotEmptyName() : Boolean
+        fun startService()
+        fun isNotEmptyName(): Boolean
+        fun createThumbsFail()
     }
 
     interface RegisterUserActionListener : BasePresenter<RegisterContract.RegisterView> {
-        fun createThumb(thumbName : String)
+        fun createThumb(thumbName: String)
     }
 }

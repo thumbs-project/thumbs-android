@@ -15,32 +15,35 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView {
 
     val presenter by inject<RegisterContract.RegisterUserActionListener>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         btn_next.setOnClickListener {
             presenter.createThumb(edit_name.text.toString())
-            startService(Intent(this, ControllerService::class.java))
         }
+    }
+
+    override fun startService() {
+        startService(Intent(this, ControllerService::class.java))
+    }
+
+    override fun createThumbsFail() {
+        this.showToast("등록이 실패되었습니다. 서버 체크가 필요!")
     }
 
     override fun startInject() {
         presenter.attachView(this)
     }
 
-
     override fun nextPage() {
         val intent = Intent(this, StatusActivity::class.java)
         startActivity(intent)
-
         finish()
     }
 
     override fun isNotEmptyName(): Boolean = edit_name.text.toString().isNotBlank()
 
     override fun showToast(message: String) = this.showToastMessageString(message)
-
 
 }
