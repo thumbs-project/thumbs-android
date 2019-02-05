@@ -3,9 +3,11 @@ package com.thumbs.android.thumbsAndroid.ui.widget
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
-import android.view.*
+import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
-
+import android.view.MotionEvent
+import android.view.View
+import android.view.WindowManager
 import com.thumbs.android.thumbsAndroid.ui.menu.Action
 
 
@@ -30,7 +32,7 @@ fun createLayoutParams(
       posX,
       posY,
       WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-      WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+      WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
       PixelFormat.TRANSLUCENT
     )
   }
@@ -53,7 +55,7 @@ fun setOnTouch(
     private var initialTouchY: Float = 0.toFloat()
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-      if (singleTabConfirm?.onTouchEvent(event)?: false) {
+      if (singleTabConfirm.onTouchEvent(event)) {
         Log.d("floatingView", "widget clicked")
 
         if (handleClickSingle != null) {
@@ -85,9 +87,7 @@ fun setOnTouch(
             layoutParams.x = initialX + (event.rawX - initialTouchX).toInt()
             layoutParams.y = initialY + (event.rawY - initialTouchY).toInt()
             windowManager.updateViewLayout(view, layoutParams)
-
             windowManager.updateViewLayout(action.moveview, createLayoutParams(layoutParams.x-200, layoutParams.y))
-
             return true
           }
         }
