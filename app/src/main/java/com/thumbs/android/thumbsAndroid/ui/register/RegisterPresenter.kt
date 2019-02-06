@@ -9,7 +9,7 @@ class RegisterPresenter(
 
     var registerView: RegisterContract.RegisterView? = null
 
-
+    
     override fun createThumb(thumbName: String) {
         if (registerView?.isNotEmptyName() == true) {
             thumbsRepository.createThumbs(1, hashMapOf("name" to thumbName)).subscribe({

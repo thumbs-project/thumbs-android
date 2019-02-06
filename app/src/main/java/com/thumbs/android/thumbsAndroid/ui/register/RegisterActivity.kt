@@ -15,12 +15,17 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView {
 
     val presenter by inject<RegisterContract.RegisterUserActionListener>()
 
+    override fun startInject() {
+        presenter.attachView(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         btn_next.setOnClickListener {
             presenter.createThumb(edit_name.text.toString())
+
         }
     }
 
