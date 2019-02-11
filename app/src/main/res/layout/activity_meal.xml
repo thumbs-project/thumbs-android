@@ -10,7 +10,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-      android:id="@+id/action4"
+      android:id="@+id/menu_meal"
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:src="@drawable/icon_meal"/>
