@@ -3,13 +3,11 @@ package com.thumbs.android.thumbsAndroid.ui.widget
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
-import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
-import com.thumbs.android.thumbsAndroid.ui.menu.Action
-
+import com.thumbs.android.thumbsAndroid.ui.menu.Menu
+import android.animation.ValueAnimator
+import android.animation.PropertyValuesHolder
+import android.view.*
 
 fun createLayoutParams(
   posX: Int,
@@ -39,9 +37,7 @@ fun createLayoutParams(
 }
 
 fun setOnTouch(
-
-  action: Action,
-
+  menu: Menu,
   view: View,
   layoutParams: WindowManager.LayoutParams,
   singleTabConfirm: GestureDetector,
@@ -60,11 +56,32 @@ fun setOnTouch(
 
         if (handleClickSingle != null) {
           handleClickSingle(view)
-          if(action.moveview!!.visibility==View.VISIBLE) action.moveview!!.visibility=View.GONE
-          else action.moveview!!.visibility=View.VISIBLE
 
+          if(menu.moveClean!!.visibility==View.VISIBLE) {
+            menu.moveClean!!.visibility=View.GONE
+            menu.moveHealthy!!.visibility=View.GONE
+            menu.moveLove!!.visibility=View.GONE
+            menu.moveMeal!!.visibility=View.GONE
+          }
+          else{
+            menu.moveClean!!.visibility=View.VISIBLE
+            animate(menu.moveClean!!, layoutParams.x, layoutParams.x-100, layoutParams.y, layoutParams.y-200, windowManager)
+            windowManager.updateViewLayout(menu.moveClean, createLayoutParams(layoutParams.x, layoutParams.y))
+
+            menu.moveHealthy!!.visibility=View.VISIBLE
+            animate(menu.moveHealthy!!, layoutParams.x, layoutParams.x-200, layoutParams.y, layoutParams.y-80, windowManager)
+            windowManager.updateViewLayout(menu.moveHealthy, createLayoutParams(layoutParams.x, layoutParams.y))
+
+            menu.moveLove!!.visibility=View.VISIBLE
+            animate(menu.moveLove!!, layoutParams.x, layoutParams.x-200, layoutParams.y, layoutParams.y+80, windowManager)
+            windowManager.updateViewLayout(menu.moveLove, createLayoutParams(layoutParams.x, layoutParams.y))
+
+            menu.moveMeal!!.visibility=View.VISIBLE
+            animate(menu.moveMeal!!, layoutParams.x, layoutParams.x-100, layoutParams.y, layoutParams.y+200, windowManager)
+            windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x, layoutParams.y))
+
+          }
         }
-
         return true
       } else {
         when (event.action) {
@@ -87,7 +104,10 @@ fun setOnTouch(
             layoutParams.x = initialX + (event.rawX - initialTouchX).toInt()
             layoutParams.y = initialY + (event.rawY - initialTouchY).toInt()
             windowManager.updateViewLayout(view, layoutParams)
-            windowManager.updateViewLayout(action.moveview, createLayoutParams(layoutParams.x-200, layoutParams.y))
+            windowManager.updateViewLayout(menu.moveClean, createLayoutParams(layoutParams.x-100, layoutParams.y-200))
+            windowManager.updateViewLayout(menu.moveHealthy, createLayoutParams(layoutParams.x-200, layoutParams.y-80))
+            windowManager.updateViewLayout(menu.moveLove, createLayoutParams(layoutParams.x-200, layoutParams.y+80))
+            windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x-100, layoutParams.y+200))
             return true
           }
         }
@@ -95,6 +115,24 @@ fun setOnTouch(
       return false
     }
   })
+}
+
+fun animate(v: View, startX: Int, endX: Int, startY: Int, endY: Int, windowManager: WindowManager) {
+
+  val pvhX = PropertyValuesHolder.ofInt("x", startX, endX)
+  val pvhY = PropertyValuesHolder.ofInt("y", startY, endY)
+
+  val translator = ValueAnimator.ofPropertyValuesHolder(pvhX, pvhY)
+
+  translator.addUpdateListener { valueAnimator ->
+    val layoutParams = v.layoutParams as WindowManager.LayoutParams
+    layoutParams.x = valueAnimator.getAnimatedValue("x") as Int
+    layoutParams.y = valueAnimator.getAnimatedValue("y") as Int
+    windowManager.updateViewLayout(v, layoutParams)
+  }
+
+  translator.duration = 500
+  translator.start()
 }
 
 

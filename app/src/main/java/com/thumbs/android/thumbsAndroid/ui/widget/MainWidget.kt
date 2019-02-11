@@ -4,7 +4,7 @@ import android.app.Service
 import android.view.*
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
-import com.thumbs.android.thumbsAndroid.ui.menu.Action
+import com.thumbs.android.thumbsAndroid.ui.menu.Menu
 
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null
@@ -24,10 +24,10 @@ class MainWidget {
 
     windowManager.addView(view, layoutParams)
 
-      val action = Action(service, windowManager, layoutParams)
+      val menu = Menu(service, windowManager, layoutParams)
 
       setOnTouch(
-          action,
+          menu,
           view,
           layoutParams,
           singleTabConfirm!!,
