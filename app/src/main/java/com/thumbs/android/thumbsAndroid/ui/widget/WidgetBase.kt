@@ -64,10 +64,10 @@ fun setOnTouch(
             menu.moveMeal!!.visibility=View.GONE
           }
           else{
-            menuAnimate(menu.moveClean!!, startPoint(layoutParams.x, layoutParams.y), endPoint(layoutParams.x-100,layoutParams.y-200), windowManager)
-            menuAnimate(menu.moveHealthy!!, startPoint(layoutParams.x, layoutParams.y), endPoint(layoutParams.x-200,layoutParams.y-80), windowManager)
-            menuAnimate(menu.moveLove!!, startPoint(layoutParams.x, layoutParams.y), endPoint(layoutParams.x-200,layoutParams.y+80), windowManager)
-            menuAnimate(menu.moveMeal!!, startPoint(layoutParams.x, layoutParams.y), endPoint(layoutParams.x-100,layoutParams.y+200), windowManager)
+            menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y-200), windowManager)
+            menuAnimate(menu.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y-80), windowManager)
+            menuAnimate(menu.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y+80), windowManager)
+            menuAnimate(menu.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y+200), windowManager)
           }
         }
         return true
@@ -105,28 +105,14 @@ fun setOnTouch(
   })
 }
 
-class startPoint{
-  var x = 0
-  var y = 0
 
-  constructor(startX: Int, startY: Int) {
-    x = startX
-    y = startY
-  }
+fun menuAnimate(view: View, startPoint: Point, endPoint: Point, windowManager: WindowManager){
+  view.visibility=View.VISIBLE
+  animate(view, startPoint, endPoint, windowManager)
+  windowManager.updateViewLayout(view, createLayoutParams(startPoint.x, startPoint.y))
 }
 
-class endPoint{
-  var x = 0
-  var y = 0
-
-  constructor(endX: Int, endY: Int) {
-    x = endX
-    y = endY
-  }
-}
-
-fun animate(v: View, startPoint: startPoint, endPoint: endPoint, windowManager: WindowManager) {
-
+fun animate(v: View, startPoint: Point, endPoint: Point, windowManager: WindowManager) {
   val pvhX = PropertyValuesHolder.ofInt("x", startPoint.x, endPoint.x)
   val pvhY = PropertyValuesHolder.ofInt("y", startPoint.y, endPoint.y)
 
@@ -143,13 +129,16 @@ fun animate(v: View, startPoint: startPoint, endPoint: endPoint, windowManager: 
   translator.start()
 }
 
-fun menuAnimate(view: View, startPoint: startPoint, endPoint: endPoint, windowManager: WindowManager){
+class Point{
+  var x = 0
+  var y = 0
 
-  view.visibility=View.VISIBLE
-  animate(view, startPoint, endPoint, windowManager)
-  windowManager.updateViewLayout(view, createLayoutParams(startPoint.x, startPoint.y))
-
+  constructor(X: Int, Y: Int) {
+    x = X
+    y = Y
+  }
 }
+
 
 class SingleTapConfirm : SimpleOnGestureListener() {
   override fun onSingleTapUp(event: MotionEvent): Boolean {
