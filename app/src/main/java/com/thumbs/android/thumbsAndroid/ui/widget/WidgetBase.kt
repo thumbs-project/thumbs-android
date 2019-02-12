@@ -139,7 +139,6 @@ class Point{
   }
 }
 
-
 class SingleTapConfirm : SimpleOnGestureListener() {
   override fun onSingleTapUp(event: MotionEvent): Boolean {
     return true
