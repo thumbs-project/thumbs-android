@@ -26,6 +26,21 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView {
         btn_next.setOnClickListener {
             presenter.createThumb(edit_name.text.toString())
             startService(Intent(this, ControllerService::class.java))
+
+           /* when {
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
+                    startService(Intent(this, ControllerService::class.java))
+                    finish()
+                }
+                Settings.canDrawOverlays(this) -> {
+                    startService(Intent(this, ControllerService::class.java))
+                    finish()
+                }
+                else -> {
+                    checkPermission()
+                    Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show()
+                }
+            }*/
         }
     }
 

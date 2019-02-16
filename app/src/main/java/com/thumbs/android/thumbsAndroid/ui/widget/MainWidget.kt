@@ -23,7 +23,6 @@ class MainWidget {
     image.setBackgroundResource(R.drawable.thu_basic)
 
     windowManager.addView(view, layoutParams)
-
       val menu = Menu(service, windowManager, layoutParams)
 
       setOnTouch(
