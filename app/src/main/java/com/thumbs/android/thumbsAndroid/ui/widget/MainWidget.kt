@@ -22,8 +22,7 @@ class MainWidget {
     val image = view.findViewById<ImageView>(R.id.icon_thu)
     image.setBackgroundResource(R.drawable.thu_basic)
 
-    windowManager.addView(view, layoutParams);
-
+    windowManager.addView(view, layoutParams)
       val action = Action(service, windowManager, layoutParams)
 
       setOnTouch(

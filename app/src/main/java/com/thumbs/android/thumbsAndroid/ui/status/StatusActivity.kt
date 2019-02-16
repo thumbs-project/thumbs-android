@@ -24,6 +24,10 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
         setContentView(R.layout.activity_status)
 
         presenter.loadThumb()
+
+        iv_setting.setOnClickListener {
+            startActivity(Intent(this, SettingActivity2::class.java))
+        }
     }
 
 
@@ -39,10 +43,8 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
         tv_love_percent.text = (thumb.condition.affection?.value ?: 0).toString() + "%"
         tv_meal_percent.text = (thumb.condition.satiety?.value ?: 0).toString() + "%"
 
-        val settingBtn = settingBtn
-        settingBtn.setOnClickListener() {
-            startActivity(Intent(this, SettingActivity2::class.java))
-        }
+
+
     }
 
     override fun showToast(message: String) = this.showToastMessageString(message)

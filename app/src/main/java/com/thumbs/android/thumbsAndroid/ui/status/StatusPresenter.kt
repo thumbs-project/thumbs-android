@@ -16,6 +16,7 @@ class StatusPresenter(
     override fun loadThumb() {
         thumbsRepository.loadThumb(1).subscribe({
             statusView?.setUi(it)
+            Log.d("status_it",it.toString())
         },{
             it.printStackTrace()
         })

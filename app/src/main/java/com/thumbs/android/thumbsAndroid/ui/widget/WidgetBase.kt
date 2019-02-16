@@ -85,9 +85,7 @@ fun setOnTouch(
             layoutParams.x = initialX + (event.rawX - initialTouchX).toInt()
             layoutParams.y = initialY + (event.rawY - initialTouchY).toInt()
             windowManager.updateViewLayout(view, layoutParams)
-
             windowManager.updateViewLayout(action.moveview, createLayoutParams(layoutParams.x-200, layoutParams.y))
-
             return true
           }
         }

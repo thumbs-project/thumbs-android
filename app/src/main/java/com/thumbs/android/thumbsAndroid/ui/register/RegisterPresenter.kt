@@ -16,10 +16,14 @@ class RegisterPresenter(
                 registerView?.showToast("등록이 완료되었습니다.")
                 registerView?.nextPage()
             },{
+                registerView?.nextPage()
+                registerView?.showToast("Server Error")
                 it.printStackTrace()
             })
-        else
+        else {
             registerView?.showToast("이름을 입력해주세요!")
+            registerView?.nextPage()
+        }
     }
 
     override fun attachView(view: RegisterContract.RegisterView) {

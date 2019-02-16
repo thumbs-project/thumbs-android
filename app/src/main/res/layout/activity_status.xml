@@ -31,7 +31,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="17dp"
-                android:id="@+id/settingBtn"/>
+                android:id="@+id/iv_setting"/>
     </RelativeLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"

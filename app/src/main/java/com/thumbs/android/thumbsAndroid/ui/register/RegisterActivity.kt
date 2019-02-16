@@ -31,7 +31,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView{
             Log.d("test_log","log")
             presenter.createThumb(edit_name.text.toString())
 
-            when {
+           /* when {
                 Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
                     startService(Intent(this, ControllerService::class.java))
                     finish()
@@ -44,7 +44,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView{
                     checkPermission()
                     Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show()
                 }
-            }
+            }*/
         }
     }
 
