@@ -38,7 +38,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
     }
 
     private fun startActivityIfPermissionPass() {
-
+        val count = 7
         val anim = AnimatorSet()
         anim.duration = 700L
         anim.playTogether(
@@ -46,25 +46,25 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
                 ObjectAnimator.ofFloat(0f, -150f).apply {
                     duration = 700
                     addUpdateListener {
-                        it.repeatCount = 1
+                        it.repeatCount = count
                         it.repeatMode = REVERSE
                         splash_body.translationY = it.animatedValue as Float
                     }
                 }),
             Glider.glide(Skill.CubicEaseInOut, 700f,
                 ObjectAnimator.ofFloat(splash_body, "scaleY", 0.9f, 1.0f).apply {
-                    this.repeatCount = 1
+                    this.repeatCount = count
                     this.repeatMode = REVERSE
                 }),
             Glider.glide(Skill.CubicEaseInOut, 700f,
                 ObjectAnimator.ofFloat(splash_shadow, "alpha", 0.7f, 0.3f).apply {
-                    this.repeatCount = 1
+                    this.repeatCount = count
                     this.repeatMode = REVERSE
                 }),
             Glider.glide(Skill.CubicEaseInOut, 700f, ObjectAnimator.ofFloat(0f, -140f).apply {
                 duration = 700
                 addUpdateListener {
-                    it.repeatCount = 1
+                    it.repeatCount = count
                     it.repeatMode = REVERSE
                     splash_face.translationY = it.animatedValue as Float
                 }
@@ -87,7 +87,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
         }
 
         Handler().apply {
-            postDelayed(runnable, 1500)
+            postDelayed(runnable, 5500)
         }
     }
 
