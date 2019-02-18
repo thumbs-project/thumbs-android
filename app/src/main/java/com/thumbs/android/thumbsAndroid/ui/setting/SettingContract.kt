@@ -8,12 +8,14 @@ import com.thumbs.android.thumbsAndroid.ui.base.BaseView
 
 interface SettingContract {
     interface SettingView : BaseView {
-        fun setUi(thumb: Thumb)
+        fun setUi(thumb: Thumb,size : ThumbSize)
         fun setImageSize(size : ThumbSize)
     }
 
     interface SettingUserActionListener : BasePresenter<SettingContract.SettingView> {
         fun load()
         fun controlThumbSize(imageSize : ThumbSize, progress : Int)
+        fun upsert(size : ThumbSize)
+
     }
 }

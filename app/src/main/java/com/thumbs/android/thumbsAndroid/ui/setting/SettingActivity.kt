@@ -12,11 +12,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SeekBar
 import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.dpToPixel
 import com.thumbs.android.thumbsAndroid.model.Thumb
 import com.thumbs.android.thumbsAndroid.model.ThumbSize
+import com.thumbs.android.thumbsAndroid.pixelToDp
 import com.thumbs.android.thumbsAndroid.services.ControllerService
 import com.thumbs.android.thumbsAndroid.showToastMessageString
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
+import com.thumbs.android.thumbsAndroid.ui.setting.SettingPresenter.Companion.STEP
 import kotlinx.android.synthetic.main.activity_setting.*
 import org.koin.android.ext.android.inject
 
@@ -47,7 +50,6 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 //publishSubject.onNext(progress to b)
-                Log.d("progress:", progress.toString()+":"+fromUser.toString())
                 presenter.controlThumbSize(
                     ThumbSize(
                         (thumbs.layoutParams as ViewGroup.LayoutParams).height,
@@ -69,15 +71,23 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
         switch_widget.setOnCheckedChangeListener { buttonView, isChecked ->
             checkPermission()
             if (isChecked) {
-                startService(Intent(this@SettingActivity, ControllerService::class.java))
+                presenter.upsert(
+                    ThumbSize(
+                        (thumbs.layoutParams as ViewGroup.LayoutParams).width,
+                        (thumbs.layoutParams as ViewGroup.LayoutParams).height
+                    )
+                )
+                //startService(Intent(this@SettingActivity, ControllerService::class.java))
             } else {
-                stopService(Intent(this@SettingActivity, ControllerService::class.java))
+                //stopService(Intent(this@SettingActivity, ControllerService::class.java))
             }
         }
     }
 
-    override fun setUi(thumb: Thumb) {
+    override fun setUi(thumb: Thumb,size : ThumbSize) {
         name.text = thumb.name
+        seekBar.progress = (size.width - SettingPresenter.MIN_WIDTH_SIZE) / STEP
+        setImageSize(size)
     }
 
     override fun setImageSize(size : ThumbSize) {
