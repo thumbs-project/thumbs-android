@@ -1,23 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
 
     <ImageView
-        android:id="@+id/splash_iv"
-        android:layout_width="80dp"
-        android:layout_height="130dp"
-        app:srcCompat="@drawable/image_splash"
+        android:id="@+id/splash_face"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        app:srcCompat="@drawable/face"
+        android:translationZ="1dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/splash_body"
+        app:layout_constraintEnd_toEndOf="@+id/splash_body"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toStartOf="@+id/splash_body"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/splash_body"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.214" />
+
+    <ImageView
+        android:id="@+id/splash_shadow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/img_character_shadow"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp" />
+
+    <ImageView
+        android:id="@+id/splash_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/img_character"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="8dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="8dp"
-        android:contentDescription="splash" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <ImageView
+        android:id="@+id/splash_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/thumbs"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/splash_body"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintVertical_bias="0.134" />
 
 </android.support.constraint.ConstraintLayout>

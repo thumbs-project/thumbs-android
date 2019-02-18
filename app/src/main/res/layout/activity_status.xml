@@ -41,13 +41,6 @@
                         android:layout_height="0dp"
                         android:layout_weight="1">
 
-            <ImageView
-                    android:id="@+id/iv_image"
-                    android:layout_width="64dp"
-                    android:layout_height="85dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/image_thumb"/>
-
             <TextView
                     android:id="@+id/tv_nickname"
                     android:layout_width="wrap_content"
