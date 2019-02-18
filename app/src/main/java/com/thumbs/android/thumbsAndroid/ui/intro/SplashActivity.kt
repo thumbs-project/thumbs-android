@@ -1,14 +1,16 @@
 package com.thumbs.android.thumbsAndroid.ui.intro
 
-import android.animation.ValueAnimator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator.REVERSE
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
-import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
+import com.daimajia.easing.Glider
+import com.daimajia.easing.Skill
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.model.Thumb
 import com.thumbs.android.thumbsAndroid.services.ControllerService
@@ -20,7 +22,6 @@ import org.koin.android.ext.android.inject
 
 
 class SplashActivity : BaseActivity(), SplashContract.SplashView {
-
 
     val presenter by inject<SplashContract.SplashUserActionListerner>()
 
@@ -34,27 +35,44 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         startActivityIfPermissionPass()
-        // 1
-// 2
-
-
     }
 
     private fun startActivityIfPermissionPass() {
 
-        val runnable = Runnable {
-
-            ValueAnimator.ofFloat(0f, -0.3f).apply {
-                duration = 10000
+        val anim = AnimatorSet()
+        anim.duration = 700L
+        anim.playTogether(
+            Glider.glide(Skill.CubicEaseInOut, 700f,
+                ObjectAnimator.ofFloat(0f, -150f).apply {
+                    duration = 700
+                    addUpdateListener {
+                        it.repeatCount = 1
+                        it.repeatMode = REVERSE
+                        splash_body.translationY = it.animatedValue as Float
+                    }
+                }),
+            Glider.glide(Skill.CubicEaseInOut, 700f,
+                ObjectAnimator.ofFloat(splash_body, "scaleY", 0.9f, 1.0f).apply {
+                    this.repeatCount = 1
+                    this.repeatMode = REVERSE
+                }),
+            Glider.glide(Skill.CubicEaseInOut, 700f,
+                ObjectAnimator.ofFloat(splash_shadow, "alpha", 0.7f, 0.3f).apply {
+                    this.repeatCount = 1
+                    this.repeatMode = REVERSE
+                }),
+            Glider.glide(Skill.CubicEaseInOut, 700f, ObjectAnimator.ofFloat(0f, -140f).apply {
+                duration = 700
                 addUpdateListener {
-                    it.interpolator = AccelerateInterpolator()
-                    splash_iv.y = it.animatedValue as Float
+                    it.repeatCount = 1
                     it.repeatMode = REVERSE
-                    it.repeatCount = 2
+                    splash_face.translationY = it.animatedValue as Float
                 }
-                start()
-            }
+            })
+        )
+        anim.start()
 
+        val runnable = Runnable {
             when {
                 Settings.canDrawOverlays(this) -> {
                     presenter.loadThumbsData()
@@ -67,8 +85,9 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
                 }
             }
         }
+
         Handler().apply {
-            postDelayed(runnable, 10000)
+            postDelayed(runnable, 1500)
         }
     }
 
