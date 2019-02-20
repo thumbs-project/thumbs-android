@@ -3,12 +3,15 @@ package com.thumbs.android.thumbsAndroid.core.modules
 import com.thumbs.android.thumbsAndroid.BuildConfig
 import com.thumbs.android.thumbsAndroid.api.ThumbsApi
 import com.thumbs.android.thumbsAndroid.api.UserApi
+import com.thumbs.android.thumbsAndroid.api.UserEventApi
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepositoryImpl
 import com.thumbs.android.thumbsAndroid.repositories.UserRepository
 import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
 import com.thumbs.android.thumbsAndroid.ui.intro.SplashContract
 import com.thumbs.android.thumbsAndroid.ui.intro.SplashPresenter
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuPresenter
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterContract
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterPresenter
 import com.thumbs.android.thumbsAndroid.ui.setting.SettingContract
@@ -50,6 +53,16 @@ val networkModule = module {
             .build()
             .create(ThumbsApi::class.java)
     }
+
+    single {
+        Retrofit.Builder()
+            .client(get())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BuildConfig.BASE_URL)
+            .build()
+            .create(UserEventApi::class.java)
+    }
 }
 
 //test 모듈
@@ -59,6 +72,9 @@ val userModule = module {
     factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
 }
 
+val userEventModule = module {
+    factory { MenuPresenter(get()) as MenuContract.UserActionListerner }
+}
 val registerModule = module {
     factory { ThumbsRepositoryImpl(get()) as ThumbsRepository }
     factory { RegisterPresenter(get()) as RegisterContract.RegisterUserActionListener }
@@ -72,5 +88,6 @@ val appModules = listOf(
     networkModule,
     userModule,
     registerModule,
-    statusModule
+    statusModule,
+    userEventModule
 )

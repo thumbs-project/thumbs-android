@@ -1,10 +1,13 @@
 package com.thumbs.android.thumbsAndroid.ui.widget
 
 import android.app.Service
-import android.view.*
+import android.view.GestureDetector
+import android.view.LayoutInflater
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
-import com.thumbs.android.thumbsAndroid.ui.menu.Menu
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 
 class MainWidget {
   var singleTabConfirm: GestureDetector? = null
@@ -24,7 +27,7 @@ class MainWidget {
 
     windowManager.addView(view, layoutParams)
 
-      val menu = Menu(service, windowManager, layoutParams)
+      val menu = MenuView(service, windowManager, layoutParams)
 
       setOnTouch(
           menu,

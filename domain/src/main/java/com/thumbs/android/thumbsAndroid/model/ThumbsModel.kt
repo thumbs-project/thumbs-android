@@ -1,11 +1,11 @@
 package com.thumbs.android.thumbsAndroid.model
 
-import com.google.gson.annotations.SerializedName
-
 
 data class Thumb(
     var thumbId: Int,
     var name: String,
+    var image: String,
+    var disease: String,
     var condition: Condition
 )
 
@@ -29,11 +29,11 @@ data class Health(
 
 //위생
 data class Hygiene(
-    var label : String,
-    var value : Int?
+    var label: String,
+    var value: Int?
 )
 
 data class Satiety(
-    var label : String,
-    var value : Int?
+    var label: String,
+    var value: Int?
 )

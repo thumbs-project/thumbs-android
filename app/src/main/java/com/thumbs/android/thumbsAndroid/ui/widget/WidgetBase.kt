@@ -1,13 +1,16 @@
 package com.thumbs.android.thumbsAndroid.ui.widget
 
+import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
+import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
-import com.thumbs.android.thumbsAndroid.ui.menu.Menu
-import android.animation.ValueAnimator
-import android.animation.PropertyValuesHolder
-import android.view.*
+import android.view.MotionEvent
+import android.view.View
+import android.view.WindowManager
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 
 fun createLayoutParams(
   posX: Int,
@@ -37,12 +40,12 @@ fun createLayoutParams(
 }
 
 fun setOnTouch(
-  menu: Menu,
-  view: View,
-  layoutParams: WindowManager.LayoutParams,
-  singleTabConfirm: GestureDetector,
-  windowManager: WindowManager,
-  handleClickSingle: ((view: View) -> Unit)?
+    menuView: MenuView,
+    view: View,
+    layoutParams: WindowManager.LayoutParams,
+    singleTabConfirm: GestureDetector,
+    windowManager: WindowManager,
+    handleClickSingle: ((view: View) -> Unit)?
 ) {
   view.setOnTouchListener(object: View.OnTouchListener {
     private var initialX: Int = 0
@@ -57,17 +60,17 @@ fun setOnTouch(
         if (handleClickSingle != null) {
           handleClickSingle(view)
 
-          if(menu.moveClean!!.visibility==View.VISIBLE) {
-            menu.moveClean!!.visibility=View.GONE
-            menu.moveHealthy!!.visibility=View.GONE
-            menu.moveLove!!.visibility=View.GONE
-            menu.moveMeal!!.visibility=View.GONE
+          if(menuView.moveClean!!.visibility==View.VISIBLE) {
+            menuView.moveClean!!.visibility=View.GONE
+            menuView.moveHealthy!!.visibility=View.GONE
+            menuView.moveLove!!.visibility=View.GONE
+            menuView.moveMeal!!.visibility=View.GONE
           }
           else{
-            menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y-200), windowManager)
-            menuAnimate(menu.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y-80), windowManager)
-            menuAnimate(menu.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y+80), windowManager)
-            menuAnimate(menu.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y+200), windowManager)
+            menuAnimate(menuView.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y-200), windowManager)
+            menuAnimate(menuView.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y-80), windowManager)
+            menuAnimate(menuView.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y+80), windowManager)
+            menuAnimate(menuView.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y+200), windowManager)
           }
         }
         return true
@@ -92,10 +95,10 @@ fun setOnTouch(
             layoutParams.x = initialX + (event.rawX - initialTouchX).toInt()
             layoutParams.y = initialY + (event.rawY - initialTouchY).toInt()
             windowManager.updateViewLayout(view, layoutParams)
-            windowManager.updateViewLayout(menu.moveClean, createLayoutParams(layoutParams.x-100, layoutParams.y-200))
-            windowManager.updateViewLayout(menu.moveHealthy, createLayoutParams(layoutParams.x-200, layoutParams.y-80))
-            windowManager.updateViewLayout(menu.moveLove, createLayoutParams(layoutParams.x-200, layoutParams.y+80))
-            windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x-100, layoutParams.y+200))
+            windowManager.updateViewLayout(menuView.moveClean, createLayoutParams(layoutParams.x-100, layoutParams.y-200))
+            windowManager.updateViewLayout(menuView.moveHealthy, createLayoutParams(layoutParams.x-200, layoutParams.y-80))
+            windowManager.updateViewLayout(menuView.moveLove, createLayoutParams(layoutParams.x-200, layoutParams.y+80))
+            windowManager.updateViewLayout(menuView.moveMeal, createLayoutParams(layoutParams.x-100, layoutParams.y+200))
             return true
           }
         }
