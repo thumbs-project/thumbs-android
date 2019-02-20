@@ -4,10 +4,7 @@ import com.thumbs.android.thumbsAndroid.BuildConfig
 import com.thumbs.android.thumbsAndroid.api.ThumbsApi
 import com.thumbs.android.thumbsAndroid.api.UserApi
 import com.thumbs.android.thumbsAndroid.api.UserEventApi
-import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
-import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepositoryImpl
-import com.thumbs.android.thumbsAndroid.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
+import com.thumbs.android.thumbsAndroid.repositories.*
 import com.thumbs.android.thumbsAndroid.ui.intro.SplashContract
 import com.thumbs.android.thumbsAndroid.ui.intro.SplashPresenter
 import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
@@ -72,9 +69,6 @@ val userModule = module {
     factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
 }
 
-val userEventModule = module {
-    factory { MenuPresenter(get()) as MenuContract.UserActionListerner }
-}
 val registerModule = module {
     factory { ThumbsRepositoryImpl(get()) as ThumbsRepository }
     factory { RegisterPresenter(get()) as RegisterContract.RegisterUserActionListener }
@@ -82,6 +76,11 @@ val registerModule = module {
 
 val statusModule = module {
     factory { StatusPresenter(get()) as StatusContract.StatusUserActionListener }
+}
+
+val userEventModule = module {
+    single<UserEventRepository> {UserEventRepositoryImpl(get())}
+    factory { MenuPresenter(get()) as MenuContract.UserActionListerner }
 }
 
 val appModules = listOf(

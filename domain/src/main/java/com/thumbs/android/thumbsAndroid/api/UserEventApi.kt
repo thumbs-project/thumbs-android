@@ -11,6 +11,6 @@ interface UserEventApi {
     @POST("/thumbs/{thumbId}/event")
     fun sendEvent(
         @Path("thumbId") thumbId: Int,
-        @Body userAction: UserAction
+        @Body userAction: UserAction?
     ): Single<Thumb>
 }

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuPresenter
 import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 
 class MainWidget {
@@ -15,7 +17,7 @@ class MainWidget {
     UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
   }*/
 
-  constructor(service: Service, windowManager: WindowManager) {
+  constructor(service: Service, windowManager: WindowManager, presenter: MenuContract.UserActionListerner) {
     singleTabConfirm = GestureDetector(service, SingleTapConfirm());
 
     val view = LayoutInflater.from(service)
@@ -27,7 +29,7 @@ class MainWidget {
 
     windowManager.addView(view, layoutParams)
 
-      val menu = MenuView(service, windowManager, layoutParams)
+      val menu = MenuView(service, windowManager, layoutParams,presenter)
 
       setOnTouch(
           menu,

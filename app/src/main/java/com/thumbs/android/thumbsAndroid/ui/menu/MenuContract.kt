@@ -1,6 +1,6 @@
 package com.thumbs.android.thumbsAndroid.ui.menu
 
-import com.thumbs.android.thumbsAndroid.ui.base.BasePresenter
+import com.thumbs.android.thumbsAndroid.ui.base.BaseServicePresenter
 
 interface MenuContract {
 
@@ -8,7 +8,7 @@ interface MenuContract {
         fun actionListener(action: Int)
     }
 
-    interface UserActionListerner : BasePresenter<MenuView> {
-        fun postUserEvent()
+    interface UserActionListerner : BaseServicePresenter<MenuContract.MenuView> {
+        fun postUserEvent(action: Int)
     }
 }
