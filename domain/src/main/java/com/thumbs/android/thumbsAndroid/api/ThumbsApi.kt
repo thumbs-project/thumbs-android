@@ -6,14 +6,17 @@ import io.reactivex.Single
 import retrofit2.http.*
 
 
-interface ThumbsApi{
+interface ThumbsApi {
 
     @POST("users/{userId}/thumbs")
-    fun createThumbs(@Path("userId") userId : Int, @Body body : HashMap<String, Any>) : Completable
-
+    fun createThumbs(@Path("userId") userId: Int, @Body body: HashMap<String, Any>): Completable
 
 
     @GET("thumbs/{thumbId}")
-    fun loadThumb(@Path("thumbId" +
-            "") thumbId : Int) : Single<Thumb>
+    fun loadThumb(
+        @Path(
+            "thumbId" +
+                    ""
+        ) thumbId: Int
+    ): Single<Thumb>
 }
