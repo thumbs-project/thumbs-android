@@ -62,12 +62,14 @@ fun setOnTouch(
             menu.moveHealthy!!.visibility=View.GONE
             menu.moveLove!!.visibility=View.GONE
             menu.moveMeal!!.visibility=View.GONE
+            menu.moveQuit!!.visibility=View.GONE 
           }
           else{
-            menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y-200), windowManager)
-            menuAnimate(menu.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y-80), windowManager)
-            menuAnimate(menu.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y+80), windowManager)
-            menuAnimate(menu.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y+200), windowManager)
+            menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-30,layoutParams.y-200), windowManager)
+            menuAnimate(menu.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-150,layoutParams.y-140), windowManager)
+            menuAnimate(menu.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y), windowManager)
+            menuAnimate(menu.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-150,layoutParams.y+140), windowManager)
+            menuAnimate(menu.moveQuit!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-30,layoutParams.y+200), windowManager)
           }
         }
         return true

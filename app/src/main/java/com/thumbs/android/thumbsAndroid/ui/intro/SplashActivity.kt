@@ -25,6 +25,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
 
     val presenter by inject<SplashContract.SplashUserActionListerner>()
 
+
     private val CODE_OVERLAY_PERMISSION = 2002
 
     override fun startInject() {
