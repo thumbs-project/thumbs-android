@@ -79,7 +79,7 @@ val statusModule = module {
 }
 
 val userEventModule = module {
-    single<UserEventRepository> {UserEventRepositoryImpl(get())}
+    single { UserEventRepositoryImpl(get()) as UserEventRepository }
     factory { MenuPresenter(get()) as MenuContract.UserActionListerner }
 }
 

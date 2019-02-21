@@ -4,7 +4,6 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
@@ -17,12 +16,11 @@ class ControllerService : Service() {
     val windowManager by lazy {
         getSystemService(Context.WINDOW_SERVICE) as WindowManager
     }
-    //  / Lazy injected Presenter instance
+
     val presenter: MenuContract.UserActionListerner by inject<MenuContract.UserActionListerner>()
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("TAG", "ControllerService called")
         init()
     }
 
@@ -32,8 +30,6 @@ class ControllerService : Service() {
 
     fun init() {
         MainWidget(this, windowManager, presenter)
-        //ItemWidget(this, windowManager)
-        //UpdownWidget(this, windowManager)
     }
 
     override fun onDestroy() {

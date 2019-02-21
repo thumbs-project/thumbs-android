@@ -127,7 +127,6 @@ fun animate(v: View, startPoint: Point, endPoint: Point, windowManager: WindowMa
     layoutParams.y = valueAnimator.getAnimatedValue("y") as Int
     windowManager.updateViewLayout(v, layoutParams)
   }
-
   translator.duration = 500
   translator.start()
 }

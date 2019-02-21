@@ -1,7 +1,6 @@
 package com.thumbs.android.thumbsAndroid.ui.menu
 
 import android.app.Service
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -12,8 +11,7 @@ class MenuView(
     windowManager: WindowManager,
     layoutParams: WindowManager.LayoutParams,
     presenter: MenuContract.UserActionListerner
-) :
-    MenuContract.MenuView {
+) : MenuContract.MenuView {
 
     var moveClean: View? = null
     var moveHealthy: View? = null
@@ -55,9 +53,7 @@ class MenuView(
         windowManager.addView(moveMeal, layoutParams)
     }
 
-
     override fun actionListener(action: Int) {
-        Log.d("TAG@@", "AAA")
         presenter.postUserEvent(action)
     }
 }

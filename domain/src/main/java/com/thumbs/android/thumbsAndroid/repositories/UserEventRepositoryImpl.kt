@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 
 class UserEventRepositoryImpl(val userEventApi: UserEventApi) : UserEventRepository {
-    override fun sendEvent(thumbId: Int, body: UserAction?): Single<Thumb> {
+    override fun sendEvent(thumbId: Int, body: UserAction): Single<Thumb> {
         return userEventApi.sendEvent(thumbId, body)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

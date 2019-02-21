@@ -1,6 +1,7 @@
 package com.thumbs.android.thumbsAndroid.ui.menu
 
-import com.thumbs.android.thumbsAndroid.ui.base.BaseServicePresenter
+import com.thumbs.android.thumbsAndroid.ui.base.BasePresenter
+import com.thumbs.android.thumbsAndroid.ui.status.StatusContract
 
 interface MenuContract {
 
@@ -8,7 +9,7 @@ interface MenuContract {
         fun actionListener(action: Int)
     }
 
-    interface UserActionListerner : BaseServicePresenter<MenuContract.MenuView> {
+    interface UserActionListerner : BasePresenter<StatusContract.StatusView> {
         fun postUserEvent(action: Int)
     }
 }
