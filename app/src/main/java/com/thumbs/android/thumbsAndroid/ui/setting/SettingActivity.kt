@@ -77,9 +77,15 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
                         (thumbs.layoutParams as ViewGroup.LayoutParams).height
                     )
                 )
-                //startService(Intent(this@SettingActivity, ControllerService::class.java))
+                /*
+                * TODO
+                * startService(Intent(this@SettingActivity, ControllerService::class.java))
+                * */
             } else {
-                //stopService(Intent(this@SettingActivity, ControllerService::class.java))
+                /*
+                * TODO
+                * stopService(Intent(this@SettingActivity, ControllerService::class.java))
+                * */
             }
         }
     }
