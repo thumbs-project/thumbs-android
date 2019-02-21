@@ -8,6 +8,7 @@ import com.thumbs.android.thumbsAndroid.ui.base.BaseView
 
 interface SettingContract {
     interface SettingView : BaseView {
+
         fun setUi(thumb: Thumb,size : ThumbSize)
         fun setImageSize(size : ThumbSize)
     }

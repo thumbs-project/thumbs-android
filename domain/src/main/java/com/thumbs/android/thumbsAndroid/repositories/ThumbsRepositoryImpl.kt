@@ -12,6 +12,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
+
 class ThumbsRepositoryImpl(
     val thumbApi: ThumbsApi,
     val dao: ThumbDao

@@ -53,9 +53,9 @@ class SettingPresenter(
     }
 
     override fun upsert(size: ThumbSize) {
-        thumbsRepository.insertThumbSize(size.toCached()).subscribe ({
-            Log.d("test_upsert","성공!")
-        },{
+        thumbsRepository.insertThumbSize(size.toCached()).subscribe({
+            Log.d("test_upsert", "성공!")
+        }, {
             it.printStackTrace()
         })
     }

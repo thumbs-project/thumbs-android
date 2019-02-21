@@ -3,56 +3,59 @@ package com.thumbs.android.thumbsAndroid.ui.widget
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Service
-import android.view.*
-import android.view.animation.Animation
+import android.view.GestureDetector
+import android.view.LayoutInflater
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
-import com.daimajia.easing.Glider
-import com.daimajia.easing.Skill
+import com.squareup.picasso.Picasso
 import com.thumbs.android.thumbsAndroid.R
-import com.thumbs.android.thumbsAndroid.ui.menu.Menu
-import kotlinx.android.synthetic.main.activity_splash.*
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 
 class MainWidget {
-  var singleTabConfirm: GestureDetector? = null
- /* val userRepository : UserRepository by lazy {
-    UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
-  }*/
+    var singleTabConfirm: GestureDetector? = null
+    /* val userRepository : UserRepository by lazy {
+       UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
+     }*/
 
-  constructor(service: Service, windowManager: WindowManager) {
-    singleTabConfirm = GestureDetector(service, SingleTapConfirm())
+    constructor(service: Service, windowManager: WindowManager, presenter: MenuContract.UserActionListerner) {
+        singleTabConfirm = GestureDetector(service, SingleTapConfirm());
 
-    val view = LayoutInflater.from(service)
-      .inflate(R.layout.layout_floating_widget, null)
+        val layoutParams = createLayoutParams(0, -310)
 
-    val layoutParams = createLayoutParams(0, -310)
-    val image = view.findViewById<ImageView>(R.id.icon_thu)
-    image.setBackgroundResource(R.drawable.thu_basic)
+        val thumbsView = LayoutInflater.from(service).inflate(R.layout.layout_floating_widget, null)
+        val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
 
-    windowManager.addView(view, layoutParams)
+        windowManager.addView(thumbsView, layoutParams)
+        val temp:String = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/clean.png"
+        Picasso.with(service)
+            .load(temp)
+            .resize(100,100)
+            .centerCrop()
+            .into(image)
 
-      ObjectAnimator.ofFloat(0f, -150f).apply {
-          addUpdateListener {
-              it.duration=700
-              it.repeatCount=ValueAnimator.INFINITE
-              it.repeatMode = ValueAnimator.REVERSE
-              //  it.repeatMode=ValueAnimator.RESTART
-              view.translationY = it.animatedValue as Float
-              windowManager.updateViewLayout(view, layoutParams)
-          }
-      }.start()
+        val menu = MenuView(service, windowManager, layoutParams, presenter, object : WidgetListener{
+            override fun setImage(imageUrl: String) {
+                Picasso.with(service)
+                    .load(imageUrl)
+                    .resize(100,100)
+                    .centerCrop()
+                    .into(image)
+            }
+        })
+
+        setOnTouch(
+            menu,
+            thumbsView,
+            layoutParams,
+            singleTabConfirm!!,
+            windowManager,
+            this::handleSingleClick
+        )
+    }
 
 
-      val menu = Menu(service, windowManager, layoutParams)
-
-      setOnTouch(
-          menu,
-          view,
-          layoutParams,
-          singleTabConfirm!!,
-          windowManager,
-          this::handleSingleClick
-      )
-  }
     fun handleSingleClick(view: View) {
         /* userRepository.getStatus(StatusRequestParam(
            123412341234,
@@ -69,4 +72,8 @@ class MainWidget {
            })*/
 
     }
+}
+
+interface WidgetListener{
+    fun setImage(imageUrl : String)
 }

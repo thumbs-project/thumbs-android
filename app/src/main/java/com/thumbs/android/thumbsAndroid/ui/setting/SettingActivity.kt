@@ -2,12 +2,14 @@ package com.thumbs.android.thumbsAndroid.ui.setting
 
 import android.app.ActivityManager
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SeekBar
@@ -22,10 +24,11 @@ import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
 import com.thumbs.android.thumbsAndroid.ui.setting.SettingPresenter.Companion.STEP
 import kotlinx.android.synthetic.main.activity_setting.*
 import org.koin.android.ext.android.inject
+import java.io.InputStream
+import java.net.URL
 
 
 class SettingActivity : BaseActivity(), SettingContract.SettingView {
-
 
     val presenter by inject<SettingContract.SettingUserActionListener>()
     val PERMISSION_CODE = 2002

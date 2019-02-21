@@ -4,13 +4,13 @@ import android.arch.persistence.room.Room
 import com.thumbs.android.thumbsAndroid.BuildConfig
 import com.thumbs.android.thumbsAndroid.api.ThumbsApi
 import com.thumbs.android.thumbsAndroid.api.UserApi
+import com.thumbs.android.thumbsAndroid.api.UserEventApi
 import com.thumbs.android.thumbsAndroid.data.database.AppDatabase
-import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
-import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepositoryImpl
-import com.thumbs.android.thumbsAndroid.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.repositories.UserRepositoryImpl
-import com.thumbs.android.thumbsAndroid.ui.intro.SplashContract
-import com.thumbs.android.thumbsAndroid.ui.intro.SplashPresenter
+import com.thumbs.android.thumbsAndroid.repositories.*
+import com.thumbs.android.thumbsAndroid.ui.splash.SplashContract
+import com.thumbs.android.thumbsAndroid.ui.splash.SplashPresenter
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuPresenter
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterContract
 import com.thumbs.android.thumbsAndroid.ui.register.RegisterPresenter
 import com.thumbs.android.thumbsAndroid.ui.setting.SettingContract
@@ -20,7 +20,6 @@ import com.thumbs.android.thumbsAndroid.ui.status.StatusPresenter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module.applicationContext
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -54,6 +53,16 @@ val networkModule = module {
             .build()
             .create(ThumbsApi::class.java)
     }
+
+    single {
+        Retrofit.Builder()
+            .client(get())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BuildConfig.BASE_URL)
+            .build()
+            .create(UserEventApi::class.java)
+    }
 }
 
 val databaseModule = module {
@@ -86,12 +95,18 @@ val statusModule = module {
     factory { StatusPresenter(get()) as StatusContract.StatusUserActionListener }
 }
 
+val userEventModule = module {
+    single { UserEventRepositoryImpl(get()) as UserEventRepository }
+    factory { MenuPresenter(get()) as MenuContract.UserActionListerner }
+}
+
 val appModules = listOf(
     networkModule,
     databaseModule,
     repositoryModules,
     userModule,
     registerModule,
-    statusModule
+    statusModule,
+    userEventModule
 )
 

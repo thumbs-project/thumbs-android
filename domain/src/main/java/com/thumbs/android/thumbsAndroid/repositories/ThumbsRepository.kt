@@ -10,7 +10,6 @@ import io.reactivex.Single
 interface ThumbsRepository{
 
     fun createThumbs(userId : Int, body :  HashMap<String, Any>) : Completable
-
     fun loadThumb(thumbId : Int) : Single<Thumb>
 
     fun insertThumbSize(thumbSize: CacheThumbSize) : Completable
