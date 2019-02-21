@@ -62,35 +62,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-                    android:layout_height="85dp"
-                    android:src="@drawable/image_thumb"
-            />
-
-            <ImageView
-                    android:id="@+id/splash_shadow"
-                    android:layout_width="51dp"
-                    android:layout_height="20dp"
-                    android:alpha="0.4"
-                    android:src="@drawable/item_shadow"
-                    android:layout_marginTop="2dp"
-            />
-        </LinearLayout>
-
-        <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="#000000"
-                android:letterSpacing="-0.02"
-                android:gravity="center_horizontal"
-                android:text="주성의 thumbs"
-                android:layout_marginTop="24dp"
-        />
-    </LinearLayout>
-
-
-    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
