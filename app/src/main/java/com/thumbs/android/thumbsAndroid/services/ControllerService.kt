@@ -4,9 +4,11 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.view.View
-import android.view.WindowManager
+
+import android.util.Log
+import android.view.*
 import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
+import com.thumbs.android.thumbsAndroid.ui.widget.ItemWidget
 import com.thumbs.android.thumbsAndroid.ui.widget.MainWidget
 import org.koin.android.ext.android.inject
 

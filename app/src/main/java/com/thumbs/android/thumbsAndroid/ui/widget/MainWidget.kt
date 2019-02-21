@@ -1,5 +1,7 @@
 package com.thumbs.android.thumbsAndroid.ui.widget
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.Service
 import android.view.GestureDetector
 import android.view.LayoutInflater
@@ -52,6 +54,7 @@ class MainWidget {
             this::handleSingleClick
         )
     }
+
 
     fun handleSingleClick(view: View) {
         /* userRepository.getStatus(StatusRequestParam(

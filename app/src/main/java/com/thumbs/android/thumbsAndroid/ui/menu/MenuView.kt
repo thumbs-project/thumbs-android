@@ -16,6 +16,12 @@ class MenuView(
 ) : MenuContract.MenuView {
     override fun setView(imageUrl: String) {
         imageListener.setImage(imageUrl)
+        if( imageUrl.substringAfterLast("/") == "dead.png") {
+
+            //TODO SHAKE
+
+        }
+
     }
 
     var moveClean: View? = null
@@ -50,7 +56,7 @@ class MenuView(
         moveLove!!.setOnClickListener { actionListener(LOVEACTION) }
         meal!!.visibility = View.GONE
         moveMeal = meal
-        moveLove!!.setOnClickListener { actionListener(MEALACTION) }
+        moveMeal!!.setOnClickListener { actionListener(MEALACTION) }
         windowManager.addView(moveClean, layoutParams)
         windowManager.addView(moveHealthy, layoutParams)
         windowManager.addView(moveLove, layoutParams)

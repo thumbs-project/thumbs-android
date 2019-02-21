@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.ui.intro
+package com.thumbs.android.thumbsAndroid.ui.splash
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -24,6 +24,7 @@ import org.koin.android.ext.android.inject
 class SplashActivity : BaseActivity(), SplashContract.SplashView {
 
     val presenter by inject<SplashContract.SplashUserActionListerner>()
+
 
     private val CODE_OVERLAY_PERMISSION = 2002
 

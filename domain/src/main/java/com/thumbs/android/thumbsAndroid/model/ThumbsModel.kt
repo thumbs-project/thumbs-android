@@ -37,3 +37,8 @@ data class Satiety(
     var label: String,
     var value: Int?
 )
+
+data class ThumbSize(
+    var width : Int,
+    var height : Int
+)
