@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import com.squareup.picasso.Picasso
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
 import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
@@ -19,15 +20,28 @@ class MainWidget {
     constructor(service: Service, windowManager: WindowManager, presenter: MenuContract.UserActionListerner) {
         singleTabConfirm = GestureDetector(service, SingleTapConfirm());
 
-        val thumbsView = LayoutInflater.from(service)
-            .inflate(R.layout.layout_floating_widget, null)
-
         val layoutParams = createLayoutParams(0, -310)
-        val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
-        image.setBackgroundResource(R.drawable.thu_basic)
-        windowManager.addView(thumbsView, layoutParams)
 
-        val menu = MenuView(service, windowManager, layoutParams, presenter)
+        val thumbsView = LayoutInflater.from(service).inflate(R.layout.layout_floating_widget, null)
+        val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
+
+        windowManager.addView(thumbsView, layoutParams)
+        val temp:String = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/clean.png"
+        Picasso.with(service)
+            .load(temp)
+            .resize(100,100)
+            .centerCrop()
+            .into(image)
+
+        val menu = MenuView(service, windowManager, layoutParams, presenter, object : WidgetListener{
+            override fun setImage(imageUrl: String) {
+                Picasso.with(service)
+                    .load(imageUrl)
+                    .resize(100,100)
+                    .centerCrop()
+                    .into(image)
+            }
+        })
 
         setOnTouch(
             menu,
@@ -55,4 +69,8 @@ class MainWidget {
            })*/
 
     }
+}
+
+interface WidgetListener{
+    fun setImage(imageUrl : String)
 }

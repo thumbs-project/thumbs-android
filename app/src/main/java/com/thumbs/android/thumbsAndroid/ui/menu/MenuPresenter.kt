@@ -3,19 +3,18 @@ package com.thumbs.android.thumbsAndroid.ui.menu
 import android.annotation.SuppressLint
 import com.thumbs.android.thumbsAndroid.model.UserAction
 import com.thumbs.android.thumbsAndroid.repositories.UserEventRepository
-import com.thumbs.android.thumbsAndroid.ui.status.StatusContract
 
 class MenuPresenter(val menuRepository: UserEventRepository) :
     MenuContract.UserActionListerner {
 
-    var statusView: StatusContract.StatusView? = null
+    var menuView: MenuContract.MenuView? = null
     val CLEANACTION: Int = 1
     val HEALTYACTION: Int = 2
     val LOVEACTION: Int = 3
     val MEALACTION: Int = 4
 
-    override fun attachView(view: StatusContract.StatusView) {
-        statusView = view
+    override fun attachView(view: MenuContract.MenuView) {
+        menuView = view
     }
 
     @SuppressLint("CheckResult")
@@ -37,13 +36,13 @@ class MenuPresenter(val menuRepository: UserEventRepository) :
         }
         menuRepository.sendEvent(1, userAction)
             .subscribe({ thumb ->
-                statusView?.setUi(thumb)
+                menuView?.setView(thumb.image)
             }, {
                 it.printStackTrace()
             })
     }
 
     override fun removeView() {
-        this.statusView = null
+        this.menuView = null
     }
 }
