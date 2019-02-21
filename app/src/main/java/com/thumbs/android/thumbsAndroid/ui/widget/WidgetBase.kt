@@ -64,17 +64,19 @@ fun setOnTouch(
           handleClickSingle(view)
 
           if(state==1) {
-              menuAnimate(menu.moveClean!!, Point(layoutParams.x-100, layoutParams.y-200), Point(layoutParams.x,layoutParams.y), windowManager, state)
-              menuAnimate(menu.moveHealthy!!, Point(layoutParams.x-200, layoutParams.y-80), Point(layoutParams.x,layoutParams.y), windowManager, state)
-              menuAnimate(menu.moveLove!!, Point(layoutParams.x-200, layoutParams.y+80), Point(layoutParams.x,layoutParams.y), windowManager, state)
-              menuAnimate(menu.moveMeal!!, Point(layoutParams.x-100, layoutParams.y+200), Point(layoutParams.x,layoutParams.y), windowManager, state)
+              menuAnimate(menu.moveClean!!, Point(layoutParams.x-30, layoutParams.y-200), Point(layoutParams.x,layoutParams.y), windowManager, state)
+              menuAnimate(menu.moveHealthy!!, Point(layoutParams.x-150, layoutParams.y-140), Point(layoutParams.x,layoutParams.y), windowManager, state)
+              menuAnimate(menu.moveLove!!, Point(layoutParams.x-200, layoutParams.y), Point(layoutParams.x,layoutParams.y), windowManager, state)
+              menuAnimate(menu.moveMeal!!, Point(layoutParams.x-150, layoutParams.y+140), Point(layoutParams.x,layoutParams.y), windowManager, state)
+              menuAnimate(menu.moveQuit!!, Point(layoutParams.x-30, layoutParams.y+200), Point(layoutParams.x,layoutParams.y), windowManager, state)
               state=0
           }
           else if(state==0){
-            menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y-200), windowManager, state)
-            menuAnimate(menu.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y-80), windowManager, state)
-            menuAnimate(menu.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y+80), windowManager, state)
-            menuAnimate(menu.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-100,layoutParams.y+200), windowManager, state)
+               menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-30,layoutParams.y-200), windowManager, state)
+              menuAnimate(menu.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-150,layoutParams.y-140), windowManager, state)
+              menuAnimate(menu.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y), windowManager, state)
+              menuAnimate(menu.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-150,layoutParams.y+140), windowManager, state)
+              menuAnimate(menu.moveQuit!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-30,layoutParams.y+200), windowManager, state)
               state=1
           }
         }
@@ -99,12 +101,14 @@ fun setOnTouch(
             //this code is helping the widget to move around the screen with fingers
             layoutParams.x = initialX + (event.rawX - initialTouchX).toInt()
             layoutParams.y = initialY + (event.rawY - initialTouchY).toInt()
-            windowManager.updateViewLayout(view, layoutParams)
-            windowManager.updateViewLayout(menu.moveClean, createLayoutParams(layoutParams.x-100, layoutParams.y-200))
-            windowManager.updateViewLayout(menu.moveHealthy, createLayoutParams(layoutParams.x-200, layoutParams.y-80))
-            windowManager.updateViewLayout(menu.moveLove, createLayoutParams(layoutParams.x-200, layoutParams.y+80))
-            windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x-100, layoutParams.y+200))
-            return true
+              windowManager.updateViewLayout(view, layoutParams)
+              windowManager.updateViewLayout(menu.moveClean, createLayoutParams(layoutParams.x-30, layoutParams.y-200))
+              windowManager.updateViewLayout(menu.moveHealthy, createLayoutParams(layoutParams.x-150, layoutParams.y-140))
+              windowManager.updateViewLayout(menu.moveLove, createLayoutParams(layoutParams.x-200, layoutParams.y))
+              windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x-150, layoutParams.y+140))
+              windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x-30, layoutParams.y+200))
+
+              return true
           }
         }
       }

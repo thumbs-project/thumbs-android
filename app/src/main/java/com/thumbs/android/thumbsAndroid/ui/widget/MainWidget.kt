@@ -30,7 +30,7 @@ class MainWidget {
 
     windowManager.addView(view, layoutParams)
 
-      ObjectAnimator.ofFloat(0f, -150f).apply {
+      ObjectAnimator.ofFloat(50f, -70f).apply {
           addUpdateListener {
               it.duration=700
               it.repeatCount=ValueAnimator.INFINITE
