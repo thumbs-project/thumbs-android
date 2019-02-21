@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import android.util.Log
 import android.view.*
 import com.thumbs.android.thumbsAndroid.ui.widget.ItemWidget
 import com.thumbs.android.thumbsAndroid.ui.widget.MainWidget
@@ -32,6 +33,7 @@ class ControllerService : Service() {
 
   override fun onDestroy() {
     super.onDestroy()
+    Log.d("삭제 ","삭제")
     floatingView?.let {
       windowManager.removeView(it)
     }

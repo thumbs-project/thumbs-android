@@ -53,21 +53,20 @@ class MainWidget {
           this::handleSingleClick
       )
   }
+    fun handleSingleClick(view: View) {
+        /* userRepository.getStatus(StatusRequestParam(
+           123412341234,
+           "wash"
+         )).subscribe({ result ->
+             Toast.makeText(
+               view.context,
+               result.property + " " + result.request_id,
+               Toast.LENGTH_SHORT
+             )
+               .show()
+           }, { throwable ->
+             throwable.printStackTrace()
+           })*/
 
-  fun handleSingleClick(view: View) {
-   /* userRepository.getStatus(StatusRequestParam(
-      123412341234,
-      "wash"
-    )).subscribe({ result ->
-        Toast.makeText(
-          view.context,
-          result.property + " " + result.request_id,
-          Toast.LENGTH_SHORT
-        )
-          .show()
-      }, { throwable ->
-        throwable.printStackTrace()
-      })*/
-
-  }
+    }
 }

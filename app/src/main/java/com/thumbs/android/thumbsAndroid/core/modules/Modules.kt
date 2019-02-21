@@ -1,8 +1,10 @@
 package com.thumbs.android.thumbsAndroid.core.modules
 
+import android.arch.persistence.room.Room
 import com.thumbs.android.thumbsAndroid.BuildConfig
 import com.thumbs.android.thumbsAndroid.api.ThumbsApi
 import com.thumbs.android.thumbsAndroid.api.UserApi
+import com.thumbs.android.thumbsAndroid.data.database.AppDatabase
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepositoryImpl
 import com.thumbs.android.thumbsAndroid.repositories.UserRepository
@@ -17,6 +19,8 @@ import com.thumbs.android.thumbsAndroid.ui.status.StatusContract
 import com.thumbs.android.thumbsAndroid.ui.status.StatusPresenter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module.applicationContext
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -52,15 +56,29 @@ val networkModule = module {
     }
 }
 
-//test 모듈
-val userModule = module {
+val databaseModule = module {
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            AppDatabase::class.java, "database-thumb"
+        ).fallbackToDestructiveMigration().build()
+    }
+
+    factory {
+        get<AppDatabase>().thumbDao()
+    }
+}
+
+val repositoryModules = module {
     factory { UserRepositoryImpl(get()) as UserRepository }
+    factory { ThumbsRepositoryImpl(get(), get()) as ThumbsRepository }
+}
+val userModule = module {
     factory { SettingPresenter(get()) as SettingContract.SettingUserActionListener }
     factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
 }
 
 val registerModule = module {
-    factory { ThumbsRepositoryImpl(get()) as ThumbsRepository }
     factory { RegisterPresenter(get()) as RegisterContract.RegisterUserActionListener }
 }
 
@@ -70,7 +88,10 @@ val statusModule = module {
 
 val appModules = listOf(
     networkModule,
+    databaseModule,
+    repositoryModules,
     userModule,
     registerModule,
     statusModule
 )
+
