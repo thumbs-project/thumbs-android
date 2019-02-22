@@ -35,6 +35,17 @@ class MainWidget {
             .centerCrop()
             .into(image)
 
+        ObjectAnimator.ofFloat(50f, -70f).apply {
+            addUpdateListener {
+                it.duration=700
+                it.repeatCount=ValueAnimator.INFINITE
+                it.repeatMode = ValueAnimator.REVERSE
+                //  it.repeatMode=ValueAnimator.RESTART
+                image.translationY = it.animatedValue as Float
+                windowManager.updateViewLayout(image, layoutParams)
+            }
+        }.start()
+
         val menu = MenuView(service, windowManager, layoutParams, presenter, object : WidgetListener{
             override fun setImage(imageUrl: String) {
                 Picasso.with(service)
