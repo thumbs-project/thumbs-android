@@ -22,20 +22,20 @@ public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventL
     private val SHAKE_SLOP_TIME_MS = 500
     private val SHAKE_COUNT_RESET_TIME_MS = 3000
 
-    private var mListener: ShakeContract.ShakeEvent? = null
-    private var mShakeTimestamp: Long = 0
-    private var mShakeCount: Int = 0
+    private var Listener: ShakeContract.ShakeEvent? = null
+    private var ShakeTimestamp: Long = 0
+    private var ShakeCount: Int = 0
 
-    private var mSensorManager: SensorManager? = null
-    private var mAccelerometer: Sensor? = null
-    private var mShakeDetector: ShakeEvent? = null
+    private var SensorManager: SensorManager? = null
+    private var Accelerometer: Sensor? = null
+    private var ShakeDetector: ShakeEvent? = null
 
     init{
         // ShakeDetector initialization
-        mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        mAccelerometer = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        mShakeDetector = ShakeEvent()
-        mShakeDetector!!.setOnShakeListener(object : ShakeContract.ShakeEvent {
+        SensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        Accelerometer = SensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        ShakeDetector = ShakeEvent()
+        ShakeDetector!!.setOnShakeListener(object : ShakeContract.ShakeEvent {
             override fun onShake(count: Int) {
             }
         })
@@ -45,7 +45,7 @@ public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventL
     }
 
     fun setOnShakeListener(listener: ShakeContract.ShakeEvent) {
-        this.mListener = listener
+        this.Listener = listener
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
@@ -53,14 +53,14 @@ public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventL
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        if (mListener != null) {
+        if (Listener != null) {
             val x = event.values[0]
             val y = event.values[1]
             val z = event.values[2]
 
-            val gX = x / SensorManager.GRAVITY_EARTH
-            val gY = y / SensorManager.GRAVITY_EARTH
-            val gZ = z / SensorManager.GRAVITY_EARTH
+            val gX = x / android.hardware.SensorManager.GRAVITY_EARTH
+            val gY = y / android.hardware.SensorManager.GRAVITY_EARTH
+            val gZ = z / android.hardware.SensorManager.GRAVITY_EARTH
 
             // gForce will be close to 1 when there is no movement.
             val gForce = Math.sqrt((gX * gX + gY * gY + gZ * gZ).toDouble()).toFloat()
@@ -68,21 +68,21 @@ public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventL
             if (gForce > SHAKE_THRESHOLD_GRAVITY) {
                 val now = System.currentTimeMillis()
                 // ignore shake events too close to each other (500ms)
-                if (mShakeTimestamp + SHAKE_SLOP_TIME_MS > now) {
+                if (ShakeTimestamp + SHAKE_SLOP_TIME_MS > now) {
                     return
                 }
 
                 // reset the shake count after 3 seconds of no shakes
-                if (mShakeTimestamp + SHAKE_COUNT_RESET_TIME_MS < now) {
-                    mShakeCount = 0
+                if (ShakeTimestamp + SHAKE_COUNT_RESET_TIME_MS < now) {
+                    ShakeCount = 0
                 }
 
-                mShakeTimestamp = now
-                mShakeCount++
+                ShakeTimestamp = now
+                ShakeCount++
 
-                Log.d("tag", mShakeCount.toString())
+                Log.d("tag", ShakeCount.toString())
 
-                mListener!!.onShake(mShakeCount)
+                Listener!!.onShake(ShakeCount)
             }
 
 
@@ -93,12 +93,12 @@ public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventL
     public override fun onResume() {
         super.onResume()
         // Add the following line to register the Session Manager Listener onResume
-        mSensorManager!!.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI)
+        SensorManager!!.registerListener(ShakeDetector, Accelerometer, android.hardware.SensorManager.SENSOR_DELAY_UI)
     }
 
     public override fun onPause() {
         // Add the following line to unregister the Sensor Manager onPause
-        mSensorManager!!.unregisterListener(mShakeDetector)
+        SensorManager!!.unregisterListener(ShakeDetector)
         super.onPause()
     }
 
