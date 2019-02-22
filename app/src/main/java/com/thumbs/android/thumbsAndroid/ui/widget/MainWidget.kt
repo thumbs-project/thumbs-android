@@ -28,23 +28,23 @@ class MainWidget {
         val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
 
         windowManager.addView(thumbsView, layoutParams)
-        val temp:String = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/clean.png"
+        val default = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/normal.png"
         Picasso.with(service)
-            .load(temp)
+            .load(default)
             .resize(100,100)
             .centerCrop()
             .into(image)
 
         ObjectAnimator.ofFloat(50f, -70f).apply {
-            addUpdateListener {
-                it.duration=700
-                it.repeatCount=ValueAnimator.INFINITE
-                it.repeatMode = ValueAnimator.REVERSE
-                //  it.repeatMode=ValueAnimator.RESTART
-                image.translationY = it.animatedValue as Float
-                windowManager.updateViewLayout(image, layoutParams)
-            }
-        }.start()
+          addUpdateListener {
+              it.duration=700
+              it.repeatCount=ValueAnimator.INFINITE
+              it.repeatMode = ValueAnimator.REVERSE
+              //  it.repeatMode=ValueAnimator.RESTART
+              thumbsView.translationY = it.animatedValue as Float
+              windowManager.updateViewLayout(thumbsView, layoutParams)
+          }
+      }.start()
 
         val menu = MenuView(service, windowManager, layoutParams, presenter, object : WidgetListener{
             override fun setImage(imageUrl: String) {
