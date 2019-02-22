@@ -84,8 +84,6 @@ public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventL
 
                 mListener!!.onShake(mShakeCount)
             }
-
-
         }
     }
 
