@@ -1,4 +1,4 @@
-package com.thumbs.android.thumbsAndroid.ui.intro
+package com.thumbs.android.thumbsAndroid.ui.splash
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator

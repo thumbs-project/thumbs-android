@@ -1,16 +1,16 @@
 package com.thumbs.android.thumbsAndroid.ui.widget
 
+import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
+import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
-import com.thumbs.android.thumbsAndroid.ui.menu.Menu
-import android.animation.ValueAnimator
-import android.animation.PropertyValuesHolder
 import android.view.*
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 
 
 fun createLayoutParams(
@@ -41,12 +41,12 @@ fun createLayoutParams(
 }
 
 fun setOnTouch(
-  menu: Menu,
-  view: View,
-  layoutParams: WindowManager.LayoutParams,
-  singleTabConfirm: GestureDetector,
-  windowManager: WindowManager,
-  handleClickSingle: ((view: View) -> Unit)?
+    menu: MenuView,
+    view: View,
+    layoutParams: WindowManager.LayoutParams,
+    singleTabConfirm: GestureDetector,
+    windowManager: WindowManager,
+    handleClickSingle: ((view: View) -> Unit)?
 ) {
   view.setOnTouchListener(object: View.OnTouchListener {
     private var initialX: Int = 0
@@ -136,7 +136,6 @@ fun animate(v: View, startPoint: Point, endPoint: Point, windowManager: WindowMa
     layoutParams.y = valueAnimator.getAnimatedValue("y") as Int
     windowManager.updateViewLayout(v, layoutParams)
   }
-
     if(state==1){
         translator.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
@@ -144,7 +143,6 @@ fun animate(v: View, startPoint: Point, endPoint: Point, windowManager: WindowMa
             }
         })
     }
-
   translator.duration = 500
   translator.start()
 }

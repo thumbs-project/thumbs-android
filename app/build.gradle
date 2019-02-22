@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -16,7 +18,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://ec2-13-125-225-241.ap-northeast-2.compute.amazonaws.com:3456/\""
+            buildConfigField "String", "BASE_URL", "\"http://thumbs.hyunsub.kim/\""
         }
         release {
             minifyEnabled false
@@ -64,4 +66,14 @@ dependencies {
 
     // RxAndroid (click etc..)
     implementation 'com.jakewharton.rxbinding:rxbinding:0.3.0'
+
+    def room_version = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    kapt "android.arch.persistence.room:compiler:1.0.0"
+
+    // optional - RxJava support for Room
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
+
+    // Test helpers
+    testImplementation "android.arch.persistence.room:testing:$room_version"
 }
