@@ -31,7 +31,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="17dp"
-                android:id="@+id/settingBtn"/>
+                android:id="@+id/iv_setting"/>
     </RelativeLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
@@ -88,9 +88,11 @@
                             android:id="@+id/progress_health"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_centerVertical="true"
-                            android:layout_width="177dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@+id/tv_health"
+                            android:layout_marginRight="18dp"
+                            android:layout_toLeftOf="@+id/tv_health_percent"
                             android:max="100"
                             android:progress="50"
                             android:progressDrawable="@drawable/progressbar_back"/>
@@ -98,10 +100,11 @@
                     <TextView android:id="@+id/tv_health_percent"
                               android:layout_width="wrap_content"
                               android:layout_centerVertical="true"
-                              android:layout_toRightOf="@+id/progress_health"
-                              android:layout_marginLeft="14dp"
+                              android:layout_marginRight="32dp"
+                              android:layout_alignParentRight="true"
                               android:layout_height="wrap_content"
                               android:textSize="14dp"
+                              tools:text="33"
                               android:textColor="#7fd3c8"/>
                 </RelativeLayout>
 
@@ -134,6 +137,8 @@
                             android:layout_centerInParent="true"
                             android:layout_width="177dp"
                             android:layout_toRightOf="@+id/tv_meal"
+                            android:layout_marginRight="18dp"
+                            android:layout_toLeftOf="@+id/tv_meal_percent"
                             android:layout_height="wrap_content"
                             android:max="100"
                             android:progress="50"
@@ -142,10 +147,12 @@
                     <TextView android:id="@+id/tv_meal_percent"
                               android:layout_width="wrap_content"
                               android:layout_centerVertical="true"
-                              android:layout_toRightOf="@+id/progress_meal"
-                              android:layout_marginLeft="14dp"
+                              android:layout_marginRight="32dp"
+                              android:layout_alignParentRight="true"
                               android:layout_height="wrap_content"
                               android:textSize="14dp"
+                              tools:text="33"
+
                               android:textColor="#7fd3c8"/>
                 </RelativeLayout>
 
@@ -183,15 +190,16 @@
                             android:layout_toRightOf="@+id/tv_clean"
                             android:layout_height="wrap_content"
                             android:max="100"
+                            android:layout_marginRight="18dp"
+                            android:layout_toLeftOf="@+id/tv_clean_percent"
                             android:progress="50"
                             android:progressDrawable="@drawable/progressbar_back"/>
 
                     <TextView android:id="@+id/tv_clean_percent"
                               android:layout_width="wrap_content"
                               android:layout_centerVertical="true"
-                              android:layout_toRightOf="@+id/progress_clean"
-                              android:layout_marginLeft="14dp"
-                              android:layout_height="wrap_content"
+                              android:layout_marginRight="32dp"
+                              android:layout_alignParentRight="true"                                                android:layout_height="wrap_content"
                               android:textSize="14dp"
                               android:textColor="#7fd3c8"/>
                 </RelativeLayout>
@@ -224,14 +232,16 @@
                             android:layout_width="177dp"
                             android:layout_height="wrap_content"
                             android:max="100"
+                            android:layout_marginRight="18dp"
+                            android:layout_toLeftOf="@+id/tv_love_percent"
                             android:layout_toRightOf="@+id/tv_love"
                             android:progress="50"
                             android:progressDrawable="@drawable/progressbar_back"/>
                     <TextView android:id="@+id/tv_love_percent"
                               android:layout_width="wrap_content"
                               android:layout_centerVertical="true"
-                              android:layout_toRightOf="@+id/progress_love"
-                              android:layout_marginLeft="14dp"
+                              android:layout_marginRight="32dp"
+                              android:layout_alignParentRight="true"
                               android:layout_height="wrap_content"
                               android:textSize="14dp"
                               android:textColor="#7fd3c8"/>

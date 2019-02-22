@@ -1,15 +1,10 @@
 package com.thumbs.android.thumbsAndroid.ui.status
 
-import android.util.Log
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
-import com.thumbs.android.thumbsAndroid.repositories.UserRepository
-import com.thumbs.android.thumbsAndroid.ui.base.BasePresenter
 
 class StatusPresenter(
     val thumbsRepository: ThumbsRepository
 ) : StatusContract.StatusUserActionListener {
-
-
 
     var statusView : StatusContract.StatusView ?= null
 
