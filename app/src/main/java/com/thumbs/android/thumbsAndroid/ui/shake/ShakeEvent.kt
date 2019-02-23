@@ -5,12 +5,13 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.util.Log
+import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
 import org.koin.android.ext.android.inject
 
-public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventListener{
+class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventListener{
 
     val presenter  by inject<ShakeContract.ShakeEventListener>()
 
@@ -29,6 +30,11 @@ public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventL
     private var SensorManager: SensorManager? = null
     private var Accelerometer: Sensor? = null
     private var ShakeDetector: ShakeEvent? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.test_activity)
+    }
 
     init{
         // ShakeDetector initialization

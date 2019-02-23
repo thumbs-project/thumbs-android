@@ -4,7 +4,6 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Service
 import android.view.GestureDetector
-import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
@@ -15,32 +14,22 @@ import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 
 class MainWidget {
     var singleTabConfirm: GestureDetector? = null
-    /* val userRepository : UserRepository by lazy {
-       UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
-     }*/
 
-    constructor(service: Service, windowManager: WindowManager, presenter: MenuContract.UserActionListerner) {
+    constructor(service: Service, windowManager: WindowManager, presenter: MenuContract.UserActionListerner, thumbsView:View){
         singleTabConfirm = GestureDetector(service, SingleTapConfirm());
 
         val layoutParams = createLayoutParams(0, -310)
-
-        val thumbsView = LayoutInflater.from(service).inflate(R.layout.layout_floating_widget, null)
         val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
-
         windowManager.addView(thumbsView, layoutParams)
-        val default = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/normal.png"
-        Picasso.with(service)
-            .load(default)
-            .resize(100,100)
-            .centerCrop()
-            .into(image)
+//        val default = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/normal.png"
+        presenter.getDefaultImageUrl(service, image)
 
-        ObjectAnimator.ofFloat(50f, -70f).apply {
+
+        ObjectAnimator.ofFloat(30f, -70f).apply {
           addUpdateListener {
               it.duration=700
               it.repeatCount=ValueAnimator.INFINITE
               it.repeatMode = ValueAnimator.REVERSE
-              //  it.repeatMode=ValueAnimator.RESTART
               thumbsView.translationY = it.animatedValue as Float
               windowManager.updateViewLayout(thumbsView, layoutParams)
           }
@@ -50,8 +39,7 @@ class MainWidget {
             override fun setImage(imageUrl: String) {
                 Picasso.with(service)
                     .load(imageUrl)
-                    .resize(100,100)
-                    .centerCrop()
+                    .resize(200,200)
                     .into(image)
             }
         })

@@ -14,4 +14,11 @@ class UserEventRepositoryImpl(val userEventApi: UserEventApi) : UserEventReposit
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
+
+    override fun getThumbsStatus(thumbId: Int): Single<Thumb> {
+        return userEventApi.loadThumb(thumbId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
 }

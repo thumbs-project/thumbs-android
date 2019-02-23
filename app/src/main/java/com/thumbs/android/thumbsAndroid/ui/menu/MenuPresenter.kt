@@ -1,6 +1,9 @@
 package com.thumbs.android.thumbsAndroid.ui.menu
 
 import android.annotation.SuppressLint
+import android.app.Service
+import android.widget.ImageView
+import com.squareup.picasso.Picasso
 import com.thumbs.android.thumbsAndroid.model.UserAction
 import com.thumbs.android.thumbsAndroid.repositories.UserEventRepository
 
@@ -32,7 +35,7 @@ class MenuPresenter(val menuRepository: UserEventRepository) :
             MEALACTION -> {
                 UserAction(12345, "EAT", "")
             }
-            else -> UserAction(12345, "CLEAN", "")
+            else -> UserAction(12345, "ERROR", "")
         }
         menuRepository.sendEvent(1, userAction)
             .subscribe({ thumb ->
@@ -40,6 +43,16 @@ class MenuPresenter(val menuRepository: UserEventRepository) :
             }, {
                 it.printStackTrace()
             })
+    }
+
+    override fun getDefaultImageUrl(service: Service, image: ImageView){
+        menuRepository.getThumbsStatus(1).subscribe({ it ->
+            Picasso.with(service)
+                .load(it.image)
+                .into(image)
+        }, {
+            it.printStackTrace()
+        })
     }
 
     override fun removeView() {
