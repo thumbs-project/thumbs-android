@@ -18,8 +18,8 @@ class SettingPresenter(
     var settingView: SettingContract.SettingView? = null
 
     companion object {
-        var MIN_HEIGHT_SIZE = 255
-        var MIN_WIDTH_SIZE = 210
+        var MIN_HEIGHT_SIZE = 400
+        var MIN_WIDTH_SIZE = 300
         var STEP = 3
     }
 

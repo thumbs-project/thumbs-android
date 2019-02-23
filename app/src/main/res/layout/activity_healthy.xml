@@ -13,6 +13,7 @@
       android:id="@+id/menu_healthy"
       android:layout_width="50dp"
       android:layout_height="50dp"
+      android:padding="6dp"
       android:src="@drawable/icon_healthy"/>
   </FrameLayout>
 </android.support.constraint.ConstraintLayout>

@@ -13,6 +13,7 @@
       android:id="@+id/menu_clean"
       android:layout_width="50dp"
       android:layout_height="50dp"
+      android:padding="6dp"
       android:src="@drawable/icon_clean"/>
   </FrameLayout>
 </android.support.constraint.ConstraintLayout>

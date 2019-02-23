@@ -34,29 +34,35 @@
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="17dp"
-            android:id="@+id/iv_setting" />
+            android:id="@+id/iv_setting"/>
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
+
+            <ImageView
+                    android:id="@+id/iv_thumb"
+                    android:layout_centerInParent="true"
+                    android:layout_width="80dp" android:layout_height="115dp"
+                    android:src="@drawable/thu_basic"/>
             <TextView
-                android:id="@+id/tv_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="정현이의 THUMBS"
-                android:layout_marginTop="44dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_image"
-                android:textColor="@color/colorBlack" />
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="정현이의 THUMBS"
+                    android:layout_marginTop="22dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/iv_thumb"
+                    android:textColor="@color/colorBlack"/>
         </RelativeLayout>
 
         <RelativeLayout

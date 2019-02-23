@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SeekBar
+import com.squareup.picasso.Picasso
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.dpToPixel
 import com.thumbs.android.thumbsAndroid.model.Thumb
@@ -96,6 +97,7 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
     override fun setUi(thumb: Thumb,size : ThumbSize) {
         name.text = thumb.name
         seekBar.progress = (size.width - SettingPresenter.MIN_WIDTH_SIZE) / STEP
+        Picasso.with(this).load(thumb.image).into(thumbs)
         setImageSize(size)
     }
 
