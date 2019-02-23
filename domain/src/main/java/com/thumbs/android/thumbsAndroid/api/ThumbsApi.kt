@@ -15,10 +15,6 @@ interface ThumbsApi {
     fun createThumbs(@Path("userId") userId: Int, @Body body: HashMap<String, Any>): Completable
 
     @GET("thumbs/{thumbId}")
-    fun loadThumb(
-        @Path(
-            "thumbId" +
-                    ""
-        ) thumbId: Int
+    fun loadThumb(@Path("thumbId") thumbId: Int
     ): Single<Thumb>
 }

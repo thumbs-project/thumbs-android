@@ -1,28 +1,23 @@
 package com.thumbs.android.thumbsAndroid.ui.menu
 
 import android.app.Service
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import com.thumbs.android.thumbsAndroid.R
+import com.thumbs.android.thumbsAndroid.R.layout
+import com.thumbs.android.thumbsAndroid.ui.shake.ShakeTest
 import com.thumbs.android.thumbsAndroid.ui.widget.WidgetListener
+
 
 class MenuView(
     service: Service,
     windowManager: WindowManager,
     layoutParams: WindowManager.LayoutParams,
     presenter: MenuContract.UserActionListerner,
-    val imageListener : WidgetListener
+    val imageListener: WidgetListener
 ) : MenuContract.MenuView {
-    override fun setView(imageUrl: String) {
-        imageListener.setImage(imageUrl)
-        if( imageUrl.substringAfterLast("/") == "dead.png") {
-
-            //TODO SHAKE
-
-        }
-
-    }
 
     var moveClean: View? = null
     var moveHealthy: View? = null
@@ -35,15 +30,30 @@ class MenuView(
     val LOVEACTION: Int = 3
     val MEALACTION: Int = 4
 
+    var thumbsService: Service? = null
+    var thumbsWindowManager: WindowManager? = null
+
     val presenter = presenter.apply { attachView(this@MenuView) }
 
+    override fun setView(imageUrl: String) {
+        imageListener.setImage(imageUrl)
+        if (imageUrl.substringAfterLast("/") == "dead.png") {
+        val dialogIntent = Intent(thumbsService, ShakeTest::class.java)
+        dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        thumbsService?.startActivity(dialogIntent)
+//        thumbsService?.stopService(Intent(thumbsService, ControllerService::class.java))
+        }
+    }
+
     init {
+        thumbsService = service
+        thumbsWindowManager = windowManager
         val clean = LayoutInflater.from(service)
-            .inflate(R.layout.activity_clean, null)
+            .inflate(layout.activity_clean, null)
         val healty = LayoutInflater.from(service)
-            .inflate(R.layout.activity_healthy, null)
+            .inflate(layout.activity_healthy, null)
         val love = LayoutInflater.from(service)
-            .inflate(R.layout.activity_love, null)
+            .inflate(layout.activity_love, null)
         val meal = LayoutInflater.from(service)
             .inflate(R.layout.activity_meal, null)
         val quit = LayoutInflater.from(service)
@@ -52,9 +62,11 @@ class MenuView(
         clean!!.visibility = View.GONE
         moveClean = clean
         moveClean!!.setOnClickListener { actionListener(CLEANACTION) }
+
         healty!!.visibility = View.GONE
         moveHealthy = healty
         moveHealthy!!.setOnClickListener { actionListener(HEALTYACTION) }
+
         love!!.visibility = View.GONE
         moveLove = love
         moveLove!!.setOnClickListener { actionListener(LOVEACTION) }
@@ -63,9 +75,13 @@ class MenuView(
         moveMeal = meal
         moveMeal!!.setOnClickListener { actionListener(MEALACTION) }
 
-        quit!!.visibility=View.GONE
+        quit!!.visibility = View.GONE
         moveQuit = quit
-        moveQuit!!.setOnClickListener { actionListener(MEALACTION) }
+        moveQuit!!.setOnClickListener {
+            // TODO need to app exit
+            service.stopSelf()
+        }
+        quit!!.visibility=View.GONE
 
         windowManager.addView(moveClean, layoutParams)
         windowManager.addView(moveHealthy, layoutParams)

@@ -5,10 +5,10 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
 import org.koin.android.ext.android.inject
+
 
 public class ShakeEvent : BaseActivity(), ShakeContract.ShakeEvent, SensorEventListener{
 

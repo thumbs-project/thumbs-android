@@ -33,6 +33,7 @@
         <activity android:name=".ui.setting.SettingActivity"
                   android:parentActivityName=".ui.status.StatusActivity">
         </activity>
+        <activity android:name=".ui.shake.ShakeTest" />
     </application>
 
 </manifest>
