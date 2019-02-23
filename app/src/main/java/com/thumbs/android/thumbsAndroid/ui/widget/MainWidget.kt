@@ -50,7 +50,6 @@ class MainWidget {
             override fun setImage(imageUrl: String) {
                 Picasso.with(service)
                     .load(imageUrl)
-                    .resize(200,200)
                     .into(image)
             }
         })

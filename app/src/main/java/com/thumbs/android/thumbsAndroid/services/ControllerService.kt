@@ -37,11 +37,11 @@ class ControllerService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
-        if(thumbsView != null)        //서비스 종료시 뷰 제거. *중요 : 뷰를 꼭 제거 해야함.
-        {
-            windowManager.removeView(thumbsView)
-            thumbsView = null
-        }
+//        thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
+//        if(thumbsView != null)        //서비스 종료시 뷰 제거. *중요 : 뷰를 꼭 제거 해야함.
+//        {
+//            windowManager.removeView(thumbsView)
+//            thumbsView = null
+//        }
     }
 }

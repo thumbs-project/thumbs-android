@@ -1,13 +1,11 @@
 package com.thumbs.android.thumbsAndroid.ui.menu
 
 import android.app.Service
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.R.layout
-import com.thumbs.android.thumbsAndroid.ui.shake.ShakeTest
 import com.thumbs.android.thumbsAndroid.ui.widget.WidgetListener
 
 
@@ -37,12 +35,12 @@ class MenuView(
 
     override fun setView(imageUrl: String) {
         imageListener.setImage(imageUrl)
-        if (imageUrl.substringAfterLast("/") == "dead.png") {
-        val dialogIntent = Intent(thumbsService, ShakeTest::class.java)
-        dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        thumbsService?.startActivity(dialogIntent)
+//        if (imageUrl.substringAfterLast("/") == "dead.png") {
+//        val dialogIntent = Intent(thumbsService, ShakeTest::class.java)
+//        dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//        thumbsService?.startActivity(dialogIntent)
 //        thumbsService?.stopService(Intent(thumbsService, ControllerService::class.java))
-        }
+//        }
     }
 
     init {

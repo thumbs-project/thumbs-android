@@ -1,6 +1,5 @@
 package com.thumbs.android.thumbsAndroid.ui.menu
 
-import android.annotation.SuppressLint
 import android.app.Service
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
@@ -20,7 +19,6 @@ class MenuPresenter(val menuRepository: UserEventRepository) :
         menuView = view
     }
 
-    @SuppressLint("CheckResult")
     override fun postUserEvent(action: Int) {
         val userAction: UserAction = when (action) {
             CLEANACTION -> {
