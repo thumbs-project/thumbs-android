@@ -53,9 +53,9 @@ class MenuView(
         val love = LayoutInflater.from(service)
             .inflate(com.thumbs.android.thumbsAndroid.R.layout.activity_love, null)
         val meal = LayoutInflater.from(service)
-            .inflate(com.thumbs.android.thumbsAndroid.R.layout.activity_meal, null)
+            .inflate(R.layout.activity_meal, null)
         val quit = LayoutInflater.from(service)
-            .inflate(com.thumbs.android.thumbsAndroid.R.layout.activity_quit, null)
+            .inflate(R.layout.activity_quit, null)
 
         clean!!.visibility = View.GONE
         moveClean = clean
@@ -73,12 +73,14 @@ class MenuView(
         moveMeal = meal
         moveMeal!!.setOnClickListener { actionListener(MEALACTION) }
 
+
         quit!!.visibility = View.GONE
         moveQuit = quit
         moveQuit!!.setOnClickListener {
             // TODO need to app exit
             service.stopSelf()
         }
+        quit!!.visibility=View.GONE
 
         windowManager.addView(moveClean, layoutParams)
         windowManager.addView(moveHealthy, layoutParams)

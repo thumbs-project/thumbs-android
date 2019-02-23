@@ -21,6 +21,7 @@ class MainWidget {
         val layoutParams = createLayoutParams(0, -310)
         val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
         windowManager.addView(thumbsView, layoutParams)
+
 //        val default = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/normal.png"
         presenter.getDefaultImageUrl(service, image)
 
@@ -30,6 +31,17 @@ class MainWidget {
               it.duration=700
               it.repeatCount=ValueAnimator.INFINITE
               it.repeatMode = ValueAnimator.REVERSE
+              thumbsView.translationY = it.animatedValue as Float
+              windowManager.updateViewLayout(thumbsView, layoutParams)
+          }
+      }.start()
+
+      ObjectAnimator.ofFloat(50f, -70f).apply {
+          addUpdateListener {
+              it.duration=700
+              it.repeatCount=ValueAnimator.INFINITE
+              it.repeatMode = ValueAnimator.REVERSE
+              //  it.repeatMode=ValueAnimator.RESTART
               thumbsView.translationY = it.animatedValue as Float
               windowManager.updateViewLayout(thumbsView, layoutParams)
           }
