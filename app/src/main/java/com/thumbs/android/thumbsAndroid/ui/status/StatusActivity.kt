@@ -26,6 +26,11 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
         iv_setting.setOnClickListener {
             startActivity(Intent(this, SettingActivity::class.java))
         }
+
+        icon_reload.setOnClickListener {
+            showToast("Thumbs 새로 고침")
+            presenter.loadThumb()
+        }
     }
 
     override fun setUi(thumb: Thumb) {

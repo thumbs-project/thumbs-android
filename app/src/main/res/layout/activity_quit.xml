@@ -13,6 +13,6 @@
       android:id="@+id/menu_quit"
       android:layout_width="50dp"
       android:layout_height="50dp"
-      android:src="@drawable/icon_clean"/>
+      android:src="@drawable/status_x_btn"/>
   </FrameLayout>
 </android.support.constraint.ConstraintLayout>
