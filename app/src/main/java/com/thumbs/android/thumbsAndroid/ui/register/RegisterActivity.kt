@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.services.ControllerService
@@ -15,21 +14,23 @@ import com.thumbs.android.thumbsAndroid.ui.status.StatusActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import org.koin.android.ext.android.inject
 
-class RegisterActivity : BaseActivity(), RegisterContract.RegisterView{
+class RegisterActivity : BaseActivity(), RegisterContract.RegisterView {
 
 
+    val presenter by inject<RegisterContract.RegisterUserActionListener>()
     val PERMISSION_CODE = 2002
-    val presenter  by inject<RegisterContract.RegisterUserActionListener>()
 
+    override fun startInject() {
+        presenter.attachView(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-
         btn_next.setOnClickListener {
-            Log.d("test_log","log")
             presenter.createThumb(edit_name.text.toString())
+            startService(Intent(this, ControllerService::class.java))
 
             when {
                 Build.VERSION.SDK_INT < Build.VERSION_CODES.M -> {
@@ -48,22 +49,6 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView{
         }
     }
 
-    override fun startInject() {
-        presenter.attachView(this)
-    }
-
-
-    override fun nextPage() {
-        val intent = Intent(this, StatusActivity::class.java)
-        startActivity(intent)
-
-        finish()
-    }
-
-    override fun isNotEmptyName(): Boolean  = edit_name.text.toString().isNotBlank()
-
-    override fun showToast(message: String) = this.showToastMessageString(message)
-
     private fun checkPermission() {
         Intent(
             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -72,4 +57,16 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView{
             startActivityForResult(it, PERMISSION_CODE)
         }
     }
+
+    override fun nextPage() {
+        val intent = Intent(this, StatusActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun isNotEmptyName(): Boolean = edit_name.text.toString().isNotBlank()
+
+    override fun showToast(message: String) = this.showToastMessageString(message)
+
+
 }

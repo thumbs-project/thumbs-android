@@ -1,55 +1,88 @@
 package com.thumbs.android.thumbsAndroid.ui.widget
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.Service
-import android.view.*
+import android.view.GestureDetector
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
+import com.squareup.picasso.Picasso
 import com.thumbs.android.thumbsAndroid.R
-import com.thumbs.android.thumbsAndroid.ui.menu.Action
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
+import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 
 class MainWidget {
-  var singleTabConfirm: GestureDetector? = null
- /* val userRepository : UserRepository by lazy {
-    UserRepositoryImpl(NetworkConnector.createRetrofit(UserApi::class.java))
-  }*/
+    var singleTabConfirm: GestureDetector? = null
 
-  constructor(service: Service, windowManager: WindowManager) {
-    singleTabConfirm = GestureDetector(service, SingleTapConfirm());
+    constructor(service: Service, windowManager: WindowManager, presenter: MenuContract.UserActionListerner, thumbsView:View){
+        singleTabConfirm = GestureDetector(service, SingleTapConfirm());
 
-    val view = LayoutInflater.from(service)
-      .inflate(R.layout.layout_floating_widget, null)
+        val layoutParams = createLayoutParams(0, -310)
+        val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
+        windowManager.addView(thumbsView, layoutParams)
+//        val default = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/normal.png"
+        presenter.getDefaultImageUrl(service, image)
 
-    val layoutParams = createLayoutParams(-100, -100)
-    val image = view.findViewById<ImageView>(R.id.icon_thu)
-    image.setBackgroundResource(R.drawable.thu_basic)
 
-    windowManager.addView(view, layoutParams);
+        ObjectAnimator.ofFloat(30f, -70f).apply {
+          addUpdateListener {
+              it.duration=700
+              it.repeatCount=ValueAnimator.INFINITE
+              it.repeatMode = ValueAnimator.REVERSE
+              thumbsView.translationY = it.animatedValue as Float
+              windowManager.updateViewLayout(thumbsView, layoutParams)
+          }
+      }.start()
 
-      val action = Action(service, windowManager, layoutParams)
+        ObjectAnimator.ofFloat(50f, -70f).apply {
+          addUpdateListener {
+              it.duration=700
+              it.repeatCount=ValueAnimator.INFINITE
+              it.repeatMode = ValueAnimator.REVERSE
+              //  it.repeatMode=ValueAnimator.RESTART
+              thumbsView.translationY = it.animatedValue as Float
+              windowManager.updateViewLayout(thumbsView, layoutParams)
+          }
+      }.start()
 
-      setOnTouch(
-          action,
-          view,
-          layoutParams,
-          singleTabConfirm!!,
-          windowManager,
-          this::handleSingleClick
-      )
-  }
+        val menu = MenuView(service, windowManager, layoutParams, presenter, object : WidgetListener{
+            override fun setImage(imageUrl: String) {
+                Picasso.with(service)
+                    .load(imageUrl)
+                    .into(image)
+            }
+        })
 
-  fun handleSingleClick(view: View) {
-   /* userRepository.getStatus(StatusRequestParam(
-      123412341234,
-      "wash"
-    )).subscribe({ result ->
-        Toast.makeText(
-          view.context,
-          result.property + " " + result.request_id,
-          Toast.LENGTH_SHORT
+        setOnTouch(
+            menu,
+            thumbsView,
+            layoutParams,
+            singleTabConfirm!!,
+            windowManager,
+            this::handleSingleClick
         )
-          .show()
-      }, { throwable ->
-        throwable.printStackTrace()
-      })*/
+    }
 
-  }
+
+    fun handleSingleClick(view: View) {
+        /* userRepository.getStatus(StatusRequestParam(
+           123412341234,
+           "wash"
+         )).subscribe({ result ->
+             Toast.makeText(
+               view.context,
+               result.property + " " + result.request_id,
+               Toast.LENGTH_SHORT
+             )
+               .show()
+           }, { throwable ->
+             throwable.printStackTrace()
+           })*/
+
+    }
+}
+
+interface WidgetListener{
+    fun setImage(imageUrl : String)
 }

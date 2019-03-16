@@ -28,3 +28,7 @@ fun Fragment.showToastMessage(strId : Int){
 fun Fragment.showToastMessageString(str : Int){
     Toast.makeText(this.context,str,Toast.LENGTH_SHORT).show()
 }
+
+fun Context.dpToPixel(dp : Int)  = dp * resources.displayMetrics.density
+
+fun Context.pixelToDp(pixel : Float) = pixel / resources.displayMetrics.density

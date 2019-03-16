@@ -13,17 +13,13 @@
             android:roundIcon="@drawable/image_splash_thumbs"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ui.setting.SettingActivity">
-        </activity>
-
         <service
                 android:name=".services.ControllerService"
                 android:enabled="true"
                 android:exported="false"/>
-
         <activity
-                android:name=".ui.intro.SplashActivity"
-                android:theme="@style/SplashTheme">
+                android:name=".ui.splash.SplashActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,9 +30,10 @@
         </activity>
         <activity android:name=".ui.status.StatusActivity">
         </activity>
-        <activity android:name=".ui.setting.SettingActivity2"
+        <activity android:name=".ui.setting.SettingActivity"
                   android:parentActivityName=".ui.status.StatusActivity">
         </activity>
+        <activity android:name=".ui.shake.ShakeTest" />
     </application>
 
 </manifest>

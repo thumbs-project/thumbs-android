@@ -6,7 +6,7 @@
   android:paddingBottom="20dp"
   android:paddingLeft="20dp"
   android:paddingRight="20dp"
-  android:paddingTop="20dp"
+  android:paddingTop="50dp"
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
 >
@@ -40,12 +40,14 @@
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     app:layout_constraintTop_toBottomOf="@+id/top_layout"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
   >
     <ImageView
-      android:layout_centerHorizontal="true"
-      android:layout_height="30dp"
-      android:layout_width="100dp"
-      android:src="@drawable/item_shadow"
+            android:layout_height="20dp"
+            android:layout_width="51dp"
+            android:src="@drawable/item_shadow"
+            android:alpha="0.4"
     />
   </RelativeLayout>
   </android.support.constraint.ConstraintLayout>
