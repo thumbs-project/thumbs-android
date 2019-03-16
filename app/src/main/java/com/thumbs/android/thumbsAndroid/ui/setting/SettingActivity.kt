@@ -73,28 +73,38 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
         })
 
         switch_widget.setOnCheckedChangeListener { buttonView, isChecked ->
-            checkPermission()
+//            checkPermission()
             if (isChecked) {
-                presenter.upsert(
-                    ThumbSize(
-                        (thumbs.layoutParams as ViewGroup.LayoutParams).width,
-                        (thumbs.layoutParams as ViewGroup.LayoutParams).height
-                    )
-                )
+//                presenter.upsert(
+//                    ThumbSize(
+//                        (thumbs.layoutParams as ViewGroup.LayoutParams).width,
+//                        (thumbs.layoutParams as ViewGroup.LayoutParams).height
+//                    )
+//                )
                 /*
                 * TODO
-                * startService(Intent(this@SettingActivity, ControllerService::class.java))
                 * */
+                startService(Intent(this@SettingActivity, ControllerService::class.java))
+
             } else {
                 /*
                 * TODO
-                * stopService(Intent(this@SettingActivity, ControllerService::class.java))
                 * */
+
+
+                stopService(Intent(this@SettingActivity, ControllerService::class.java))
+
             }
         }
     }
 
-    override fun setUi(thumb: Thumb,size : ThumbSize) {
+    override fun onDestroy() {
+        super.onDestroy()
+
+
+    }
+
+    override fun setUi(thumb: Thumb, size : ThumbSize) {
         name.text = thumb.name
         seekBar.progress = (size.width - SettingPresenter.MIN_WIDTH_SIZE) / STEP
         Picasso.with(this).load(thumb.image).into(thumbs)

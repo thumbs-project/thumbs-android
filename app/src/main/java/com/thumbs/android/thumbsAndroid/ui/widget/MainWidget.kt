@@ -3,6 +3,7 @@ package com.thumbs.android.thumbsAndroid.ui.widget
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Service
+import android.util.Log
 import android.view.GestureDetector
 import android.view.View
 import android.view.WindowManager
@@ -15,38 +16,33 @@ import com.thumbs.android.thumbsAndroid.ui.menu.MenuView
 class MainWidget {
     var singleTabConfirm: GestureDetector? = null
 
-    constructor(service: Service, windowManager: WindowManager, presenter: MenuContract.UserActionListerner, thumbsView:View){
+    constructor(
+        service: Service,
+        windowManager: WindowManager,
+        presenter: MenuContract.UserActionListerner,
+        thumbsView: View
+    ) {
         singleTabConfirm = GestureDetector(service, SingleTapConfirm());
 
-        val layoutParams = createLayoutParams(0, -310)
         val image = thumbsView.findViewById<ImageView>(R.id.icon_thu)
+        val layoutParams = createLayoutParams(0, -310)
         windowManager.addView(thumbsView, layoutParams)
 //        val default = "https://s3.ap-northeast-2.amazonaws.com/rohi-thumbs/image-xxhdpi/normal.png"
         presenter.getDefaultImageUrl(service, image)
 
+//        ObjectAnimator.ofFloat(30f, -70f).apply {
+//            addUpdateListener {
+//                Log.d("MainWidget", "QQQQQQ")
+//                it.duration = 700
+//                it.repeatCount = ValueAnimator.INFINITE
+//                it.repeatMode = ValueAnimator.REVERSE
+//                thumbsView.translationY = it.animatedValue as Float
+//                windowManager.updateViewLayout(thumbsView, layoutParams)
+//            }
+//        }.start()
 
-        ObjectAnimator.ofFloat(30f, -70f).apply {
-          addUpdateListener {
-              it.duration=700
-              it.repeatCount=ValueAnimator.INFINITE
-              it.repeatMode = ValueAnimator.REVERSE
-              thumbsView.translationY = it.animatedValue as Float
-              windowManager.updateViewLayout(thumbsView, layoutParams)
-          }
-      }.start()
 
-        ObjectAnimator.ofFloat(50f, -70f).apply {
-          addUpdateListener {
-              it.duration=700
-              it.repeatCount=ValueAnimator.INFINITE
-              it.repeatMode = ValueAnimator.REVERSE
-              //  it.repeatMode=ValueAnimator.RESTART
-              thumbsView.translationY = it.animatedValue as Float
-              windowManager.updateViewLayout(thumbsView, layoutParams)
-          }
-      }.start()
-
-        val menu = MenuView(service, windowManager, layoutParams, presenter, object : WidgetListener{
+        val menu = MenuView(service, windowManager, layoutParams, presenter, object : WidgetListener {
             override fun setImage(imageUrl: String) {
                 Picasso.with(service)
                     .load(imageUrl)
@@ -83,6 +79,6 @@ class MainWidget {
     }
 }
 
-interface WidgetListener{
-    fun setImage(imageUrl : String)
+interface WidgetListener {
+    fun setImage(imageUrl: String)
 }

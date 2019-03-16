@@ -101,6 +101,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
 
     override fun success(thumbs: Thumb) {
         val intent = Intent(this, StatusActivity::class.java)
+
         startService(Intent(this, ControllerService::class.java))
         startActivity(intent)
         finish()
