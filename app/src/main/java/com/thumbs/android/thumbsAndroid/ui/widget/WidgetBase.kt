@@ -64,12 +64,8 @@ fun setOnTouch(
           handleClickSingle(view)
 
           if(state==1) {
-            menuAnimate(menu.moveClean!!, Point(layoutParams.x-30, layoutParams.y-200), Point(layoutParams.x,layoutParams.y), windowManager, state)
-            menuAnimate(menu.moveHealthy!!, Point(layoutParams.x-150, layoutParams.y-140), Point(layoutParams.x,layoutParams.y), windowManager, state)
-            menuAnimate(menu.moveLove!!, Point(layoutParams.x-200, layoutParams.y), Point(layoutParams.x,layoutParams.y), windowManager, state)
-            menuAnimate(menu.moveMeal!!, Point(layoutParams.x-150, layoutParams.y+140), Point(layoutParams.x,layoutParams.y), windowManager, state)
-            menuAnimate(menu.moveQuit!!, Point(layoutParams.x-30, layoutParams.y+200), Point(layoutParams.x,layoutParams.y), windowManager, state)
-              state=0
+            showingManupopup()
+            state=0
           }
           else if(state==0){
             menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-30,layoutParams.y-200), windowManager, state)
@@ -112,6 +108,44 @@ fun setOnTouch(
         }
       }
       return false
+    }
+
+    private fun showingManupopup() {
+      menuAnimate(
+        menu.moveClean!!,
+        Point(layoutParams.x - 30, layoutParams.y - 200),
+        Point(layoutParams.x, layoutParams.y),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveHealthy!!,
+        Point(layoutParams.x - 150, layoutParams.y - 140),
+        Point(layoutParams.x, layoutParams.y),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveLove!!,
+        Point(layoutParams.x - 200, layoutParams.y),
+        Point(layoutParams.x, layoutParams.y),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveMeal!!,
+        Point(layoutParams.x - 150, layoutParams.y + 140),
+        Point(layoutParams.x, layoutParams.y),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveQuit!!,
+        Point(layoutParams.x - 30, layoutParams.y + 200),
+        Point(layoutParams.x, layoutParams.y),
+        windowManager,
+        state
+      )
     }
   })
 }

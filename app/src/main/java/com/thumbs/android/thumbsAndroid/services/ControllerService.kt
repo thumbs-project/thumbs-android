@@ -4,12 +4,14 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import com.thumbs.android.thumbsAndroid.R
 import com.thumbs.android.thumbsAndroid.ui.menu.MenuContract
 import com.thumbs.android.thumbsAndroid.ui.widget.MainWidget
+import com.thumbs.android.thumbsAndroid.ui.widget.createLayoutParams
 import org.koin.android.ext.android.inject
 
 class ControllerService : Service() {
@@ -20,11 +22,16 @@ class ControllerService : Service() {
 
     private val menuPresenter: MenuContract.UserActionListerner by inject()
     var thumbsView: View? =null
+    var menuView: View? =null
     override fun onCreate() {
         super.onCreate()
         thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
-        val thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
-        MainWidget(this, windowManager, menuPresenter,thumbsView)
+//        menuView = LayoutInflater.from(this).inflate(R.layout.activity_clean, null)
+//        val thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
+
+        MainWidget(this, windowManager, menuPresenter, thumbsView!!)
+//        val layoutParams = createLayoutParams(0, -310)
+//        windowManager.addView(thumbsView, layoutParams)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -36,12 +43,22 @@ class ControllerService : Service() {
     }
 
     override fun onDestroy() {
+        Log.d("TAG", "onDestroy1 called")
+
         super.onDestroy()
-//        thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
-//        if(thumbsView != null)        //서비스 종료시 뷰 제거. *중요 : 뷰를 꼭 제거 해야함.
-//        {
-//            windowManager.removeView(thumbsView)
+
+
+        (applicationContext.getSystemService(Service.WINDOW_SERVICE) as WindowManager).run{
+
+            removeView(thumbsView)
+            removeView(menuView)
+        }
+//        (applicationContext.getSystemService(Service.WINDOW_SERVICE) as WindowManager).removeView(thumbsView)
+//            (WindowManager) getApplicationContext().getSystemService(Service.WINDOW_SERVICE).removeView()
 //            thumbsView = null
+
 //        }
+
+        Log.d("TAG", "onDestroy2 called")
     }
 }
