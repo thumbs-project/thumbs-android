@@ -64,16 +64,11 @@ fun setOnTouch(
           handleClickSingle(view)
 
           if(state==1) {
-            showingManupopup()
+            showingMenuIn()
             state=0
           }
           else if(state==0){
-            menuAnimate(menu.moveClean!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-30,layoutParams.y-200), windowManager, state)
-            menuAnimate(menu.moveHealthy!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-150,layoutParams.y-140), windowManager, state)
-            menuAnimate(menu.moveLove!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-200,layoutParams.y), windowManager, state)
-            menuAnimate(menu.moveMeal!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-150,layoutParams.y+140), windowManager, state)
-            menuAnimate(menu.moveQuit!!, Point(layoutParams.x, layoutParams.y), Point(layoutParams.x-30,layoutParams.y+200), windowManager, state)
-              state=1
+            showingMenuOut()
           }
         }
         return true
@@ -97,12 +92,7 @@ fun setOnTouch(
             //this code is helping the widget to move around the screen with fingers
             layoutParams.x = initialX + (event.rawX - initialTouchX).toInt()
             layoutParams.y = initialY + (event.rawY - initialTouchY).toInt()
-            windowManager.updateViewLayout(view, layoutParams)
-            windowManager.updateViewLayout(menu.moveClean, createLayoutParams(layoutParams.x-30, layoutParams.y-200))
-            windowManager.updateViewLayout(menu.moveHealthy, createLayoutParams(layoutParams.x-150, layoutParams.y-140))
-            windowManager.updateViewLayout(menu.moveLove, createLayoutParams(layoutParams.x-200, layoutParams.y))
-            windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x-150, layoutParams.y+140))
-            windowManager.updateViewLayout(menu.moveQuit, createLayoutParams(layoutParams.x-30, layoutParams.y+200))
+            updateView()
             return true
           }
         }
@@ -110,7 +100,7 @@ fun setOnTouch(
       return false
     }
 
-    private fun showingManupopup() {
+    private fun showingMenuIn() {
       menuAnimate(
         menu.moveClean!!,
         Point(layoutParams.x - 30, layoutParams.y - 200),
@@ -146,6 +136,54 @@ fun setOnTouch(
         windowManager,
         state
       )
+    }
+
+    private fun showingMenuOut() {
+      menuAnimate(
+        menu.moveClean!!,
+        Point(layoutParams.x, layoutParams.y),
+        Point(layoutParams.x - 30, layoutParams.y - 200),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveHealthy!!,
+        Point(layoutParams.x, layoutParams.y),
+        Point(layoutParams.x - 150, layoutParams.y - 140),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveLove!!,
+        Point(layoutParams.x, layoutParams.y),
+        Point(layoutParams.x - 200, layoutParams.y),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveMeal!!,
+        Point(layoutParams.x, layoutParams.y),
+        Point(layoutParams.x - 150, layoutParams.y + 140),
+        windowManager,
+        state
+      )
+      menuAnimate(
+        menu.moveQuit!!,
+        Point(layoutParams.x, layoutParams.y),
+        Point(layoutParams.x - 30, layoutParams.y + 200),
+        windowManager,
+        state
+      )
+      state = 1
+    }
+
+    private fun updateView() {
+      windowManager.updateViewLayout(view, layoutParams)
+      windowManager.updateViewLayout(menu.moveClean, createLayoutParams(layoutParams.x - 30, layoutParams.y - 200))
+      windowManager.updateViewLayout(menu.moveHealthy, createLayoutParams(layoutParams.x - 150, layoutParams.y - 140))
+      windowManager.updateViewLayout(menu.moveLove, createLayoutParams(layoutParams.x - 200, layoutParams.y))
+      windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x - 150, layoutParams.y + 140))
+      windowManager.updateViewLayout(menu.moveQuit, createLayoutParams(layoutParams.x - 30, layoutParams.y + 200))
     }
   })
 }
