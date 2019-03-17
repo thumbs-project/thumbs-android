@@ -124,8 +124,6 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
     override fun onDestroy() {
         super.onDestroy()
-
-
     }
 
     override fun showToast(message: String) {
