@@ -6,14 +6,18 @@ class StatusPresenter(
     val thumbsRepository: ThumbsRepository
 ) : StatusContract.StatusUserActionListener {
 
-    var statusView : StatusContract.StatusView ?= null
+
+    var statusView: StatusContract.StatusView? = null
 
     override fun loadThumb() {
-        thumbsRepository.loadThumb(1).subscribe({
-            statusView?.setUi(it)
-        },{
-            it.printStackTrace()
-        })
+        thumbsRepository.loadThumb(1)
+            .subscribe({
+                statusView?.setUi(it)
+                statusView?.loadSuccess()
+            }, {
+                statusView?.loadFail()
+                it.printStackTrace()
+            })
     }
 
     override fun attachView(view: StatusContract.StatusView) {

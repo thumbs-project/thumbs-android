@@ -7,9 +7,12 @@ import com.thumbs.android.thumbsAndroid.ui.base.BaseView
 interface StatusContract {
     interface StatusView : BaseView {
         fun setUi(thumb: Thumb)
+        fun loadSuccess()
+        fun loadFail()
     }
 
     interface StatusUserActionListener : BasePresenter<StatusContract.StatusView> {
         fun loadThumb()
+
     }
 }

@@ -51,7 +51,6 @@ class ControllerService : Service() {
         (applicationContext.getSystemService(Service.WINDOW_SERVICE) as WindowManager).run{
 
             removeView(thumbsView)
-            removeView(menuView)
         }
 //        (applicationContext.getSystemService(Service.WINDOW_SERVICE) as WindowManager).removeView(thumbsView)
 //            (WindowManager) getApplicationContext().getSystemService(Service.WINDOW_SERVICE).removeView()

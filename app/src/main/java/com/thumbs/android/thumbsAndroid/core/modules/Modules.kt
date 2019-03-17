@@ -84,7 +84,7 @@ val repositoryModules = module {
 }
 val userModule = module {
     factory { SettingPresenter(get()) as SettingContract.SettingUserActionListener }
-    factory { SplashPresenter(get()) as SplashContract.SplashUserActionListerner }
+    factory { SplashPresenter(get()) as SplashContract.SplashUserActionListener }
 }
 
 val registerModule = module {

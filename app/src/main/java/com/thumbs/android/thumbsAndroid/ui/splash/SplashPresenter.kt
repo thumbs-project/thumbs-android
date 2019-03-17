@@ -1,10 +1,11 @@
 package com.thumbs.android.thumbsAndroid.ui.splash
 
 import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
+import io.reactivex.schedulers.Schedulers.*
 
 class SplashPresenter(
     val thumbsRepository: ThumbsRepository
-) : SplashContract.SplashUserActionListerner {
+) : SplashContract.SplashUserActionListener {
 
     var splashView: SplashContract.SplashView? = null
 
@@ -15,6 +16,7 @@ class SplashPresenter(
     override fun loadThumbsData() {
         //TODO how to deal with when having multiple Thumbs?
         thumbsRepository.loadThumb(1)
+            .observeOn(io())
             .subscribe({
                 splashView?.success(it)
             }, {
@@ -26,5 +28,4 @@ class SplashPresenter(
     override fun removeView() {
         splashView = null
     }
-
 }
