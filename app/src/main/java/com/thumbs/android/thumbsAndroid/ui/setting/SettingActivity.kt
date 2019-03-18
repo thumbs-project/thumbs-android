@@ -97,33 +97,32 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
     private fun setCheckedListener() {
         switch_widget.setOnCheckedChangeListener { buttonView, isChecked ->
-            //            checkPermission()
+
             if (isChecked) {
-                //                presenter.upsert(
-                //                    ThumbSize(
-                //                        (thumbs.layoutParams as ViewGroup.LayoutParams).width,
-                //                        (thumbs.layoutParams as ViewGroup.LayoutParams).height
-                //                    )
-                //                )
                 /*
-                * TODO
+                * TODO if Service is running, It have not to do below codes
                 * */
                 startService(Intent(this@SettingActivity, ControllerService::class.java))
-
             } else {
-                /*
-                * TODO
-                * */
-
-
                 stopService(Intent(this@SettingActivity, ControllerService::class.java))
 
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+
+    override fun setUi(thumb: Thumb, size : ThumbSize) {
+        name.text = thumb.name
+        seekBar.progress = (size.width - SettingPresenter.MIN_WIDTH_SIZE) / STEP
+        Picasso.with(this).load(thumb.image).into(thumbs)
+        setImageSize(size)
+    }
+
+    override fun setImageSize(size : ThumbSize) {
+        thumbs.layoutParams = (thumbs.layoutParams as ViewGroup.LayoutParams).apply {
+            this.height = size.height
+            this.width = size.width
+        }
     }
 
     override fun showToast(message: String) {

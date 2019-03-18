@@ -137,7 +137,6 @@ fun setOnTouch(
         state
       )
     }
-
     private fun showingMenuOut() {
       menuAnimate(
         menu.moveClean!!,
@@ -185,6 +184,7 @@ fun setOnTouch(
       windowManager.updateViewLayout(menu.moveMeal, createLayoutParams(layoutParams.x - 150, layoutParams.y + 140))
       windowManager.updateViewLayout(menu.moveQuit, createLayoutParams(layoutParams.x - 30, layoutParams.y + 200))
     }
+
   })
 }
 

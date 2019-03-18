@@ -4,7 +4,7 @@ import com.thumbs.android.thumbsAndroid.repositories.ThumbsRepository
 
 
 class RegisterPresenter(
-    val thumbsRepository: ThumbsRepository
+    private val thumbsRepository: ThumbsRepository
 ) : RegisterContract.RegisterUserActionListener {
 
     var registerView: RegisterContract.RegisterView? = null
@@ -31,5 +31,4 @@ class RegisterPresenter(
     override fun removeView() {
         registerView = null
     }
-
 }
