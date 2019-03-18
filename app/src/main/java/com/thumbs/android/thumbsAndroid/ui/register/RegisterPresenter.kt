@@ -31,5 +31,4 @@ class RegisterPresenter(
     override fun removeView() {
         registerView = null
     }
-
 }

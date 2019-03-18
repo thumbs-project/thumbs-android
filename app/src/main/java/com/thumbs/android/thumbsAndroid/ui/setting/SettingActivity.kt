@@ -73,35 +73,16 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
         })
 
         switch_widget.setOnCheckedChangeListener { buttonView, isChecked ->
-//            checkPermission()
             if (isChecked) {
-//                presenter.upsert(
-//                    ThumbSize(
-//                        (thumbs.layoutParams as ViewGroup.LayoutParams).width,
-//                        (thumbs.layoutParams as ViewGroup.LayoutParams).height
-//                    )
-//                )
                 /*
-                * TODO
+                * TODO if Service is running, It have not to do below codes
                 * */
                 startService(Intent(this@SettingActivity, ControllerService::class.java))
-
             } else {
-                /*
-                * TODO
-                * */
-
-
                 stopService(Intent(this@SettingActivity, ControllerService::class.java))
 
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-
     }
 
     override fun setUi(thumb: Thumb, size : ThumbSize) {

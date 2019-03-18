@@ -21,6 +21,7 @@ class MenuPresenter(val menuRepository: UserEventRepository) :
 
     override fun postUserEvent(action: Int) {
         val userAction: UserAction = when (action) {
+            //TODO need to deal with Multiple Users
             CLEANACTION -> {
                 UserAction(12345, "CLEAN", "")
             }
@@ -43,7 +44,7 @@ class MenuPresenter(val menuRepository: UserEventRepository) :
             })
     }
 
-    override fun getDefaultImageUrl(service: Service, image: ImageView){
+    override fun getDefaultImageUrl(service: Service, image: ImageView) {
         menuRepository.getThumbsStatus(1).subscribe({ it ->
             Picasso.with(service)
                 .load(it.image)
