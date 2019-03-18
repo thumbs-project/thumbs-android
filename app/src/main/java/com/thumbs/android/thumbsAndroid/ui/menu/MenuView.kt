@@ -46,41 +46,56 @@ class MenuView(
     init {
         thumbsService = service
         thumbsWindowManager = windowManager
-        val clean = LayoutInflater.from(service)
+
+//        val clean = LayoutInflater.from(service)
+//            .inflate(layout.activity_clean, null)
+//        val healty = LayoutInflater.from(service)
+//            .inflate(layout.activity_healthy, null)
+//        val love = LayoutInflater.from(service)
+//            .inflate(layout.activity_love, null)
+//        val meal = LayoutInflater.from(service)
+//            .inflate(R.layout.activity_meal, null)
+//        val quit = LayoutInflater.from(service)
+//            .inflate(R.layout.activity_quit, null)
+        initView(service)
+        setClickListener(service)
+        addView(windowManager, layoutParams)
+    }
+
+    private fun initView(service: Service) {
+        moveClean = LayoutInflater.from(service)
             .inflate(layout.activity_clean, null)
-        val healty = LayoutInflater.from(service)
+        moveClean!!.visibility = View.GONE
+
+        moveHealthy = LayoutInflater.from(service)
             .inflate(layout.activity_healthy, null)
-        val love = LayoutInflater.from(service)
+        moveHealthy!!.visibility = View.GONE
+
+        moveLove = LayoutInflater.from(service)
             .inflate(layout.activity_love, null)
-        val meal = LayoutInflater.from(service)
-            .inflate(R.layout.activity_meal, null)
-        val quit = LayoutInflater.from(service)
-            .inflate(R.layout.activity_quit, null)
+        moveLove!!.visibility = View.GONE
 
-        clean!!.visibility = View.GONE
-        moveClean = clean
+        moveMeal = LayoutInflater.from(service)
+            .inflate(layout.activity_meal, null)
+        moveMeal!!.visibility = View.GONE
+
+        moveQuit = LayoutInflater.from(service)
+            .inflate(layout.activity_quit, null)
+        moveQuit!!.visibility = View.GONE
+    }
+
+    private fun setClickListener(service: Service) {
         moveClean!!.setOnClickListener { actionListener(CLEANACTION) }
-
-        healty!!.visibility = View.GONE
-        moveHealthy = healty
         moveHealthy!!.setOnClickListener { actionListener(HEALTYACTION) }
-
-        love!!.visibility = View.GONE
-        moveLove = love
         moveLove!!.setOnClickListener { actionListener(LOVEACTION) }
-
-        meal!!.visibility = View.GONE
-        moveMeal = meal
         moveMeal!!.setOnClickListener { actionListener(MEALACTION) }
-
-        quit!!.visibility = View.GONE
-        moveQuit = quit
         moveQuit!!.setOnClickListener {
             // TODO need to app exit
             service.stopSelf()
         }
-        quit!!.visibility=View.GONE
+    }
 
+    private fun addView(windowManager: WindowManager, layoutParams: WindowManager.LayoutParams) {
         windowManager.addView(moveClean, layoutParams)
         windowManager.addView(moveHealthy, layoutParams)
         windowManager.addView(moveLove, layoutParams)

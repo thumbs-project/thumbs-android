@@ -22,9 +22,11 @@ class ControllerService : Service() {
 
     private val menuPresenter: MenuContract.UserActionListerner by inject()
     var thumbsView: View? =null
+    var menuView: View? =null
     override fun onCreate() {
         super.onCreate()
         thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
+
         MainWidget(this, windowManager, menuPresenter, thumbsView!!)
     }
 

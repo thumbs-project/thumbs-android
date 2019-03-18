@@ -47,10 +47,32 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
     }
 
     fun init() {
+        setBar()
+        setChangeListener()
+        setCheckedListener()
+    }
+
+    private fun setBar() {
         setSupportActionBar(my_toolbar as Toolbar)
         supportActionBar?.title = "환경설정"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
+    override fun setUi(thumb: Thumb, size : ThumbSize) {
+        name.text = thumb.name
+        seekBar.progress = (size.width - SettingPresenter.MIN_WIDTH_SIZE) / STEP
+        Picasso.with(this).load(thumb.image).into(thumbs)
+        setImageSize(size)
+    }
+
+    override fun setImageSize(size : ThumbSize) {
+        thumbs.layoutParams = (thumbs.layoutParams as ViewGroup.LayoutParams).apply {
+            this.height = size.height
+            this.width = size.width
+        }
+    }
+
+    private fun setChangeListener() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 //publishSubject.onNext(progress to b)
@@ -71,8 +93,11 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
             }
         })
+    }
 
+    private fun setCheckedListener() {
         switch_widget.setOnCheckedChangeListener { buttonView, isChecked ->
+
             if (isChecked) {
                 /*
                 * TODO if Service is running, It have not to do below codes
@@ -84,6 +109,7 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
             }
         }
     }
+
 
     override fun setUi(thumb: Thumb, size : ThumbSize) {
         name.text = thumb.name
@@ -103,26 +129,27 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
         this.showToastMessageString(message)
     }
 
-    private fun isServiceRunning(serviceClass: Class<*>): Boolean {
-        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//
+//    private fun isServiceRunning(serviceClass: Class<*>): Boolean {
+//        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//
+//        for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
+//            if (serviceClass.name == service.service.className) {
+//                Log.d("TAG", "serviceOn")
+//                return true
+//            }
+//        }
+//        return false
+//    }
 
-        for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.name == service.service.className) {
-                Log.d("TAG", "serviceOn")
-                return true
-            }
-        }
-        return false
-    }
-
-    private fun checkPermission() {
-        Intent(
-            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-            Uri.parse("package:$packageName")
-        ).let {
-            startActivityForResult(it, PERMISSION_CODE)
-        }
-    }
+//    private fun checkPermission() {
+//        Intent(
+//            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+//            Uri.parse("package:$packageName")
+//        ).let {
+//            startActivityForResult(it, PERMISSION_CODE)
+//        }
+//    }
 }
 
 
