@@ -71,7 +71,6 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
             this.width = size.width
         }
     }
-
     private fun setChangeListener() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -114,14 +113,12 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
                 /*
                 * TODO
                 * */
-
-
                 stopService(Intent(this@SettingActivity, ControllerService::class.java))
 
             }
         }
     }
-
+  
     override fun onDestroy() {
         super.onDestroy()
     }

@@ -137,7 +137,7 @@ fun setOnTouch(
         state
       )
     }
-
+    
     private fun showingMenuOut() {
       menuAnimate(
         menu.moveClean!!,
@@ -187,7 +187,6 @@ fun setOnTouch(
     }
   })
 }
-
 
 fun menuAnimate(view: View, startPoint: Point, endPoint: Point, windowManager: WindowManager, state: Int){
   view.visibility=View.VISIBLE

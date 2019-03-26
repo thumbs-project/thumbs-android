@@ -10,7 +10,7 @@ interface SplashContract {
         fun fail()
     }
 
-    interface SplashUserActionListerner : BasePresenter<SplashView> {
+    interface SplashUserActionListener : BasePresenter<SplashView> {
         fun loadThumbsData()
     }
 }

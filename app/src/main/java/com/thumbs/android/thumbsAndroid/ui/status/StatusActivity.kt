@@ -25,6 +25,7 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_status)
+
         presenter.loadThumb()
 
         iv_setting.setOnClickListener {
@@ -48,6 +49,7 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
         tv_health_percent.text = (thumb.condition.health?.value ?: 0).toString() + "%"
         tv_love_percent.text = (thumb.condition.affection?.value ?: 0).toString() + "%"
         tv_meal_percent.text = (thumb.condition.satiety?.value ?: 0).toString() + "%"
+
         Picasso.with(this).load(thumb.image).into(iv_thumb)
 
         iv_thumb.layoutParams = (iv_thumb.layoutParams as ViewGroup.LayoutParams).apply {
@@ -55,6 +57,8 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
             this.width = SettingPresenter.MIN_HEIGHT_SIZE
         }
     }
-
     override fun showToast(message: String) = this.showToastMessageString(message)
+    override fun loadSuccess() = showToast("Thumbs 새로 고침")
+    override fun loadFail() = showToast("Thumbs 불러오기 실패")
+
 }

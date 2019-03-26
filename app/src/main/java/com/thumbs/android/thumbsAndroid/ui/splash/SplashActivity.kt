@@ -2,7 +2,9 @@ package com.thumbs.android.thumbsAndroid.ui.splash
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.animation.ValueAnimator.REVERSE
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -23,7 +25,7 @@ import org.koin.android.ext.android.inject
 
 class SplashActivity : BaseActivity(), SplashContract.SplashView {
 
-    val presenter by inject<SplashContract.SplashUserActionListerner>()
+    val presenter by inject<SplashContract.SplashUserActionListener>()
 
 
     private val CODE_OVERLAY_PERMISSION = 2002
@@ -35,43 +37,12 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        startActivityIfPermissionPass()
+        nextActivityIfPermissionPass()
     }
 
-    private fun startActivityIfPermissionPass() {
-        val count = 7
-        val anim = AnimatorSet()
-        anim.duration = 700L
-        anim.playTogether(
-            Glider.glide(Skill.CubicEaseInOut, 700f,
-                ObjectAnimator.ofFloat(0f, -150f).apply {
-                    duration = 700
-                    addUpdateListener {
-                        it.repeatCount = count
-                        it.repeatMode = REVERSE
-                        splash_body.translationY = it.animatedValue as Float
-                    }
-                }),
-            Glider.glide(Skill.CubicEaseInOut, 700f,
-                ObjectAnimator.ofFloat(splash_body, "scaleY", 0.9f, 1.0f).apply {
-                    this.repeatCount = count
-                    this.repeatMode = REVERSE
-                }),
-            Glider.glide(Skill.CubicEaseInOut, 700f,
-                ObjectAnimator.ofFloat(splash_shadow, "alpha", 0.7f, 0.3f).apply {
-                    this.repeatCount = count
-                    this.repeatMode = REVERSE
-                }),
-            Glider.glide(Skill.CubicEaseInOut, 700f, ObjectAnimator.ofFloat(0f, -140f).apply {
-                duration = 700
-                addUpdateListener {
-                    it.repeatCount = count
-                    it.repeatMode = REVERSE
-                    splash_face.translationY = it.animatedValue as Float
-                }
-            })
-        )
-        anim.start()
+    private fun nextActivityIfPermissionPass() {
+
+        splashAnimationStart()
 
         val runnable = Runnable {
             when {
@@ -82,7 +53,6 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
                     checkPermission()
                     Toast.makeText(this, R.string.permission_toast, Toast.LENGTH_SHORT)
                         .show()
-                    finish()
                 }
             }
         }
@@ -92,24 +62,87 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
         }
     }
 
-    private fun checkPermission() {
-        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))
-            .let {
-                startActivityForResult(it, CODE_OVERLAY_PERMISSION)
+    private fun splashAnimationStart() {
+        val count = 3
+        val anim = AnimatorSet()
+        anim.duration = 700L
+
+        anim.playTogether(
+            upDownObjectAnim(count),
+            scaleObjectAnim(count),
+            cubicObjectAnim(count),
+            cubicValueAnim(count)
+        )
+        anim.start()
+    }
+
+
+    private fun cubicValueAnim(count: Int): ValueAnimator? {
+        return Glider.glide(Skill.CubicEaseInOut, 700f, ObjectAnimator.ofFloat(0f, -140f).apply {
+            duration = 700
+            addUpdateListener {
+                it.repeatCount = count
+                it.repeatMode = REVERSE
+                splash_face.translationY = it.animatedValue as Float
             }
+        })
+    }
+
+    private fun cubicObjectAnim(count: Int): ValueAnimator? {
+        return Glider.glide(Skill.CubicEaseInOut, 700f,
+            ObjectAnimator.ofFloat(splash_shadow, "alpha", 0.7f, 0.3f).apply {
+                this.repeatCount = count
+                this.repeatMode = REVERSE
+            })
+    }
+
+    private fun scaleObjectAnim(count: Int): ValueAnimator? {
+        return Glider.glide(Skill.CubicEaseInOut, 700f,
+            ObjectAnimator.ofFloat(splash_body, "scaleY", 0.9f, 1.0f).apply {
+                this.repeatCount = count
+                this.repeatMode = REVERSE
+            })
+    }
+
+    private fun upDownObjectAnim(count: Int): ValueAnimator? {
+        return Glider.glide(Skill.CubicEaseInOut, 700f,
+            ObjectAnimator.ofFloat(0f, -150f).apply {
+                duration = 700
+                addUpdateListener {
+                    it.repeatCount = count
+                    it.repeatMode = REVERSE
+                    splash_body.translationY = it.animatedValue as Float
+                }
+            })
+    }
+
+    private fun checkPermission() {
+        startActivityForResult(
+            Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName")),
+            CODE_OVERLAY_PERMISSION
+        )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CODE_OVERLAY_PERMISSION) {
+            if (Settings.canDrawOverlays(this)) {
+                presenter.loadThumbsData()
+            }
+        }
     }
 
     override fun success(thumbs: Thumb) {
         val intent = Intent(this, StatusActivity::class.java)
-
+      
         startService(Intent(this, ControllerService::class.java))
-        startActivity(intent)
+        startActivity(Intent(this, StatusActivity::class.java))
         finish()
     }
 
     override fun fail() {
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, RegisterActivity::class.java))
         finish()
     }
+
 }
