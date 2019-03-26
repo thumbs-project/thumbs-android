@@ -32,7 +32,7 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
         }
 
         icon_reload.setOnClickListener {
-            showToast("Thumbs 새로 고침")
+            showToast((R.string.refresh_toast).toString())
             presenter.loadThumb()
         }
     }

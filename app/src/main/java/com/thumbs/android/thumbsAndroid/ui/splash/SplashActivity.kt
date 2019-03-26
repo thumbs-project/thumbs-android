@@ -80,7 +80,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
                 }
                 else -> {
                     checkPermission()
-                    Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, R.string.permission_toast, Toast.LENGTH_SHORT)
                         .show()
                     finish()
                 }

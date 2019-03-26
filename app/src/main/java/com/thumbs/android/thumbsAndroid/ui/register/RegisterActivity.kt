@@ -43,7 +43,7 @@ class RegisterActivity : BaseActivity(), RegisterContract.RegisterView {
                 }
                 else -> {
                     checkPermission()
-                    Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.permission_toast, Toast.LENGTH_SHORT).show()
                 }
             }
         }

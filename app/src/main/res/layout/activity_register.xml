@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="24sp"
             android:layout_marginTop="108dp"
-            android:text="THUMBS의\n이름을 정해주세요."/>
+            android:text="@string/register_textView"/>
 
 
     <ImageView
@@ -48,7 +48,7 @@
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="시작하기"
+            android:text="@string/register_button"
             android:textColor="@color/colorWhite"
             android:background="@color/colorMainTest"
             app:layout_constraintLeft_toLeftOf="parent"

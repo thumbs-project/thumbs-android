@@ -54,7 +54,7 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
     private fun setBar() {
         setSupportActionBar(my_toolbar as Toolbar)
-        supportActionBar?.title = "환경설정"
+        supportActionBar?.title = getString(R.string.setting_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
