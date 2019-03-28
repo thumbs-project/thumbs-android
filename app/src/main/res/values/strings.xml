@@ -2,4 +2,16 @@
     <string name="APP_NAME">Thumbs</string>
     <string name="status_toolbar_title">THUMBS</string>
     <string name="refresh_thumbs_status">Refresh Thumbs Status</string>
+    <string name="permission_toast">You need System Alert Window Permission to do this</string>
+    <string name="registerView_complete">등록이 완료되었습니다.</string>
+    <string name="registerView_name">이름을 입력해주세요!</string>
+    <string name="setting_title">환경설정</string>
+    <string name="loadSuccess_toast">Thumbs 새로 고침</string>
+    <string name="loadFail_toast">Thumbs 불러오기 실패</string>
+    <string name="register_textView">THUMBS의\n이름을 정해주세요.</string>
+    <string name="register_button">시작하기</string>
+    <string name="setting_name">이름</string>
+    <string name="setting_size">위젯 크기</string>
+    <string name="setting_hide">위젯 보이기</string>
+    <string name="refresh_toast">Thumbs 새로 고침</string>
 </resources>

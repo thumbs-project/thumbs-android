@@ -26,8 +26,11 @@ class ControllerService : Service() {
     override fun onCreate() {
         super.onCreate()
         thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
+//        menuView = LayoutInflater.from(this).inflate(R.layout.activity_clean, null)
+//        val thumbsView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null)
 
         MainWidget(this, windowManager, menuPresenter, thumbsView!!)
+//        val layoutParams = createLayoutParams(0, -310)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -46,6 +49,14 @@ class ControllerService : Service() {
 
         (applicationContext.getSystemService(Service.WINDOW_SERVICE) as WindowManager).run{
             removeView(thumbsView)
+            removeView(menuView)
         }
+//        (applicationContext.getSystemService(Service.WINDOW_SERVICE) as WindowManager).removeView(thumbsView)
+//            (WindowManager) getApplicationContext().getSystemService(Service.WINDOW_SERVICE).removeView()
+//            thumbsView = null
+
+//        }
+
+        Log.d("TAG", "onDestroy2 called")
     }
 }

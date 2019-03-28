@@ -33,6 +33,7 @@ class StatusActivity : BaseActivity(), StatusContract.StatusView {
         }
 
         icon_reload.setOnClickListener {
+            showToast((R.string.refresh_toast).toString())
             presenter.loadThumb()
         }
     }

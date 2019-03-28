@@ -51,7 +51,7 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
                 }
                 else -> {
                     checkPermission()
-                    Toast.makeText(this, "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, R.string.permission_toast, Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -133,6 +133,8 @@ class SplashActivity : BaseActivity(), SplashContract.SplashView {
     }
 
     override fun success(thumbs: Thumb) {
+        val intent = Intent(this, StatusActivity::class.java)
+      
         startService(Intent(this, ControllerService::class.java))
         startActivity(Intent(this, StatusActivity::class.java))
         finish()

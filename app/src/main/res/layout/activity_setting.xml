@@ -74,7 +74,7 @@
 
             <TextView
                     android:id="@+id/tv_text_name"
-                    android:text="이름"
+                    android:text="@string/setting_name"
                     android:paddingBottom="2dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/colorBlack"
@@ -114,7 +114,7 @@
 
             <TextView
                     android:id="@+id/tv_text_widget_size"
-                    android:text="위젯 크기"
+                    android:text="@string/setting_size"
                     android:textColor="@color/colorBlack"
                     android:layout_marginTop="13dp"
                     android:layout_marginLeft="32dp"
@@ -158,7 +158,7 @@
 
             <TextView
                     android:id="@+id/tv_text_widget_shown"
-                    android:text="위젯 보이기"
+                    android:text="@string/setting_hide"
                     android:textColor="@color/colorBlack"
                     android:layout_marginTop="13dp"
                     android:layout_marginLeft="32dp"

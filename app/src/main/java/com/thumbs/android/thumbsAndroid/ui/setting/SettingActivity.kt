@@ -54,7 +54,7 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
     private fun setBar() {
         setSupportActionBar(my_toolbar as Toolbar)
-        supportActionBar?.title = "환경설정"
+        supportActionBar?.title = getString(R.string.setting_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -71,7 +71,6 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
             this.width = size.width
         }
     }
-
     private fun setChangeListener() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -97,32 +96,31 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
 
     private fun setCheckedListener() {
         switch_widget.setOnCheckedChangeListener { buttonView, isChecked ->
-
+            //            checkPermission()
             if (isChecked) {
+                //                presenter.upsert(
+                //                    ThumbSize(
+                //                        (thumbs.layoutParams as ViewGroup.LayoutParams).width,
+                //                        (thumbs.layoutParams as ViewGroup.LayoutParams).height
+                //                    )
+                //                )
                 /*
-                * TODO if Service is running, It have not to do below codes
+                * TODO
                 * */
                 startService(Intent(this@SettingActivity, ControllerService::class.java))
+
             } else {
+                /*
+                * TODO
+                * */
                 stopService(Intent(this@SettingActivity, ControllerService::class.java))
 
             }
         }
     }
-
-
-    override fun setUi(thumb: Thumb, size : ThumbSize) {
-        name.text = thumb.name
-        seekBar.progress = (size.width - SettingPresenter.MIN_WIDTH_SIZE) / STEP
-        Picasso.with(this).load(thumb.image).into(thumbs)
-        setImageSize(size)
-    }
-
-    override fun setImageSize(size : ThumbSize) {
-        thumbs.layoutParams = (thumbs.layoutParams as ViewGroup.LayoutParams).apply {
-            this.height = size.height
-            this.width = size.width
-        }
+  
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     override fun showToast(message: String) {
