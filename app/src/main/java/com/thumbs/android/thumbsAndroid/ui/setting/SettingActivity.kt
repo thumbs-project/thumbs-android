@@ -1,32 +1,21 @@
 package com.thumbs.android.thumbsAndroid.ui.setting
 
-import android.app.ActivityManager
-import android.content.Context
-import android.graphics.drawable.Drawable
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.support.v7.widget.Toolbar
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.SeekBar
 import com.squareup.picasso.Picasso
 import com.thumbs.android.thumbsAndroid.R
-import com.thumbs.android.thumbsAndroid.dpToPixel
 import com.thumbs.android.thumbsAndroid.model.Thumb
 import com.thumbs.android.thumbsAndroid.model.ThumbSize
-import com.thumbs.android.thumbsAndroid.pixelToDp
 import com.thumbs.android.thumbsAndroid.services.ControllerService
 import com.thumbs.android.thumbsAndroid.showToastMessageString
 import com.thumbs.android.thumbsAndroid.ui.base.BaseActivity
 import com.thumbs.android.thumbsAndroid.ui.setting.SettingPresenter.Companion.STEP
 import kotlinx.android.synthetic.main.activity_setting.*
 import org.koin.android.ext.android.inject
-import java.io.InputStream
-import java.net.URL
 
 
 class SettingActivity : BaseActivity(), SettingContract.SettingView {
@@ -58,19 +47,20 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun setUi(thumb: Thumb, size : ThumbSize) {
+    override fun setUi(thumb: Thumb, size: ThumbSize) {
         name.text = thumb.name
         seekBar.progress = (size.width - SettingPresenter.MIN_WIDTH_SIZE) / STEP
         Picasso.with(this).load(thumb.image).into(thumbs)
         setImageSize(size)
     }
 
-    override fun setImageSize(size : ThumbSize) {
+    override fun setImageSize(size: ThumbSize) {
         thumbs.layoutParams = (thumbs.layoutParams as ViewGroup.LayoutParams).apply {
             this.height = size.height
             this.width = size.width
         }
     }
+
     private fun setChangeListener() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -118,7 +108,7 @@ class SettingActivity : BaseActivity(), SettingContract.SettingView {
             }
         }
     }
-  
+
     override fun onDestroy() {
         super.onDestroy()
     }
