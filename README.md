@@ -1,7 +1,6 @@
 # thumbs-android
 
-
-내손안의 다마고치
+프로젝트 설명은 [여기!](https://github.com/thumbs-project/thumbs-android/blob/dev/Thumbs.pdf)
 
 ![평소 모습](http://ww2.sinaimg.cn/bmiddle/006tNc79gy1g3xj20wlk9j30k00zkaaq.jpg)
 #### [평상시]
